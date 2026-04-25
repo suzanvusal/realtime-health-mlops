@@ -2,7 +2,6 @@ name: Daily MLOps Commit Automation (Free Tier)
 
 on:
   schedule:
-    # Runs every day at 9:00 AM UTC
     - cron: '0 9 * * *'
   workflow_dispatch:
     inputs:
@@ -17,7 +16,6 @@ on:
 
 permissions:
   contents: write
-  models: read        # Required for GitHub Models API (free)
 
 jobs:
   daily-automation:
@@ -29,29 +27,25 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.AUTOMATION_PAT }}   
+          token: ${{ secrets.AUTOMATION_PAT }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
       - name: Install dependencies
-        run: |
-          # Only standard + free libraries — no Anthropic SDK needed
-          pip install requests pyyaml
-            
+        run: pip install requests pyyaml
+
       - name: Configure Git
         run: |
-            git config --global user.name  "${{ github.actor }}"
-            git config --global user.email "86911143+suzanvusal@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "86911143+suzanvusal@users.noreply.github.com"
 
       - name: Detect current project day
         id: detect_day
         run: |
           mkdir -p .automation_state
-
           if [ -n "${{ github.event.inputs.day_override }}" ]; then
             DAY="${{ github.event.inputs.day_override }}"
           elif [ -f ".automation_state/next_day.txt" ]; then
@@ -61,44 +55,34 @@ jobs:
           else
             DAY=1
           fi
-
-          # Clamp to 1-30
           DAY=$(( DAY < 1 ? 1 : DAY > 30 ? 30 : DAY ))
           echo "$DAY" > .automation_state/current_day.txt
           echo "day=$DAY" >> $GITHUB_OUTPUT
-          echo "▶ Project day: $DAY"
+          echo "Running day $DAY"
 
-      - name: Run free-tier daily automation
+      - name: Run daily automation
         env:
-          # GitHub Models API uses GITHUB_TOKEN — completely free
           GITHUB_TOKEN: ${{ secrets.AUTOMATION_PAT }}
           PROJECT_DAY: ${{ steps.detect_day.outputs.day }}
           COMMITS_TARGET: ${{ github.event.inputs.commits_target || '25' }}
         run: |
           python3 scripts/daily_automator_free.py \
-            --day  "$PROJECT_DAY" \
+            --day "$PROJECT_DAY" \
             --commits "$COMMITS_TARGET" \
             --plan plan/30_day_plan.json
 
-      - name: Advance day counter & push
+      - name: Push all commits
         run: |
-              NEXT=$(( ${{ steps.detect_day.outputs.day }} + 1 ))
-              echo "$NEXT" > .automation_state/next_day.txt
-              echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)  day=${{ steps.detect_day.outputs.day }}" \
-                   >> .automation_state/run_log.txt
-    
-              git add .automation_state/
-              git commit -m "chore: advance automation state to day $NEXT" || true
-              git pull --rebase https://x-access-token:${{ secrets.AUTOMATION_PAT }}@github.com/suzanvusal/realtime-health-mlops.git main || true
-              git push https://x-access-token:${{ secrets.AUTOMATION_PAT }}@github.com/suzanvusal/realtime-health-mlops.git main
+          NEXT=$(( ${{ steps.detect_day.outputs.day }} + 1 ))
+          echo "$NEXT" > .automation_state/next_day.txt
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) day=${{ steps.detect_day.outputs.day }}" \
+               >> .automation_state/run_log.txt
+          git add -A
+          git commit -m "chore: day ${{ steps.detect_day.outputs.day }} automation complete" || true
+          git push origin main
 
-      - name: Job summary
+      - name: Summary
         run: |
-          COUNT=$(git log --oneline --since="3 hours ago" | wc -l | tr -d ' ')
-          echo "## ✅ Day ${{ steps.detect_day.outputs.day }}/30 complete" >> $GITHUB_STEP_SUMMARY
-          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Commits pushed | $COUNT |" >> $GITHUB_STEP_SUMMARY
-          echo "| API cost | \$0.00 (GitHub Models) |" >> $GITHUB_STEP_SUMMARY
-          echo "| Run time | $(date -u) |" >> $GITHUB_STEP_SUMMARY
-# fixed
+          COUNT=$(git log --oneline -50 | wc -l | tr -d ' ')
+          echo "## Day ${{ steps.detect_day.outputs.day }}/30 complete" >> $GITHUB_STEP_SUMMARY
+          echo "Commits: $COUNT | Cost: $0.00" >> $GITHUB_STEP_SUMMARY
