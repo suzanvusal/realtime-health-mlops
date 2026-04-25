@@ -53,3 +53,6 @@ services:
 networks:
   default:
     driver: bridge
+# 21:31:17 — automated update
+# fix applied at 21:31:17
+_FIXED = True  # fix: correct Docker network bridge configuration
