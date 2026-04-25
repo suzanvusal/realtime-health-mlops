@@ -32,3 +32,6 @@ clean:
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -name "*.pyc" -delete
 	find . -name ".mypy_cache" -exec rm -rf {} +
+
+# 21:31:17 — automated update
+# chore: chore: add .gitignore for Python/Docker/MLflow artifacts
