@@ -1,0 +1,943 @@
+{
+  "project": "Real-Time Smart Health Monitoring System with Drift-Aware ML",
+  "repo_structure": {
+    "dirs": [
+      "src/ingestion", "src/streaming", "src/features",
+      "src/models", "src/serving", "src/drift", "src/retraining",
+      "src/monitoring", "infra/docker", "infra/k8s", "infra/airflow",
+      "tests/unit", "tests/integration", "tests/load",
+      "notebooks", "docs", "scripts", "configs", ".github/workflows"
+    ]
+  },
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Foundation & Wearable Data Ingestion",
+      "days": [1, 2, 3, 4, 5],
+      "theme": "Kafka + Docker + CI/CD skeleton + data schemas"
+    },
+    {
+      "phase": 2,
+      "name": "Stream Processing & Feature Engineering",
+      "days": [6, 7, 8, 9, 10],
+      "theme": "Faust consumers + windowing + feature extraction + Redis"
+    },
+    {
+      "phase": 3,
+      "name": "ML Model Training & Real-Time Serving",
+      "days": [11, 12, 13, 14, 15, 16, 17],
+      "theme": "MLflow + XGBoost/LSTM + FastAPI + model registry + A/B"
+    },
+    {
+      "phase": 4,
+      "name": "Drift Detection with Evidently",
+      "days": [18, 19, 20, 21, 22],
+      "theme": "Evidently reports + Grafana dashboards + Slack alerts"
+    },
+    {
+      "phase": 5,
+      "name": "Airflow-Triggered Retraining Pipeline",
+      "days": [23, 24, 25, 26, 27],
+      "theme": "Airflow DAGs + auto-retraining + canary deploy + rollback"
+    },
+    {
+      "phase": 6,
+      "name": "Hardening, Tests & Documentation",
+      "days": [28, 29, 30],
+      "theme": "Integration tests + load testing + docs + security"
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "title": "Project bootstrap & repo structure",
+      "focus": "Init repo layout, Dockerfiles, pre-commit hooks, base configs",
+      "files_to_create": [
+        "README.md", "docker-compose.yml", ".pre-commit-config.yaml",
+        "pyproject.toml", "configs/base_config.yaml",
+        "src/__init__.py", "src/ingestion/__init__.py",
+        ".github/workflows/ci.yml", "Makefile"
+      ],
+      "commit_tasks": [
+        "chore: init project structure with src layout",
+        "chore: add Docker Compose for Kafka + Zookeeper + Redis",
+        "chore: configure pre-commit hooks (black, ruff, mypy)",
+        "chore: add pyproject.toml with all dependencies",
+        "docs: add initial README with project overview",
+        "ci: add GitHub Actions CI workflow skeleton",
+        "chore: add Makefile with common dev commands",
+        "chore: add .gitignore for Python/Docker/MLflow artifacts",
+        "chore: add configs/base_config.yaml with Kafka settings",
+        "fix: correct Docker network bridge configuration"
+      ],
+      "refactor_fix_commits": [
+        "style: format all Python files with black",
+        "fix: resolve Kafka broker connection string in docker-compose",
+        "refactor: split docker-compose into dev and prod profiles",
+        "docs: add CONTRIBUTING.md with git workflow guide",
+        "chore: pin all dependency versions in pyproject.toml"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Wearable data schemas & Kafka producers",
+      "focus": "Pydantic models for health data, Kafka topic setup, producer simulation",
+      "files_to_create": [
+        "src/ingestion/schemas.py", "src/ingestion/producer.py",
+        "src/ingestion/topic_admin.py", "src/ingestion/simulator.py",
+        "configs/kafka_topics.yaml", "tests/unit/test_schemas.py"
+      ],
+      "commit_tasks": [
+        "feat: add Pydantic schemas for wearable sensor data",
+        "feat: implement VitalSign base model with heart_rate, spo2, temp fields",
+        "feat: add PatientMetadata schema with patient_id and device_id",
+        "feat: implement WearableReading composite schema with validation",
+        "feat: add Kafka producer class with retry logic",
+        "feat: implement async batch producer for high-throughput ingestion",
+        "feat: add topic admin utility to create/manage Kafka topics",
+        "feat: implement synthetic wearable data simulator",
+        "feat: add realistic heart rate variation algorithm in simulator",
+        "feat: add SpO2 and temperature simulation with anomaly injection",
+        "test: add unit tests for all Pydantic schema validators",
+        "test: add test for Kafka producer retry on broker failure"
+      ],
+      "refactor_fix_commits": [
+        "fix: add missing Optional type hint on patient age field",
+        "refactor: extract validation logic into separate validators module",
+        "style: rename VitalSign fields to snake_case consistently",
+        "fix: handle edge case when heart_rate value is exactly 0",
+        "perf: switch from json to orjson serialization in producer"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Docker infrastructure hardening",
+      "focus": "Multi-stage Dockerfiles, health checks, volume persistence, networks",
+      "files_to_create": [
+        "infra/docker/Dockerfile.ingestion",
+        "infra/docker/Dockerfile.streaming",
+        "infra/docker/Dockerfile.serving",
+        "infra/docker/docker-compose.monitoring.yml",
+        "infra/docker/healthcheck.sh"
+      ],
+      "commit_tasks": [
+        "feat: add multi-stage Dockerfile for ingestion service",
+        "feat: add multi-stage Dockerfile for streaming service",
+        "feat: add multi-stage Dockerfile for model serving service",
+        "feat: add health check scripts for all containers",
+        "feat: configure named Docker volumes for Kafka and MLflow data persistence",
+        "feat: add docker-compose.monitoring.yml with Prometheus and Grafana",
+        "feat: add Docker network segmentation for security",
+        "feat: add resource limits (CPU/memory) to all services",
+        "infra: add Prometheus scrape config for Kafka JMX metrics"
+      ],
+      "refactor_fix_commits": [
+        "fix: reduce Docker image size by switching to python:3.11-slim",
+        "refactor: consolidate environment variables into .env.example",
+        "fix: correct Grafana volume mount permissions",
+        "style: sort docker-compose services alphabetically",
+        "chore: add docker-compose.override.yml for local dev"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "CI/CD pipeline with GitHub Actions",
+      "focus": "Full CI pipeline: lint, test, build, security scan",
+      "files_to_create": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/docker-build.yml",
+        ".github/workflows/security-scan.yml",
+        ".github/workflows/release.yml",
+        "scripts/run_tests.sh"
+      ],
+      "commit_tasks": [
+        "ci: implement full GitHub Actions CI with matrix Python versions",
+        "ci: add pytest step with coverage threshold enforcement",
+        "ci: add ruff linting step with auto-fix on PR",
+        "ci: add mypy type checking step",
+        "ci: add Docker build and push to GHCR on main merge",
+        "ci: add Trivy security scan for Docker images",
+        "ci: add SAST scan with Bandit for Python security issues",
+        "ci: add dependency vulnerability check with pip-audit",
+        "ci: add release workflow triggered by version tags",
+        "ci: add PR labeler based on changed files"
+      ],
+      "refactor_fix_commits": [
+        "fix: cache pip dependencies in CI for faster runs",
+        "fix: set PYTHONPATH correctly in CI environment",
+        "refactor: extract reusable CI steps into composite actions",
+        "ci: add concurrency group to cancel stale CI runs",
+        "docs: add CI badge to README"
+      ]
+    },
+    {
+      "day": 5,
+      "title": "Kafka consumer skeleton & data validation pipeline",
+      "focus": "Base consumer class, dead-letter queue, schema registry integration",
+      "files_to_create": [
+        "src/ingestion/consumer.py",
+        "src/ingestion/dlq_handler.py",
+        "src/ingestion/schema_registry.py",
+        "configs/consumer_config.yaml",
+        "tests/unit/test_consumer.py"
+      ],
+      "commit_tasks": [
+        "feat: implement base Kafka consumer with auto-commit disabled",
+        "feat: add manual offset commit after successful processing",
+        "feat: implement dead-letter queue handler for malformed messages",
+        "feat: add schema registry client for Avro schema validation",
+        "feat: add consumer group configuration for horizontal scaling",
+        "feat: implement graceful shutdown handler with signal trapping",
+        "feat: add consumer lag metric emission to Prometheus",
+        "test: add integration test for consumer with embedded Kafka",
+        "test: add DLQ routing test for invalid messages"
+      ],
+      "refactor_fix_commits": [
+        "fix: handle KafkaTimeoutError with exponential backoff",
+        "refactor: move consumer config to dataclass from dict",
+        "fix: correct partition assignment strategy to RoundRobin",
+        "perf: increase max_poll_records to 500 for throughput",
+        "docs: add sequence diagram for consumer processing flow"
+      ]
+    },
+    {
+      "day": 6,
+      "title": "Faust stream processing app",
+      "focus": "Faust app, stream agents, real-time feature extraction from wearable data",
+      "files_to_create": [
+        "src/streaming/app.py",
+        "src/streaming/agents.py",
+        "src/streaming/models.py",
+        "src/streaming/sinks.py",
+        "tests/unit/test_agents.py"
+      ],
+      "commit_tasks": [
+        "feat: init Faust application with Kafka broker configuration",
+        "feat: add vitals_stream agent consuming from wearable topic",
+        "feat: implement heart_rate_processor agent with tachycardia detection",
+        "feat: add SpO2 monitor agent with hypoxemia alert logic",
+        "feat: implement temperature anomaly detector agent",
+        "feat: add Faust Table for stateful patient session tracking",
+        "feat: implement processed vitals sink to output Kafka topic",
+        "feat: add real-time alert sink to Redis pub/sub",
+        "test: add async unit test for heart rate anomaly detection"
+      ],
+      "refactor_fix_commits": [
+        "fix: resolve Faust worker crash on empty partition assignment",
+        "refactor: extract threshold constants to configs/thresholds.yaml",
+        "perf: add lru_cache on patient metadata lookups",
+        "fix: handle None values in sensor readings gracefully",
+        "style: add type annotations to all agent functions"
+      ]
+    },
+    {
+      "day": 7,
+      "title": "Time-window feature engineering",
+      "focus": "Sliding window features, HRV computation, trend detection",
+      "files_to_create": [
+        "src/features/window_features.py",
+        "src/features/hrv_calculator.py",
+        "src/features/trend_detector.py",
+        "src/features/feature_store.py",
+        "tests/unit/test_window_features.py"
+      ],
+      "commit_tasks": [
+        "feat: implement sliding window aggregation (1min, 5min, 15min)",
+        "feat: add rolling mean and std dev for heart rate features",
+        "feat: implement RMSSD-based HRV calculator from RR intervals",
+        "feat: add pNN50 metric calculation for HRV feature set",
+        "feat: implement linear trend detector for vital sign drift",
+        "feat: add polynomial trend feature with significance test",
+        "feat: implement in-memory feature store backed by Redis",
+        "feat: add feature versioning metadata to each feature vector",
+        "feat: implement feature TTL expiration in feature store",
+        "test: add property-based tests for window feature calculations"
+      ],
+      "refactor_fix_commits": [
+        "perf: vectorise window computation with numpy instead of loop",
+        "fix: handle missing data gaps in sliding window correctly",
+        "refactor: separate stateful from stateless feature functions",
+        "fix: correct RMSSD formula — was using mean instead of RMS",
+        "docs: add docstrings with formula references to HRV functions"
+      ]
+    },
+    {
+      "day": 8,
+      "title": "Redis caching layer & feature materialization",
+      "focus": "Redis client, feature materialization pipeline, cache invalidation",
+      "files_to_create": [
+        "src/features/redis_client.py",
+        "src/features/materializer.py",
+        "src/features/cache_policy.py",
+        "configs/redis_config.yaml",
+        "tests/unit/test_redis_client.py"
+      ],
+      "commit_tasks": [
+        "feat: implement async Redis client with connection pooling",
+        "feat: add feature materializer that writes to Redis hash sets",
+        "feat: implement cache invalidation policy based on data age",
+        "feat: add Redis pipeline for atomic batch feature writes",
+        "feat: implement feature retrieval with fallback to recompute",
+        "feat: add Redis Streams for feature update notifications",
+        "feat: implement LRU eviction config for memory management",
+        "test: add Redis mock tests using fakeredis library",
+        "test: add test for cache invalidation on stale features"
+      ],
+      "refactor_fix_commits": [
+        "fix: add reconnect logic for Redis connection drops",
+        "refactor: switch from string keys to structured Redis key schema",
+        "perf: compress feature vectors before storing in Redis",
+        "fix: handle Redis OOM error gracefully with logging",
+        "chore: add Redis Exporter to monitoring stack"
+      ]
+    },
+    {
+      "day": 9,
+      "title": "Alert engine & notification service",
+      "focus": "Rule-based alert engine, severity levels, notification routing",
+      "files_to_create": [
+        "src/streaming/alert_engine.py",
+        "src/streaming/alert_rules.py",
+        "src/streaming/notifier.py",
+        "configs/alert_rules.yaml",
+        "tests/unit/test_alert_engine.py"
+      ],
+      "commit_tasks": [
+        "feat: implement rule-based alert engine with priority queue",
+        "feat: add critical alert rule: SpO2 < 88% for 30 seconds",
+        "feat: add warning alert rule: HR > 120 bpm sustained",
+        "feat: add info alert rule: temperature above 38.5 celsius",
+        "feat: implement alert deduplication with cooldown window",
+        "feat: add alert severity escalation logic",
+        "feat: implement webhook notifier for Slack integration",
+        "feat: add PagerDuty notifier for critical alerts",
+        "feat: add alert audit log to PostgreSQL",
+        "test: add test for alert deduplication within cooldown"
+      ],
+      "refactor_fix_commits": [
+        "fix: prevent alert storm during Kafka lag catchup",
+        "refactor: convert alert_rules.yaml to Pydantic config models",
+        "fix: Slack webhook payload missing patient_id field",
+        "perf: add alert rule cache to avoid YAML reparse on each event",
+        "docs: document alert rule DSL syntax in README"
+      ]
+    },
+    {
+      "day": 10,
+      "title": "Monitoring dashboards & Prometheus metrics",
+      "focus": "Custom Prometheus metrics, Grafana dashboard JSON, SLO definitions",
+      "files_to_create": [
+        "src/monitoring/metrics.py",
+        "infra/grafana/dashboards/ingestion.json",
+        "infra/grafana/dashboards/streaming.json",
+        "infra/prometheus/rules/slo_rules.yml",
+        "infra/prometheus/alertmanager.yml"
+      ],
+      "commit_tasks": [
+        "feat: add custom Prometheus Counter for messages processed",
+        "feat: add Histogram for end-to-end processing latency",
+        "feat: add Gauge for Kafka consumer lag per partition",
+        "feat: add Gauge for active patient session count",
+        "feat: implement Grafana ingestion pipeline dashboard",
+        "feat: implement Grafana streaming health dashboard",
+        "feat: add SLO alert rules: 99.9% message processing success rate",
+        "feat: configure Alertmanager routes for on-call routing",
+        "infra: add Grafana provisioning config for auto-dashboard load"
+      ],
+      "refactor_fix_commits": [
+        "fix: label cardinality issue on patient_id Prometheus label",
+        "refactor: move metric registration to central metrics registry",
+        "fix: Grafana dashboard refresh interval set to 5s",
+        "docs: add runbook links to Prometheus alert rules",
+        "chore: add Grafana API key rotation script"
+      ]
+    },
+    {
+      "day": 11,
+      "title": "MLflow experiment tracking setup",
+      "focus": "MLflow server, experiment config, artifact storage, model registry init",
+      "files_to_create": [
+        "src/models/mlflow_client.py",
+        "src/models/experiment_config.py",
+        "infra/mlflow/mlflow.Dockerfile",
+        "configs/mlflow_config.yaml",
+        "notebooks/01_experiment_setup.ipynb"
+      ],
+      "commit_tasks": [
+        "feat: deploy MLflow tracking server with PostgreSQL backend",
+        "feat: configure S3/MinIO artifact store for MLflow",
+        "feat: implement MLflow client wrapper with experiment management",
+        "feat: add auto-experiment naming based on date and git hash",
+        "feat: implement run parameter logging decorator",
+        "feat: add artifact logging utility for datasets and models",
+        "feat: configure MLflow Model Registry with stage transitions",
+        "infra: add MLflow server Dockerfile with Nginx reverse proxy",
+        "notebook: add experiment setup and baseline run notebook"
+      ],
+      "refactor_fix_commits": [
+        "fix: MLflow artifact path encoding issue on Windows paths",
+        "refactor: wrap MLflow run context in context manager",
+        "fix: correct MLflow server database migration on first start",
+        "docs: add MLflow experiment naming convention to CONTRIBUTING",
+        "chore: add mlflow gc script to clean up old runs"
+      ]
+    },
+    {
+      "day": 12,
+      "title": "Feature pipeline for model training",
+      "focus": "Training data extraction, feature engineering for ML, train/val split",
+      "files_to_create": [
+        "src/models/data_pipeline.py",
+        "src/models/feature_engineering.py",
+        "src/models/dataset_builder.py",
+        "configs/training_config.yaml",
+        "notebooks/02_feature_exploration.ipynb"
+      ],
+      "commit_tasks": [
+        "feat: implement training data extractor from feature store",
+        "feat: add label generation logic for patient deterioration events",
+        "feat: implement time-series to tabular feature transformer",
+        "feat: add StandardScaler with MLflow artifact logging",
+        "feat: implement stratified train/val/test split on patient IDs",
+        "feat: add data leakage prevention via temporal split",
+        "feat: implement feature importance analysis utility",
+        "feat: add dataset statistics logging to MLflow",
+        "notebook: add feature correlation and distribution analysis"
+      ],
+      "refactor_fix_commits": [
+        "fix: temporal leakage — ensure val set is always after train",
+        "refactor: separate feature computation from dataset assembly",
+        "fix: handle patients with fewer than 30 data points",
+        "perf: parallelise feature extraction with joblib",
+        "docs: add data dictionary for all 47 features"
+      ]
+    },
+    {
+      "day": 13,
+      "title": "XGBoost patient risk model",
+      "focus": "XGBoost training, hyperparameter tuning with Optuna, SHAP explainability",
+      "files_to_create": [
+        "src/models/xgboost_trainer.py",
+        "src/models/hyperparameter_tuner.py",
+        "src/models/explainability.py",
+        "tests/unit/test_model_trainer.py",
+        "notebooks/03_xgboost_training.ipynb"
+      ],
+      "commit_tasks": [
+        "feat: implement XGBoost trainer class with MLflow integration",
+        "feat: log all XGBoost hyperparameters to MLflow run",
+        "feat: add Optuna hyperparameter search with 50 trials",
+        "feat: implement Optuna pruning callback for early stopping",
+        "feat: add SHAP explainer for XGBoost feature importance",
+        "feat: log SHAP summary plots as MLflow artifacts",
+        "feat: implement threshold optimisation for F1 score",
+        "feat: add clinical metric logging: sensitivity, specificity, AUC",
+        "feat: add model card generation as MLflow artifact",
+        "test: add test that trained model achieves AUC > 0.75 on held-out set"
+      ],
+      "refactor_fix_commits": [
+        "perf: enable GPU training with tree_method=hist",
+        "fix: class imbalance — add scale_pos_weight parameter",
+        "refactor: extract evaluation metrics to shared metrics module",
+        "fix: SHAP calculation fails on single-row input edge case",
+        "docs: add hyperparameter search space documentation"
+      ]
+    },
+    {
+      "day": 14,
+      "title": "LSTM temporal model for sequence prediction",
+      "focus": "PyTorch LSTM, sliding window dataset, sequence-level patient risk",
+      "files_to_create": [
+        "src/models/lstm_model.py",
+        "src/models/sequence_dataset.py",
+        "src/models/lstm_trainer.py",
+        "tests/unit/test_lstm_model.py",
+        "notebooks/04_lstm_training.ipynb"
+      ],
+      "commit_tasks": [
+        "feat: implement LSTM model architecture in PyTorch",
+        "feat: add bidirectional LSTM option with attention layer",
+        "feat: implement SequenceDataset for sliding window batching",
+        "feat: add PyTorch Lightning training loop with MLflow logger",
+        "feat: implement early stopping callback on validation loss",
+        "feat: add learning rate scheduler with warmup",
+        "feat: log training curves as MLflow metrics (every epoch)",
+        "feat: add ONNX export for optimised serving",
+        "feat: implement ensemble prediction combining XGBoost and LSTM",
+        "test: add shape test for LSTM output dimensions"
+      ],
+      "refactor_fix_commits": [
+        "fix: gradient clipping to prevent LSTM exploding gradients",
+        "refactor: separate model definition from training logic",
+        "perf: enable mixed precision (fp16) training",
+        "fix: DataLoader num_workers causing deadlock on macOS",
+        "docs: add architecture diagram for LSTM model in notebook"
+      ]
+    },
+    {
+      "day": 15,
+      "title": "FastAPI model serving endpoint",
+      "focus": "FastAPI inference API, request validation, batch prediction, async handlers",
+      "files_to_create": [
+        "src/serving/api.py",
+        "src/serving/prediction_service.py",
+        "src/serving/request_models.py",
+        "src/serving/response_models.py",
+        "tests/unit/test_serving_api.py"
+      ],
+      "commit_tasks": [
+        "feat: scaffold FastAPI app with lifespan event for model loading",
+        "feat: add POST /predict endpoint for single patient risk score",
+        "feat: add POST /predict/batch endpoint for batch inference",
+        "feat: implement model loading from MLflow registry by stage",
+        "feat: add request validation with Pydantic models",
+        "feat: add response schema with risk_score, confidence, features",
+        "feat: add Prometheus metrics middleware to FastAPI",
+        "feat: add request ID tracing header for observability",
+        "feat: implement prediction caching with Redis (5 second TTL)",
+        "test: add pytest-asyncio tests for all prediction endpoints"
+      ],
+      "refactor_fix_commits": [
+        "fix: model reload on SIGTERM without API downtime",
+        "perf: run model inference in thread pool executor",
+        "refactor: separate prediction logic from route handlers",
+        "fix: handle malformed JSON in request body with 422 response",
+        "docs: generate OpenAPI schema and add to docs folder"
+      ]
+    },
+    {
+      "day": 16,
+      "title": "A/B model comparison endpoint & shadow mode",
+      "focus": "A/B routing, shadow prediction logging, model comparison framework",
+      "files_to_create": [
+        "src/serving/ab_router.py",
+        "src/serving/shadow_logger.py",
+        "configs/ab_config.yaml",
+        "tests/unit/test_ab_router.py"
+      ],
+      "commit_tasks": [
+        "feat: implement A/B traffic router with configurable split ratio",
+        "feat: add shadow mode — log model B predictions without serving",
+        "feat: implement sticky session A/B assignment by patient_id hash",
+        "feat: add A/B assignment logging to PostgreSQL for analysis",
+        "feat: implement feature flag service for A/B config hot-reload",
+        "feat: add A/B comparison Grafana dashboard",
+        "feat: implement statistical significance calculator for A/B results",
+        "test: add test for A/B split ratio within 5% tolerance"
+      ],
+      "refactor_fix_commits": [
+        "fix: A/B split not respecting patient_id sticky session",
+        "refactor: extract A/B config to separate Pydantic model",
+        "fix: shadow logger dropping messages on high throughput",
+        "docs: document A/B experiment procedure in CONTRIBUTING",
+        "chore: add A/B result analysis script to scripts/"
+      ]
+    },
+    {
+      "day": 17,
+      "title": "Prediction logging & ground truth feedback loop",
+      "focus": "Structured prediction logs, outcome labelling pipeline, feedback ingestion",
+      "files_to_create": [
+        "src/serving/prediction_logger.py",
+        "src/serving/outcome_ingester.py",
+        "src/monitoring/prediction_store.py",
+        "configs/logging_config.yaml",
+        "tests/unit/test_prediction_logger.py"
+      ],
+      "commit_tasks": [
+        "feat: implement structured prediction logger to PostgreSQL",
+        "feat: log prediction_id, model_version, features, output, timestamp",
+        "feat: add outcome ingestion API for clinical outcome feedback",
+        "feat: implement prediction-to-outcome join for model evaluation",
+        "feat: add rolling accuracy metric computation from feedback loop",
+        "feat: implement prediction log archival to S3 after 7 days",
+        "feat: add data export endpoint for retraining dataset assembly",
+        "test: add test for prediction log completeness and integrity"
+      ],
+      "refactor_fix_commits": [
+        "fix: prediction_id UUID collision on concurrent requests",
+        "refactor: use async PostgreSQL client (asyncpg) for logging",
+        "fix: outcome ingester fails on duplicate outcome submission",
+        "perf: batch prediction log writes every 100ms",
+        "docs: add data lineage diagram from prediction to retraining"
+      ]
+    },
+    {
+      "day": 18,
+      "title": "Evidently data drift detection setup",
+      "focus": "Evidently AI integration, reference dataset, drift report generation",
+      "files_to_create": [
+        "src/drift/evidently_runner.py",
+        "src/drift/reference_builder.py",
+        "src/drift/drift_config.py",
+        "configs/drift_config.yaml",
+        "tests/unit/test_drift_detection.py"
+      ],
+      "commit_tasks": [
+        "feat: install and configure Evidently AI library",
+        "feat: implement reference dataset builder from training window",
+        "feat: add DataDriftPreset report for all input features",
+        "feat: add DataQualityPreset for missing value and distribution checks",
+        "feat: implement scheduled drift report runner (every 6 hours)",
+        "feat: save drift reports as HTML artifacts to S3",
+        "feat: add drift score extraction from Evidently JSON output",
+        "feat: implement drift severity classification (none/warn/critical)",
+        "test: add test with synthetic drift to validate detection sensitivity"
+      ],
+      "refactor_fix_commits": [
+        "fix: Evidently fails on features with zero variance in reference",
+        "refactor: parameterise drift threshold in configs/drift_config.yaml",
+        "fix: reference dataset staleness check logic inverted",
+        "perf: run drift reports in parallel for each feature group",
+        "docs: explain drift detection methodology in docs/drift.md"
+      ]
+    },
+    {
+      "day": 19,
+      "title": "Prediction drift & model performance monitoring",
+      "focus": "Prediction distribution drift, AUROC decay detection, performance dashboards",
+      "files_to_create": [
+        "src/drift/prediction_drift.py",
+        "src/drift/performance_monitor.py",
+        "infra/grafana/dashboards/drift_overview.json",
+        "tests/unit/test_prediction_drift.py"
+      ],
+      "commit_tasks": [
+        "feat: add ClassificationPreset to Evidently for prediction drift",
+        "feat: implement rolling AUROC monitor with sliding 24h window",
+        "feat: add PSI (Population Stability Index) for risk score distribution",
+        "feat: implement calibration drift detector using Brier score",
+        "feat: add prediction drift Grafana dashboard with threshold lines",
+        "feat: implement drift metric emission to Prometheus",
+        "feat: add model degradation alert rule (AUROC drop > 5%)",
+        "test: add simulation test for gradual model drift detection"
+      ],
+      "refactor_fix_commits": [
+        "fix: AUROC monitor crashes when fewer than 50 predictions in window",
+        "refactor: unify drift metric schema across data and prediction drift",
+        "fix: PSI formula using natural log instead of log base 10",
+        "perf: cache reference statistics to avoid recompute each run",
+        "docs: add drift interpretation guide to docs/drift.md"
+      ]
+    },
+    {
+      "day": 20,
+      "title": "Grafana drift monitoring dashboards",
+      "focus": "Full drift observability dashboards, heatmaps, trend panels, annotations",
+      "files_to_create": [
+        "infra/grafana/dashboards/feature_drift_heatmap.json",
+        "infra/grafana/dashboards/model_performance.json",
+        "infra/grafana/provisioning/dashboards.yaml",
+        "scripts/grafana_import.sh"
+      ],
+      "commit_tasks": [
+        "feat: add Grafana heatmap panel for per-feature drift score over time",
+        "feat: add model performance dashboard: AUROC, precision, recall trends",
+        "feat: implement Grafana annotation on retraining trigger events",
+        "feat: add stat panels for current drift status per feature group",
+        "feat: add Grafana provisioning config for auto-load on startup",
+        "feat: add time-range variable to all dashboards for drill-down",
+        "feat: implement drift alert Grafana panel with coloured thresholds",
+        "infra: add dashboard import script for CI/CD deployment",
+        "docs: add screenshot of dashboards to README"
+      ],
+      "refactor_fix_commits": [
+        "fix: Grafana panel queries using wrong Prometheus label selector",
+        "refactor: extract repeated panel JSON into shared template",
+        "fix: dashboard refresh not working due to missing browser_refresh",
+        "style: apply consistent colour palette across all dashboards",
+        "chore: version-control dashboard JSON with jq formatting"
+      ]
+    },
+    {
+      "day": 21,
+      "title": "Slack & PagerDuty drift alerting",
+      "focus": "Drift alert notifications, on-call routing, alert suppression, runbooks",
+      "files_to_create": [
+        "src/drift/alert_dispatcher.py",
+        "src/drift/alert_templates.py",
+        "configs/alerting_config.yaml",
+        "docs/runbooks/drift_alert_response.md",
+        "tests/unit/test_alert_dispatcher.py"
+      ],
+      "commit_tasks": [
+        "feat: implement drift alert dispatcher with Slack webhook",
+        "feat: add rich Slack message template with drift metrics and graphs",
+        "feat: implement PagerDuty event routing for critical drift alerts",
+        "feat: add alert suppression during scheduled maintenance windows",
+        "feat: implement alert acknowledgment tracking in Redis",
+        "feat: add daily drift summary digest to Slack channel",
+        "feat: implement alert escalation if not acknowledged within 30 min",
+        "docs: add drift alert response runbook",
+        "test: add mock Slack webhook test for alert formatting"
+      ],
+      "refactor_fix_commits": [
+        "fix: Slack message truncated for features with long names",
+        "refactor: move alert templates to Jinja2 for maintainability",
+        "fix: PagerDuty dedup_key not unique causing alert merging",
+        "docs: add Slack channel setup guide to CONTRIBUTING",
+        "chore: add alert suppression config to configs/"
+      ]
+    },
+    {
+      "day": 22,
+      "title": "Drift detection end-to-end integration test",
+      "focus": "Full drift pipeline integration tests, chaos testing, drift simulation",
+      "files_to_create": [
+        "tests/integration/test_drift_pipeline.py",
+        "tests/integration/drift_simulator.py",
+        "scripts/simulate_drift.py"
+      ],
+      "commit_tasks": [
+        "test: add end-to-end drift pipeline integration test",
+        "test: simulate covariate shift in heart_rate feature and verify detection",
+        "test: simulate label drift and verify AUROC alert triggers",
+        "test: verify Slack notification sent on critical drift event",
+        "test: add chaos test — kill drift runner mid-report and verify recovery",
+        "feat: add drift simulation CLI script for manual testing",
+        "feat: add drift pipeline health check endpoint to FastAPI",
+        "ci: add integration test step to GitHub Actions workflow"
+      ],
+      "refactor_fix_commits": [
+        "fix: integration test teardown not resetting Redis state",
+        "fix: drift simulation script needs --days argument validation",
+        "refactor: extract integration test fixtures to conftest.py",
+        "ci: run integration tests only on main branch to save resources",
+        "docs: add integration test architecture diagram"
+      ]
+    },
+    {
+      "day": 23,
+      "title": "Apache Airflow DAG infrastructure",
+      "focus": "Airflow setup, connection config, custom operators, retraining DAG skeleton",
+      "files_to_create": [
+        "infra/airflow/docker-compose.airflow.yml",
+        "infra/airflow/Dockerfile.airflow",
+        "src/retraining/dags/__init__.py",
+        "src/retraining/dags/health_model_retraining.py",
+        "configs/airflow_connections.yaml"
+      ],
+      "commit_tasks": [
+        "infra: add Airflow docker-compose with CeleryExecutor",
+        "infra: configure Airflow with PostgreSQL metadata DB",
+        "infra: add Airflow SMTP connection for email notifications",
+        "feat: scaffold health_model_retraining DAG with task skeleton",
+        "feat: add DAG-level SLA and retry configuration",
+        "feat: implement custom AirflowMLflowOperator for model registration",
+        "feat: add AirflowSlackOperator for DAG success/failure notifications",
+        "feat: configure Airflow connections for Kafka, PostgreSQL, S3",
+        "ci: add Airflow DAG import validation to CI pipeline"
+      ],
+      "refactor_fix_commits": [
+        "fix: Airflow webserver requires AIRFLOW__CORE__FERNET_KEY on startup",
+        "refactor: move DAG defaults to shared dag_defaults.py module",
+        "fix: celery worker not picking up DAG changes without restart",
+        "chore: add airflow db migrate step to startup script",
+        "docs: add Airflow setup guide to docs/airflow_setup.md"
+      ]
+    },
+    {
+      "day": 24,
+      "title": "Drift-triggered retraining DAG",
+      "focus": "Drift sensor, conditional DAG branching, automated retraining trigger",
+      "files_to_create": [
+        "src/retraining/dags/drift_sensor.py",
+        "src/retraining/dags/retraining_tasks.py",
+        "src/retraining/dataset_assembler.py",
+        "tests/unit/test_retraining_dag.py"
+      ],
+      "commit_tasks": [
+        "feat: implement DriftSensor that polls drift metrics from Prometheus",
+        "feat: add drift threshold poke with configurable interval",
+        "feat: implement BranchPythonOperator for drift severity routing",
+        "feat: add dataset_assembly task to pull latest training data",
+        "feat: implement feature_engineering task in retraining DAG",
+        "feat: add model_training task calling XGBoost trainer",
+        "feat: add model_evaluation task with minimum AUC gate",
+        "feat: implement DAG trigger from external drift alert webhook",
+        "test: add pytest DAG structure and task dependency tests"
+      ],
+      "refactor_fix_commits": [
+        "fix: DriftSensor timeout not triggering retry correctly",
+        "refactor: extract task functions to retraining_tasks.py",
+        "fix: dataset assembler includes future data in training window",
+        "perf: parallelise feature and label assembly with task groups",
+        "docs: add DAG dependency diagram to docs/airflow_dag.md"
+      ]
+    },
+    {
+      "day": 25,
+      "title": "Model validation gates & automated promotion",
+      "focus": "Statistical validation, champion/challenger, automated stage promotion",
+      "files_to_create": [
+        "src/retraining/model_validator.py",
+        "src/retraining/champion_challenger.py",
+        "src/retraining/model_promoter.py",
+        "tests/unit/test_model_validator.py"
+      ],
+      "commit_tasks": [
+        "feat: implement model validator with configurable metric thresholds",
+        "feat: add statistical significance test (DeLong) for AUC comparison",
+        "feat: implement champion/challenger comparison on holdout set",
+        "feat: add fairness evaluation across patient age and gender groups",
+        "feat: implement automated MLflow model stage promotion on validation pass",
+        "feat: add model card update on every promotion event",
+        "feat: implement Staging to Production promotion with approval gate",
+        "feat: add validation failure notification with detailed report",
+        "test: add test for promotion blocked when AUC below threshold"
+      ],
+      "refactor_fix_commits": [
+        "fix: DeLong test using incorrect variance formula",
+        "refactor: decouple validation logic from MLflow registration",
+        "fix: fairness evaluation fails when subgroup has fewer than 20 samples",
+        "docs: add model governance policy to docs/model_governance.md",
+        "chore: add validation report template as Jinja2 template"
+      ]
+    },
+    {
+      "day": 26,
+      "title": "Canary deployment & traffic shifting",
+      "focus": "Canary deployment logic, traffic shifting, automated promotion/rollback",
+      "files_to_create": [
+        "src/serving/canary_manager.py",
+        "src/serving/traffic_controller.py",
+        "configs/canary_config.yaml",
+        "tests/integration/test_canary_deployment.py"
+      ],
+      "commit_tasks": [
+        "feat: implement canary deployment manager with configurable traffic split",
+        "feat: add canary traffic ramp: 5% → 20% → 50% → 100% over 4 hours",
+        "feat: implement canary health monitoring with automatic rollback trigger",
+        "feat: add error rate threshold for canary rollback (>1% triggers rollback)",
+        "feat: implement latency P99 threshold check on canary traffic",
+        "feat: add canary deployment event logging to audit trail",
+        "feat: implement full traffic cutover after successful canary soak",
+        "feat: add canary deployment status endpoint to API",
+        "test: add integration test for end-to-end canary deployment flow"
+      ],
+      "refactor_fix_commits": [
+        "fix: traffic split not applied atomically causing brief 100% canary",
+        "refactor: extract traffic controller from canary manager",
+        "fix: rollback not switching production model pointer correctly",
+        "perf: reduce canary health check interval from 60s to 15s",
+        "docs: add canary deployment runbook to docs/runbooks/"
+      ]
+    },
+    {
+      "day": 27,
+      "title": "Full retraining pipeline end-to-end test",
+      "focus": "Complete pipeline integration test: drift → DAG → train → validate → deploy",
+      "files_to_create": [
+        "tests/integration/test_full_retraining_pipeline.py",
+        "scripts/trigger_retraining.py",
+        "scripts/verify_deployment.py"
+      ],
+      "commit_tasks": [
+        "test: add full retraining pipeline integration test",
+        "test: verify drift trigger fires DAG within configured SLA",
+        "test: verify retrained model is registered in MLflow registry",
+        "test: verify canary deployment starts after successful validation",
+        "test: verify rollback on injected high error rate in canary",
+        "feat: add retraining trigger CLI for manual intervention",
+        "feat: add deployment verification script checking all health endpoints",
+        "ci: add full pipeline smoke test to release workflow"
+      ],
+      "refactor_fix_commits": [
+        "fix: integration test not cleaning up Airflow DAG run state",
+        "fix: deployment verify script times out before canary completes",
+        "refactor: use pytest fixtures for shared pipeline test setup",
+        "ci: parallelize integration tests with pytest-xdist",
+        "docs: add end-to-end pipeline diagram to main README"
+      ]
+    },
+    {
+      "day": 28,
+      "title": "Comprehensive test suite hardening",
+      "focus": "Unit test coverage > 80%, property tests, mutation testing",
+      "files_to_create": [
+        "tests/unit/test_feature_engineering.py",
+        "tests/unit/test_alert_rules.py",
+        "tests/unit/test_model_validator.py",
+        "pyproject.toml (coverage config)",
+        "scripts/mutation_test.sh"
+      ],
+      "commit_tasks": [
+        "test: add unit tests for all feature engineering functions",
+        "test: add property-based tests using Hypothesis for schema validation",
+        "test: add parametrised tests for all alert threshold boundaries",
+        "test: add model validator tests for each metric gate",
+        "test: add mock-based tests for all external integrations",
+        "test: run mutmut mutation testing and fix surviving mutants",
+        "ci: enforce 80% coverage threshold in CI pipeline",
+        "ci: add coverage report upload to Codecov"
+      ],
+      "refactor_fix_commits": [
+        "fix: 12 failing tests due to schema field rename in day 2",
+        "refactor: consolidate test fixtures in conftest.py",
+        "fix: flaky test using time.sleep — switch to freezegun",
+        "test: add snapshot tests for Grafana dashboard JSON",
+        "docs: document test strategy in docs/testing.md"
+      ]
+    },
+    {
+      "day": 29,
+      "title": "Load testing & performance benchmarking",
+      "focus": "Locust load tests, latency benchmarks, throughput profiling, bottleneck fixes",
+      "files_to_create": [
+        "tests/load/locustfile.py",
+        "tests/load/scenarios/predict_load.py",
+        "tests/load/scenarios/batch_predict_load.py",
+        "scripts/run_load_test.sh",
+        "docs/performance_report.md"
+      ],
+      "commit_tasks": [
+        "test: add Locust load test for /predict endpoint",
+        "test: add Locust batch prediction scenario (1000 patients)",
+        "test: add Locust ramp-up test from 10 to 500 concurrent users",
+        "feat: add async prediction worker pool sizing to config",
+        "perf: add model inference result cache reducing P50 by 40%",
+        "perf: enable uvicorn worker count auto-scaling",
+        "perf: add Kafka producer batch size tuning for throughput",
+        "docs: add performance benchmark results to docs/performance_report.md"
+      ],
+      "refactor_fix_commits": [
+        "fix: memory leak in prediction service under sustained load",
+        "perf: profile and fix N+1 query in prediction logger",
+        "refactor: switch synchronous DB calls to async in hot path",
+        "fix: Kafka producer buffer full under burst load",
+        "docs: add capacity planning guide based on load test results"
+      ]
+    },
+    {
+      "day": 30,
+      "title": "Documentation, security hardening & final polish",
+      "focus": "Full README, architecture diagrams, secrets management, final CI/CD polish",
+      "files_to_create": [
+        "README.md (complete rewrite)",
+        "docs/architecture.md",
+        "docs/deployment_guide.md",
+        "infra/k8s/namespace.yaml",
+        "SECURITY.md"
+      ],
+      "commit_tasks": [
+        "docs: complete README rewrite with architecture diagram and setup guide",
+        "docs: add system architecture document with component descriptions",
+        "docs: add deployment guide for Docker Compose and Kubernetes",
+        "docs: add API reference documentation from OpenAPI spec",
+        "security: integrate HashiCorp Vault for secrets management",
+        "security: add network policies to Kubernetes manifests",
+        "security: rotate all secrets and update CI environment variables",
+        "security: add Dependabot config for automated dependency updates",
+        "chore: tag v1.0.0 release with changelog",
+        "ci: add final end-to-end smoke test to release pipeline"
+      ],
+      "refactor_fix_commits": [
+        "docs: fix broken links in README",
+        "fix: environment variable names inconsistent across services",
+        "refactor: final code cleanup — remove all TODO comments",
+        "style: enforce consistent logging format across all services",
+        "chore: archive unused notebooks to notebooks/archive/"
+      ]
+    }
+  ]
+}

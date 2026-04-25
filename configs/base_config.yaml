@@ -1,0 +1,31 @@
+kafka:
+  bootstrap_servers: "localhost:9092"
+  topics:
+    wearable_raw: "health.wearable.raw"
+    processed_vitals: "health.vitals.processed"
+    alerts: "health.alerts"
+    predictions: "health.predictions"
+  consumer_group: "smart-health-consumers"
+  auto_offset_reset: "latest"
+
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  max_connections: 20
+  feature_ttl_seconds: 3600
+
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "smart-health-monitoring"
+  model_name: "patient-risk-scorer"
+
+serving:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  prediction_cache_ttl: 5
+
+monitoring:
+  prometheus_port: 8001
+  grafana_url: "http://localhost:3000"

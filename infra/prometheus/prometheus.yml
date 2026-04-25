@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: smart-health-serving
+    static_configs:
+      - targets: ['host.docker.internal:8001']
+
+  - job_name: kafka
+    static_configs:
+      - targets: ['kafka:9101']
+
+  - job_name: redis
+    static_configs:
+      - targets: ['redis:9121']

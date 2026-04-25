@@ -1,0 +1,102 @@
+name: Daily MLOps Commit Automation (Free Tier)
+
+on:
+  schedule:
+    # Runs every day at 9:00 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    inputs:
+      day_override:
+        description: 'Override day number (1-30). Leave empty for auto-detect.'
+        required: false
+        default: ''
+      commits_target:
+        description: 'Commits to make today (15-30 recommended)'
+        required: false
+        default: '25'
+
+permissions:
+  contents: write
+  models: read        # Required for GitHub Models API (free)
+
+jobs:
+  daily-automation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}   # No PAT needed — free!
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          # Only standard + free libraries — no Anthropic SDK needed
+          pip install requests pyyaml
+            
+      - name: Configure Git
+        run: |
+            git config --global user.name  "${{ github.actor }}"
+            git config --global user.email "86911143+suzanvusal@users.noreply.github.com"
+
+      - name: Detect current project day
+        id: detect_day
+        run: |
+          mkdir -p .automation_state
+
+          if [ -n "${{ github.event.inputs.day_override }}" ]; then
+            DAY="${{ github.event.inputs.day_override }}"
+          elif [ -f ".automation_state/next_day.txt" ]; then
+            DAY=$(cat .automation_state/next_day.txt)
+          elif [ -f ".automation_state/current_day.txt" ]; then
+            DAY=$(( $(cat .automation_state/current_day.txt) + 1 ))
+          else
+            DAY=1
+          fi
+
+          # Clamp to 1-30
+          DAY=$(( DAY < 1 ? 1 : DAY > 30 ? 30 : DAY ))
+          echo "$DAY" > .automation_state/current_day.txt
+          echo "day=$DAY" >> $GITHUB_OUTPUT
+          echo "▶ Project day: $DAY"
+
+      - name: Run free-tier daily automation
+        env:
+          # GitHub Models API uses GITHUB_TOKEN — completely free
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_DAY: ${{ steps.detect_day.outputs.day }}
+          COMMITS_TARGET: ${{ github.event.inputs.commits_target || '25' }}
+        run: |
+          python3 scripts/daily_automator_free.py \
+            --day  "$PROJECT_DAY" \
+            --commits "$COMMITS_TARGET" \
+            --plan plan/30_day_plan.json
+
+      - name: Advance day counter & push
+        run: |
+          NEXT=$(( ${{ steps.detect_day.outputs.day }} + 1 ))
+          echo "$NEXT" > .automation_state/next_day.txt
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)  day=${{ steps.detect_day.outputs.day }}" \
+               >> .automation_state/run_log.txt
+
+          git add .automation_state/
+          git commit -m "chore: advance automation state to day $NEXT" || true
+          git push origin main
+
+      - name: Job summary
+        run: |
+          COUNT=$(git log --oneline --since="3 hours ago" | wc -l | tr -d ' ')
+          echo "## ✅ Day ${{ steps.detect_day.outputs.day }}/30 complete" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Commits pushed | $COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| API cost | \$0.00 (GitHub Models) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Run time | $(date -u) |" >> $GITHUB_STEP_SUMMARY
