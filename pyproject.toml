@@ -30,3 +30,5 @@ pre-commit = "^2.19.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+# 21:31:17 — automated update
+"""\ndocs: add CONTRIBUTING.md with git workflow guide\n"""
