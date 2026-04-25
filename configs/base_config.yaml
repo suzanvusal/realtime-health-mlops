@@ -1,31 +1,39 @@
-kafka:
-  bootstrap_servers: "localhost:9092"
-  topics:
-    wearable_raw: "health.wearable.raw"
-    processed_vitals: "health.vitals.processed"
-    alerts: "health.alerts"
-    predictions: "health.predictions"
-  consumer_group: "smart-health-consumers"
-  auto_offset_reset: "latest"
+base_config.yaml:
+  kafka:
+    bootstrap_servers: "localhost:9092"
+    topic: "health_data"
+  
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
 
-redis:
-  host: "localhost"
-  port: 6379
-  db: 0
-  max_connections: 20
-  feature_ttl_seconds: 3600
+  model:
+    xgboost:
+      n_estimators: 100
+      max_depth: 3
+      learning_rate: 0.1
+      objective: "binary:logistic"
 
-mlflow:
-  tracking_uri: "http://localhost:5000"
-  experiment_name: "smart-health-monitoring"
-  model_name: "patient-risk-scorer"
+    pytorch:
+      input_size: 10
+      hidden_size: 5
+      output_size: 1
+      num_layers: 2
+      dropout: 0.2
 
-serving:
-  host: "0.0.0.0"
-  port: 8000
-  workers: 4
-  prediction_cache_ttl: 5
+  mlflow:
+    tracking_uri: "http://localhost:5000"
+    experiment_name: "health_monitoring"
 
-monitoring:
-  prometheus_port: 8001
-  grafana_url: "http://localhost:3000"
+  fastapi:
+    host: "0.0.0.0"
+    port: 8000
+
+  airflow:
+    dags_folder: "/usr/local/airflow/dags"
+    executor: "LocalExecutor"
+
+  evidently:
+    dashboard_url: "http://localhost:8081"
+    report_path: "./reports/evidently_report.html"
