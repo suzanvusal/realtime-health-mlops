@@ -82,14 +82,15 @@ jobs:
 
       - name: Advance day counter & push
         run: |
-          NEXT=$(( ${{ steps.detect_day.outputs.day }} + 1 ))
-          echo "$NEXT" > .automation_state/next_day.txt
-          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)  day=${{ steps.detect_day.outputs.day }}" \
-               >> .automation_state/run_log.txt
-
-          git add .automation_state/
-          git commit -m "chore: advance automation state to day $NEXT" || true
-          git push https://x-access-token:${{ secrets.AUTOMATION_PAT }}@github.com/suzanvusal/realtime-health-mlops.git main
+              NEXT=$(( ${{ steps.detect_day.outputs.day }} + 1 ))
+              echo "$NEXT" > .automation_state/next_day.txt
+              echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)  day=${{ steps.detect_day.outputs.day }}" \
+                   >> .automation_state/run_log.txt
+    
+              git add .automation_state/
+              git commit -m "chore: advance automation state to day $NEXT" || true
+              git pull --rebase https://x-access-token:${{ secrets.AUTOMATION_PAT }}@github.com/suzanvusal/realtime-health-mlops.git main || true
+              git push https://x-access-token:${{ secrets.AUTOMATION_PAT }}@github.com/suzanvusal/realtime-health-mlops.git main
 
       - name: Job summary
         run: |
