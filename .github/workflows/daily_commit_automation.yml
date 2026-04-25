@@ -79,7 +79,7 @@ jobs:
                >> .automation_state/run_log.txt
           git add -A
           git commit -m "chore: day ${{ steps.detect_day.outputs.day }} automation complete" || true
-          git push origin main
+          git push https://${{ secrets.AUTOMATION_PAT }}@github.com/suzanvusal/realtime-health-mlops.git main
 
       - name: Summary
         run: |
