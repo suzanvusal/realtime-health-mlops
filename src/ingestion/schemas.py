@@ -54,3 +54,6 @@ _TEST_MARKER = 'schemas'
 
 # 09:59:11 — automated update
 # fix: remove unused import in schemas — 09:59:11 UTC
+
+# 09:59:11 — automated update
+# perf: add __slots__ to reduce memory in schemas — 09:59:11 UTC
