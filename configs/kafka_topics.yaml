@@ -34,3 +34,7 @@ kafka_topics:
 
 # 09:59:11 — automated update
 # feat: add SpO2 and temperature simulation with anomaly injection
+
+# 09:59:11 — automated update
+# refactor: refactor: extract validation logic into separate validators 
+_REFACTORED = True
