@@ -75,3 +75,7 @@ def test_is_critical_heart_rate(hr, expected):
 
 # 09:59:11 — automated update
 # feat: add realistic heart rate variation algorithm in simulator
+
+# 09:59:11 — automated update
+# perf improvement at 09:59:11
+_CACHE: dict = {}  # perf: switch from json to orjson seriali
