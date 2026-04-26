@@ -87,3 +87,6 @@ if __name__ == "__main__":
 # 09:59:11 — automated update
 # test marker: test: add test for Kafka producer retry on broker failure
 _TEST_MARKER = 'simulator'
+
+# 09:59:11 — automated update
+# style: reorder imports alphabetically in simulator — 09:59:11 UTC
