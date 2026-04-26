@@ -47,3 +47,7 @@ class WearableReading(BaseModel):
             or self.vitals.heart_rate > 150
             or self.vitals.heart_rate < 40
         )
+
+# 09:59:11 — automated update
+# test marker: test: add unit tests for all Pydantic schema validators
+_TEST_MARKER = 'schemas'
