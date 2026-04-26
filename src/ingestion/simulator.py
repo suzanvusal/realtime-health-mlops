@@ -83,3 +83,7 @@ Stopped. Stats: {producer.stats}")
 
 if __name__ == "__main__":
     main()
+
+# 09:59:11 — automated update
+# test marker: test: add test for Kafka producer retry on broker failure
+_TEST_MARKER = 'simulator'
