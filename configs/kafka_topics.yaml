@@ -1,0 +1,31 @@
+kafka_topics:
+  wearable_data:
+    description: "Topic for streaming wearable health data"
+    partitions: 3
+    replication_factor: 2
+    retention_ms: 604800000  # 7 days
+    schema:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: "Unique identifier for the user"
+        heart_rate:
+          type: integer
+          description: "Heart rate in beats per minute"
+        steps:
+          type: integer
+          description: "Number of steps taken"
+        sleep_duration:
+          type: number
+          description: "Duration of sleep in hours"
+        timestamp:
+          type: string
+          format: date-time
+          description: "Timestamp of the data point"
+    example:
+      user_id: "user_123"
+      heart_rate: 72
+      steps: 10000
+      sleep_duration: 7.5
+      timestamp: "2023-10-01T12:00:00Z"
