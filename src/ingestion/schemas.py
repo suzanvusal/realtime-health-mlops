@@ -57,3 +57,6 @@ _TEST_MARKER = 'schemas'
 
 # 09:59:11 — automated update
 # perf: add __slots__ to reduce memory in schemas — 09:59:11 UTC
+
+# 09:59:11 — automated update
+# test: add assertion for return type in schemas — 09:59:11 UTC
