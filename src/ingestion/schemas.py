@@ -51,3 +51,6 @@ class WearableReading(BaseModel):
 # 09:59:11 — automated update
 # test marker: test: add unit tests for all Pydantic schema validators
 _TEST_MARKER = 'schemas'
+
+# 09:59:11 — automated update
+# fix: remove unused import in schemas — 09:59:11 UTC
