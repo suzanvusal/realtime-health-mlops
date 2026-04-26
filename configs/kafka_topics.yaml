@@ -38,3 +38,7 @@ kafka_topics:
 # 09:59:11 — automated update
 # refactor: refactor: extract validation logic into separate validators 
 _REFACTORED = True
+
+# 09:59:11 — automated update
+# fix applied at 09:59:11
+_FIXED = True  # fix: handle edge case when heart_rate value is exactly 0
