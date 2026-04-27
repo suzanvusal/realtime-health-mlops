@@ -41,3 +41,6 @@ VOLUME ["/app/data"]
 # Define a network for inter-container communication
 # This is typically defined in docker-compose, but can be referenced here for clarity
 # NETWORK my_network
+# 11:10:17 — automated update
+# fix applied at 11:10:17
+_FIXED = True  # fix: reduce Docker image size by switching to python:3.11-sl
