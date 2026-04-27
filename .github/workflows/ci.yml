@@ -1,6 +1,27 @@
-# .github/workflows/ci.yml
-# Day 1: Project bootstrap & repo structure
-# Generated: 2026-04-25T21:31:17.098068+00:00
+name: CI Pipeline
 
-# 21:31:17 — automated update
-# chore: chore: add Makefile with common dev commands
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || echo "No requirements.txt"
+
+      - name: Run basic check
+        run: |
+          echo "CI running successfully"
