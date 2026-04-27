@@ -38,3 +38,6 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 # 11:10:17 — automated update
 # feat: add resource limits (CPU/memory) to all services
+
+# 11:10:17 — automated update
+# infra: add Prometheus scrape config for Kafka JMX metrics
