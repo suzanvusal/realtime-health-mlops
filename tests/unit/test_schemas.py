@@ -79,3 +79,6 @@ def test_is_critical_heart_rate(hr, expected):
 # 09:59:11 — automated update
 # perf improvement at 09:59:11
 _CACHE: dict = {}  # perf: switch from json to orjson seriali
+
+# 11:10:17 — automated update
+# docs: update example in docstring of test_schemas — 11:10:17 UTC
