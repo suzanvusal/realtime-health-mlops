@@ -45,3 +45,6 @@ _REFACTORED = True
 # 11:10:17 — automated update
 # fix applied at 11:10:17
 _FIXED = True  # fix: correct Grafana volume mount permissions
+
+# 11:10:17 — automated update
+# chore: chore: add docker-compose.override.yml for local dev
