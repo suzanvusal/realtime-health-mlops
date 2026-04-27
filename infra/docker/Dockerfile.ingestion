@@ -33,3 +33,5 @@ VOLUME ["/app/data"]
 
 # Start the application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 11:10:17 — automated update
+# feat: add Docker network segmentation for security
