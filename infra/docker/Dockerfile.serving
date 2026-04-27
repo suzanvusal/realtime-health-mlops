@@ -46,3 +46,5 @@ VOLUME ["/app/data"]
 
 # Define network for inter-container communication
 NETWORK my_network
+# 11:10:17 — automated update
+# feat: add docker-compose.monitoring.yml with Prometheus and Grafana
