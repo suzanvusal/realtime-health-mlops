@@ -1,0 +1,60 @@
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit safety
+
+      - name: Run Bandit security scan
+        run: |
+          bandit -r . -f json -o bandit_report.json
+          cat bandit_report.json
+
+      - name: Run Safety security scan
+        run: |
+          safety check --json > safety_report.json
+          cat safety_report.json
+
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v2
+        with:
+          name: bandit_report
+          path: bandit_report.json
+
+      - name: Upload Safety report
+        uses: actions/upload-artifact@v2
+        with:
+          name: safety_report
+          path: safety_report.json
+
+      - name: Fail the build if security issues are found
+        run: |
+          if grep -q '"issue"' bandit_report.json; then
+            echo "Bandit found security issues!"
+            exit 1
+          fi
+          if grep -q '"issue"' safety_report.json; then
+            echo "Safety found security issues!"
+            exit 1
+          fi
