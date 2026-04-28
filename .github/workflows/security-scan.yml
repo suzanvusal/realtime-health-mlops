@@ -63,3 +63,7 @@ jobs:
 
 # 11:09:18 — automated update
 # ci: updated at 11:09:18
+
+# 11:09:18 — automated update
+# refactor: refactor: extract reusable CI steps into composite actions
+_REFACTORED = True
