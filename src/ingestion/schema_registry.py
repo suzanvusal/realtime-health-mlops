@@ -73,3 +73,6 @@ class BaseKafkaConsumer(ABC):
 # 11:00:59 — automated update
 # test marker: test: add DLQ routing test for invalid messages
 _TEST_MARKER = 'schema_registry'
+
+# 11:00:59 — automated update
+# style: reorder imports alphabetically in schema_registry — 11:00:59 UTC
