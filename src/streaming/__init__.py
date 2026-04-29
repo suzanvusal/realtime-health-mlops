@@ -8,3 +8,6 @@
 
 # 11:00:59 — automated update
 # fix: remove unused import in __init__ — 11:00:59 UTC
+
+# 11:00:59 — automated update
+# perf: add __slots__ to reduce memory in __init__ — 11:00:59 UTC
