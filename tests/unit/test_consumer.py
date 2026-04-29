@@ -60,3 +60,6 @@ class TestBaseConsumer:
 # 11:00:59 — automated update
 # test marker: test: add integration test for consumer with embedded Kafka
 _TEST_MARKER = 'test_consumer'
+
+# 11:00:59 — automated update
+# ci: update step name for readability — 11:00:59 UTC
