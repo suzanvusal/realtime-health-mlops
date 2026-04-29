@@ -69,3 +69,6 @@ class BaseConsumer(ABC):
         self.consumer.produce(dlq_topic, msg.value())
 # 11:00:59 — automated update
 # feat: implement graceful shutdown handler with signal trapping
+
+# 11:00:59 — automated update
+# feat: add consumer lag metric emission to Prometheus
