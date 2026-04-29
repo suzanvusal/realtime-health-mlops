@@ -70,3 +70,6 @@ class BaseKafkaConsumer(ABC):
         """Close the Kafka consumer."""
         self.consumer.close()
         logger.info("Kafka consumer closed.")
+# 11:00:59 — automated update
+# test marker: test: add DLQ routing test for invalid messages
+_TEST_MARKER = 'schema_registry'
