@@ -75,3 +75,5 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     consumer = BaseConsumer('configs/consumer_config.yaml')
     consumer.consume()
+# 11:00:59 — automated update
+"""\ndocs: add sequence diagram for consumer processing flow\n"""
