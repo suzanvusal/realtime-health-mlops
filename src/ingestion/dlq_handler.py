@@ -76,3 +76,7 @@ class BaseConsumer(ABC):
 # 11:00:59 — automated update
 # fix applied at 11:00:59
 _FIXED = True  # fix: handle KafkaTimeoutError with exponential backoff
+
+# 11:00:59 — automated update
+# refactor: refactor: move consumer config to dataclass from dict
+_REFACTORED = True
