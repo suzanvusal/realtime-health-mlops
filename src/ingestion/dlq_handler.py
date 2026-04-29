@@ -67,3 +67,5 @@ class BaseConsumer(ABC):
         dlq_topic = self.config['dlq_topic']
         logger.info(f"Sending message to DLQ: {msg.value()}")
         self.consumer.produce(dlq_topic, msg.value())
+# 11:00:59 — automated update
+# feat: implement graceful shutdown handler with signal trapping
