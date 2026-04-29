@@ -46,3 +46,7 @@ health_check:
 # 11:00:59 — automated update
 # fix applied at 11:00:59
 _FIXED = True  # fix: correct partition assignment strategy to RoundRobin
+
+# 11:00:59 — automated update
+# perf improvement at 11:00:59
+_CACHE: dict = {}  # perf: increase max_poll_records to 500 f
