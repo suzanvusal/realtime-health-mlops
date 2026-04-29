@@ -57,3 +57,6 @@ class TestBaseConsumer:
         with patch.object(consumer.dlq_handler, 'handle') as mock_handle:
             consumer.consume()
             mock_handle.assert_called_once_with(mock_message)
+# 11:00:59 — automated update
+# test marker: test: add integration test for consumer with embedded Kafka
+_TEST_MARKER = 'test_consumer'
