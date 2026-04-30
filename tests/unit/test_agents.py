@@ -52,3 +52,6 @@ async def test_agent_shutdown(wearable_data_agent: WearableDataAgent):
     """Test the shutdown of the wearable data agent."""
     await wearable_data_agent.shutdown()
     assert wearable_data_agent.is_running is False
+# 10:59:46 — automated update
+# test marker: test: add async unit test for heart rate anomaly detection
+_TEST_MARKER = 'test_agents'
