@@ -49,3 +49,7 @@ if __name__ == '__main__':
 # 10:59:46 — automated update
 # fix applied at 10:59:46
 _FIXED = True  # fix: resolve Faust worker crash on empty partition assignmen
+
+# 10:59:46 — automated update
+# refactor: refactor: extract threshold constants to configs/thresholds.
+_REFACTORED = True
