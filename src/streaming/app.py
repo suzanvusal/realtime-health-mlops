@@ -37,3 +37,5 @@ async def save_to_redis(data: Dict[str, Any]) -> None:
 
 if __name__ == '__main__':
     app.main()
+# 10:59:46 — automated update
+# feat: add real-time alert sink to Redis pub/sub
