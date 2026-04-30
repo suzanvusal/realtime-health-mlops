@@ -63,3 +63,6 @@ _TEST_MARKER = 'test_consumer'
 
 # 11:00:59 — automated update
 # ci: update step name for readability — 11:00:59 UTC
+
+# 10:59:46 — automated update
+# fix: correct off-by-one in test_consumer — 10:59:46 UTC
