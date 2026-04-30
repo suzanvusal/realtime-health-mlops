@@ -56,3 +56,6 @@ def detect_alerts(vital: "ProcessedVital") -> list[Alert]:
         alerts.append(Alert("FEVER", vital.temperature, "INFO", vital.patient_id, ts))
 
     return alerts
+
+# 10:59:46 — automated update
+# feat: add Faust Table for stateful patient session tracking
