@@ -63,3 +63,6 @@ _TEST_MARKER = 'schemas'
 
 # 10:59:46 — automated update
 # chore: day 6 maintenance sweep — 10:59:46 UTC
+
+# 10:59:46 — automated update
+# docs: update example in docstring of schemas — 10:59:46 UTC
