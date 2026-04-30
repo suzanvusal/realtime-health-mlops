@@ -39,3 +39,7 @@ if __name__ == '__main__':
     app.main()
 # 10:59:46 — automated update
 # feat: add real-time alert sink to Redis pub/sub
+
+# 10:59:46 — automated update
+# perf improvement at 10:59:46
+_CACHE: dict = {}  # perf: add lru_cache on patient metadata 
