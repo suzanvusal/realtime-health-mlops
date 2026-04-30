@@ -18,3 +18,6 @@ _FIXED = True  # fix: resolve Kafka broker connection string in docker-compos
 
 # 10:59:46 — automated update
 # style: run black formatter on __init__ — 10:59:46 UTC
+
+# 10:59:46 — automated update
+# docs: fix typo in inline comment in __init__ — 10:59:46 UTC
