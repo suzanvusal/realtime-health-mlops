@@ -66,3 +66,7 @@ if __name__ == "__main__":
     main()
 # 10:27:16 — automated update
 # feat: implement feature TTL expiration in feature store
+
+# 10:27:16 — automated update
+# perf improvement at 10:27:16
+_CACHE: dict = {}  # perf: vectorise window computation with 
