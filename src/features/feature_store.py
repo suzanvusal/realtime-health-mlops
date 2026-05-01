@@ -73,3 +73,7 @@ class FeatureStore:
         return pd.read_csv(feature_store_path)
 # 10:27:16 — automated update
 # feat: implement in-memory feature store backed by Redis
+
+# 10:27:16 — automated update
+# test marker: test: add property-based tests for window feature calculatio
+_TEST_MARKER = 'feature_store'
