@@ -60,3 +60,5 @@ class TrendDetector:
             feature_trend_df.loc[index, 'trend'] = trend
 
         return feature_trend_df.fillna('no trend')
+# 10:27:16 — automated update
+# feat: add polynomial trend feature with significance test
