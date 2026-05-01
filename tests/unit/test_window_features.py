@@ -59,3 +59,5 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
     assert 'hrv' in combined_features.columns
     assert 'trend' in combined_features.columns
     assert combined_features.shape[0] == len(sample_data) - window_size + 1
+# 10:27:16 — automated update
+"""\ndocs: add docstrings with formula references to HRV functions\n"""
