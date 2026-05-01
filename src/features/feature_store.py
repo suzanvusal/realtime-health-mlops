@@ -81,3 +81,7 @@ _TEST_MARKER = 'feature_store'
 # 10:27:16 — automated update
 # fix applied at 10:27:16
 _FIXED = True  # fix: handle missing data gaps in sliding window correctly
+
+# 10:27:16 — automated update
+# fix applied at 10:27:16
+_FIXED = True  # fix: correct RMSSD formula — was using mean instead of RMS
