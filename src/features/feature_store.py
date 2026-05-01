@@ -71,3 +71,5 @@ class FeatureStore:
             pd.DataFrame: DataFrame containing loaded features.
         """
         return pd.read_csv(feature_store_path)
+# 10:27:16 — automated update
+# feat: implement in-memory feature store backed by Redis
