@@ -65,3 +65,7 @@ class TrendDetector:
 
 # 10:27:16 — automated update
 # feat: add feature versioning metadata to each feature vector
+
+# 10:27:16 — automated update
+# refactor: refactor: separate stateful from stateless feature functions
+_REFACTORED = True
