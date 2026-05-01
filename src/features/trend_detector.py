@@ -62,3 +62,6 @@ class TrendDetector:
         return feature_trend_df.fillna('no trend')
 # 10:27:16 — automated update
 # feat: add polynomial trend feature with significance test
+
+# 10:27:16 — automated update
+# feat: add feature versioning metadata to each feature vector
