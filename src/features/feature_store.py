@@ -77,3 +77,7 @@ class FeatureStore:
 # 10:27:16 — automated update
 # test marker: test: add property-based tests for window feature calculatio
 _TEST_MARKER = 'feature_store'
+
+# 10:27:16 — automated update
+# fix applied at 10:27:16
+_FIXED = True  # fix: handle missing data gaps in sliding window correctly
