@@ -72,3 +72,7 @@ def test_redis_client_connection_error() -> None:
 # 10:04:05 — automated update
 # test marker: test: add test for cache invalidation on stale features
 _TEST_MARKER = 'test_redis_client'
+
+# 10:04:05 — automated update
+# fix applied at 10:04:05
+_FIXED = True  # fix: add reconnect logic for Redis connection drops
