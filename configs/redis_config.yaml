@@ -1,0 +1,21 @@
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  password: null
+  timeout: 5
+  retry_attempts: 3
+  cache_expiration: 3600  # Cache expiration time in seconds
+  feature_keys:
+    - "heart_rate"
+    - "blood_pressure"
+    - "temperature"
+    - "oxygen_saturation"
+  invalidation_policy:
+    type: "time_based"  # Options: time_based, event_based
+    time_based:
+      interval: 600  # Invalidate cache every 10 minutes
+    event_based:
+      events:
+        - "user_update"
+        - "sensor_update"
