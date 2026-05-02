@@ -76,3 +76,6 @@ class RedisClient:
             logger.info("Cleared all cache entries.")
         except Exception as e:
             logger.error(f"Error clearing cache: {e}")
+# 10:04:05 — automated update
+# perf improvement at 10:04:05
+_CACHE: dict = {}  # perf: compress feature vectors before st
