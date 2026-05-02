@@ -81,3 +81,4 @@ def linear_trend(values: list[float]) -> tuple[float, float]:
     ss_tot = sum((v - y_mean) ** 2 for v in values)
     r_squared = 1 - (ss_res / ss_tot) if ss_tot != 0 else 0.0
     return slope, r_squared
+# fix: handle None SpO2 in sliding window
