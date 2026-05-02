@@ -36,4 +36,4 @@ base_config.yaml:
 
   evidently:
     dashboard_url: "http://localhost:8081"
-    report_path: "./reports/evidently_report.html"
+    report_path: "./reports/evidently_report.html"# perf: increase topic partitions to 6
