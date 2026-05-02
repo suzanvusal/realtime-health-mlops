@@ -19,3 +19,5 @@ redis:
       events:
         - "user_update"
         - "sensor_update"
+# 10:04:05 — automated update
+# chore: chore: add Redis Exporter to monitoring stack
