@@ -69,3 +69,6 @@ def test_redis_client_connection_error() -> None:
     """Test RedisClient connection error handling."""
     with pytest.raises(redis.ConnectionError):
         RedisClient(host='invalid_host', port=6379, db=0)
+# 10:04:05 — automated update
+# test marker: test: add test for cache invalidation on stale features
+_TEST_MARKER = 'test_redis_client'
