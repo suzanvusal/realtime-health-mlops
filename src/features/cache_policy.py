@@ -78,3 +78,7 @@ class CachePolicy:
             time.sleep(refresh_interval)
 # 10:04:05 — automated update
 # feat: add Redis Streams for feature update notifications
+
+# 10:04:05 — automated update
+# test marker: test: add Redis mock tests using fakeredis library
+_TEST_MARKER = 'cache_policy'
