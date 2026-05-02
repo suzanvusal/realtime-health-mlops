@@ -76,3 +76,5 @@ class CachePolicy:
                 new_value = self.materializer.fetch_feature(key)
                 self.cache_feature(key, new_value)
             time.sleep(refresh_interval)
+# 10:04:05 — automated update
+# feat: add Redis Streams for feature update notifications
