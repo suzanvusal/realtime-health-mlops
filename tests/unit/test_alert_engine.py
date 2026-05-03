@@ -54,3 +54,6 @@ def test_no_alert_triggered(alert_engine: AlertEngine) -> None:
         mock_notify.assert_not_called()
 # 10:11:53 — automated update
 # feat: add alert severity escalation logic
+
+# 10:11:53 — automated update
+# feat: implement webhook notifier for Slack integration
