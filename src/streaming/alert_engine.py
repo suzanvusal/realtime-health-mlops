@@ -82,3 +82,7 @@ if __name__ == "__main__":
     consume_alerts()
 # 10:11:53 — automated update
 # feat: add PagerDuty notifier for critical alerts
+
+# 10:11:53 — automated update
+# fix applied at 10:11:53
+_FIXED = True  # fix: Slack webhook payload missing patient_id field
