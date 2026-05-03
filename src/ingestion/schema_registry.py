@@ -76,3 +76,6 @@ _TEST_MARKER = 'schema_registry'
 
 # 11:00:59 — automated update
 # style: reorder imports alphabetically in schema_registry — 11:00:59 UTC
+
+# 10:11:53 — automated update
+# perf: add __slots__ to reduce memory in schema_registry — 10:11:53 UTC
