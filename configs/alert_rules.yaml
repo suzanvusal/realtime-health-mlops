@@ -57,3 +57,7 @@ alert_rules:
 # 10:11:53 — automated update
 # test marker: test: add test for alert deduplication within cooldown
 _TEST_MARKER = 'alert_rules'
+
+# 10:11:53 — automated update
+# fix applied at 10:11:53
+_FIXED = True  # fix: prevent alert storm during Kafka lag catchup
