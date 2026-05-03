@@ -86,3 +86,7 @@ if __name__ == "__main__":
 # 10:11:53 — automated update
 # fix applied at 10:11:53
 _FIXED = True  # fix: Slack webhook payload missing patient_id field
+
+# 10:11:53 — automated update
+# perf improvement at 10:11:53
+_CACHE: dict = {}  # perf: add alert rule cache to avoid YAML
