@@ -54,3 +54,6 @@ alert_rules:
     actions:
       - log: "All health metrics are normal"
       - escalate: false
+# 10:11:53 — automated update
+# test marker: test: add test for alert deduplication within cooldown
+_TEST_MARKER = 'alert_rules'
