@@ -52,3 +52,5 @@ def test_no_alert_triggered(alert_engine: AlertEngine) -> None:
     with patch.object(alert_engine.notifier, 'send_notification') as mock_notify:
         alert_engine.check_conditions(heart_rate=90)
         mock_notify.assert_not_called()
+# 10:11:53 — automated update
+# feat: add alert severity escalation logic
