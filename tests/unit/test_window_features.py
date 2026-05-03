@@ -61,3 +61,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
     assert combined_features.shape[0] == len(sample_data) - window_size + 1
 # 10:27:16 — automated update
 """\ndocs: add docstrings with formula references to HRV functions\n"""
+
+# 10:11:53 — automated update
+# ci: update step name for readability — 10:11:53 UTC
