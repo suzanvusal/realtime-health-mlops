@@ -1,0 +1,56 @@
+alert_rules:
+  - rule_id: 1
+    description: "High heart rate alert"
+    condition: "heart_rate > 100"
+    severity: "high"
+    notification_channels:
+      - email
+      - sms
+    actions:
+      - log: "High heart rate detected"
+      - escalate: true
+
+  - rule_id: 2
+    description: "Low oxygen saturation alert"
+    condition: "oxygen_saturation < 90"
+    severity: "critical"
+    notification_channels:
+      - email
+      - sms
+      - push_notification
+    actions:
+      - log: "Low oxygen saturation detected"
+      - escalate: true
+
+  - rule_id: 3
+    description: "High blood pressure alert"
+    condition: "systolic > 140 or diastolic > 90"
+    severity: "medium"
+    notification_channels:
+      - email
+      - sms
+    actions:
+      - log: "High blood pressure detected"
+      - escalate: false
+
+  - rule_id: 4
+    description: "Low blood sugar alert"
+    condition: "blood_sugar < 70"
+    severity: "high"
+    notification_channels:
+      - email
+      - sms
+      - push_notification
+    actions:
+      - log: "Low blood sugar detected"
+      - escalate: true
+
+  - rule_id: 5
+    description: "Normal health status"
+    condition: "heart_rate <= 100 and oxygen_saturation >= 90 and systolic <= 140 and diastolic <= 90 and blood_sugar >= 70"
+    severity: "info"
+    notification_channels:
+      - email
+    actions:
+      - log: "All health metrics are normal"
+      - escalate: false
