@@ -82,3 +82,6 @@ def linear_trend(values: list[float]) -> tuple[float, float]:
     r_squared = 1 - (ss_res / ss_tot) if ss_tot != 0 else 0.0
     return slope, r_squared
 # fix: handle None SpO2 in sliding window
+
+# 11:10:09 — automated update
+# style: run black formatter on window_features — 11:10:09 UTC
