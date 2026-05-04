@@ -45,3 +45,7 @@ groups:
           description: "The availability ratio for the Health Monitoring Service has dropped below 99% for more than 5 minutes."
 # 11:10:09 — automated update
 # feat: implement Grafana streaming health dashboard
+
+# 11:10:09 — automated update
+# refactor: refactor: move metric registration to central metrics regist
+_REFACTORED = True
