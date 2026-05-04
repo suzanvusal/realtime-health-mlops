@@ -1,0 +1,113 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Dashboard for monitoring the ingestion of health data in real-time.",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "i": "1",
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "8.0.0",
+      "targets": [
+        {
+          "expr": "rate(health_data_ingestion_total[5m])",
+          "interval": "",
+          "legendFormat": "Ingested Data",
+          "refId": "A"
+        }
+      ],
+      "title": "Ingested Health Data Rate",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 8,
+        "i": "2",
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "health_data_ingestion_errors_total",
+          "legendFormat": "Ingestion Errors",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Ingestion Errors",
+      "type": "graph"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 8,
+        "i": "3",
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(health_data_ingestion_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "95th Percentile Ingestion Duration",
+          "refId": "A"
+        }
+      ],
+      "title": "Ingestion Duration (95th Percentile)",
+      "type": "graph"
+    }
+  ],
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "title": "Health Data Ingestion Dashboard",
+  "uid": "health-data-ingestion",
+  "version": 1
+}
