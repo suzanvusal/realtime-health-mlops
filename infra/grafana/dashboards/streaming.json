@@ -134,3 +134,6 @@
 }
 # 11:10:09 — automated update
 # feat: add SLO alert rules: 99.9% message processing success rate
+
+# 11:10:09 — automated update
+# feat: configure Alertmanager routes for on-call routing
