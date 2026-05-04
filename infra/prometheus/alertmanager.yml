@@ -1,0 +1,50 @@
+global:
+  resolve_timeout: 5m
+  scrape_interval: 15s
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: 'default'
+
+receivers:
+- name: 'default'
+  webhook_configs:
+  - url: 'http://localhost:5000/alert'
+    send_resolved: true
+
+templates:
+- '/etc/alertmanager/template/*.tmpl'
+
+# Custom alert rules
+groups:
+- name: health_monitoring_alerts
+  rules:
+  - alert: HighCPUUsage
+    expr: sum(rate(container_cpu_usage_seconds_total{job="health_monitor"}[5m])) by (instance) > 0.8
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High CPU Usage detected on instance {{ $labels.instance }}"
+      description: "CPU usage is above 80% for more than 5 minutes."
+
+  - alert: HighMemoryUsage
+    expr: sum(container_memory_usage_bytes{job="health_monitor"}) by (instance) > 1000000000
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High Memory Usage detected on instance {{ $labels.instance }}"
+      description: "Memory usage is above 1GB for more than 5 minutes."
+
+  - alert: ServiceDown
+    expr: up{job="health_monitor"} == 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Service is down on instance {{ $labels.instance }}"
+      description: "The health monitoring service is not responding."
