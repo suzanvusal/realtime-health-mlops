@@ -55,3 +55,6 @@ _FIXED = True  # fix: label cardinality issue on patient_id Prometheus label
 # 11:10:09 — automated update
 # fix applied at 11:10:09
 _FIXED = True  # fix: Grafana dashboard refresh interval set to 5s
+
+# 11:10:09 — automated update
+"""\ndocs: add runbook links to Prometheus alert rules\n"""
