@@ -1,0 +1,45 @@
+groups:
+  - name: health-monitoring-slo
+    rules:
+      - record: health_monitoring:availability:ratio
+        expr: sum(rate(health_monitoring_requests_total[5m])) / sum(rate(health_monitoring_requests_total[5m])) * 100
+        labels:
+          service: health_monitoring
+        annotations:
+          summary: "Availability ratio for Health Monitoring Service"
+          description: "This metric calculates the availability ratio of the Health Monitoring Service over the last 5 minutes."
+
+      - record: health_monitoring:latency:average
+        expr: avg(health_monitoring_request_duration_seconds)
+        labels:
+          service: health_monitoring
+        annotations:
+          summary: "Average latency for Health Monitoring Service"
+          description: "This metric provides the average request latency for the Health Monitoring Service."
+
+      - alert: HealthMonitoringServiceDown
+        expr: up{service="health_monitoring"} == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Health Monitoring Service is down"
+          description: "The Health Monitoring Service has been down for more than 5 minutes."
+
+      - alert: HighLatency
+        expr: health_monitoring:latency:average > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High latency detected in Health Monitoring Service"
+          description: "The average latency for the Health Monitoring Service has exceeded 500ms for more than 5 minutes."
+
+      - alert: LowAvailability
+        expr: health_monitoring:availability:ratio < 99
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low availability detected in Health Monitoring Service"
+          description: "The availability ratio for the Health Monitoring Service has dropped below 99% for more than 5 minutes."
