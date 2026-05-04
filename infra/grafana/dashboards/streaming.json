@@ -1,0 +1,134 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Streaming Data Metrics Dashboard",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "targets": [
+        {
+          "expr": "rate(streaming_data_processed_total[5m])",
+          "interval": "",
+          "legendFormat": "Processed Data",
+          "refId": "A"
+        }
+      ],
+      "title": "Data Processed Rate",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "streaming_data_error_total",
+          "interval": "",
+          "legendFormat": "Error Count",
+          "refId": "B"
+        }
+      ],
+      "title": "Streaming Errors",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "targets": [
+        {
+          "expr": "avg(streaming_latency_seconds)",
+          "interval": "",
+          "legendFormat": "Average Latency",
+          "refId": "C"
+        }
+      ],
+      "title": "Average Streaming Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 4,
+      "targets": [
+        {
+          "expr": "sum(rate(streaming_data_processed_total[5m])) / sum(rate(streaming_data_received_total[5m])) * 100",
+          "interval": "",
+          "legendFormat": "Processing Efficiency",
+          "refId": "D"
+        }
+      ],
+      "title": "Processing Efficiency",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "title": "Streaming Metrics Dashboard",
+  "uid": "streaming-metrics-dashboard",
+  "version": 1
+}
