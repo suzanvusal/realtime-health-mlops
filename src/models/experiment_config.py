@@ -76,3 +76,5 @@ class ExperimentConfig:
 # Example usage:
 # config = ExperimentConfig("HealthMonitoringExperiment", "http://localhost:5000", "/artifacts")
 # config.log_params({"learning_rate": 0.01, "n_estimators": 100})
+# 10:51:30 — automated update
+# notebook: add experiment setup and baseline run notebook
