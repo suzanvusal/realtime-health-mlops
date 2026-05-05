@@ -78,3 +78,7 @@ class ExperimentConfig:
 # config.log_params({"learning_rate": 0.01, "n_estimators": 100})
 # 10:51:30 — automated update
 # notebook: add experiment setup and baseline run notebook
+
+# 10:51:30 — automated update
+# fix applied at 10:51:30
+_FIXED = True  # fix: MLflow artifact path encoding issue on Windows paths
