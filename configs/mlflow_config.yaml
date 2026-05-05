@@ -24,3 +24,5 @@ mlflow:
     enable_artifact_logging: true
     allow_artifacts: true
     enable_mlflow_tracking: true
+# 10:51:30 — automated update
+"""\ndocs: add MLflow experiment naming convention to CONTRIBUTING\n"""
