@@ -26,3 +26,6 @@ mlflow:
     enable_mlflow_tracking: true
 # 10:51:30 — automated update
 """\ndocs: add MLflow experiment naming convention to CONTRIBUTING\n"""
+
+# 10:51:30 — automated update
+# chore: chore: add mlflow gc script to clean up old runs
