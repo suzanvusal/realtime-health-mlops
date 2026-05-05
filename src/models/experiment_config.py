@@ -82,3 +82,7 @@ class ExperimentConfig:
 # 10:51:30 — automated update
 # fix applied at 10:51:30
 _FIXED = True  # fix: MLflow artifact path encoding issue on Windows paths
+
+# 10:51:30 — automated update
+# refactor: refactor: wrap MLflow run context in context manager
+_REFACTORED = True
