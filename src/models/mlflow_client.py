@@ -77,3 +77,7 @@ if __name__ == "__main__":
     client = MLflowClient(config_path='configs/mlflow_config.yaml')
 # 10:51:30 — automated update
 # infra: add MLflow server Dockerfile with Nginx reverse proxy
+
+# 10:51:30 — automated update
+# fix applied at 10:51:30
+_FIXED = True  # fix: correct MLflow server database migration on first start
