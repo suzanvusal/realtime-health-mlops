@@ -1,0 +1,26 @@
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "Real-Time Health Monitoring"
+  artifact_location: "s3://your-bucket/artifacts/"
+  model_registry:
+    uri: "http://localhost:5000"
+    model_name: "HealthMonitoringModel"
+    description: "Model for predicting health metrics based on real-time data."
+    tags:
+      version: "1.0"
+      author: "Your Name"
+      purpose: "Real-time health monitoring and prediction"
+  storage:
+    type: "s3"
+    s3:
+      bucket: "your-bucket"
+      region: "us-west-2"
+  logging:
+    level: "INFO"
+    file: "mlflow.log"
+  server:
+    host: "0.0.0.0"
+    port: 5000
+    enable_artifact_logging: true
+    allow_artifacts: true
+    enable_mlflow_tracking: true
