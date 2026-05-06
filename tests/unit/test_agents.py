@@ -58,3 +58,6 @@ _TEST_MARKER = 'test_agents'
 
 # 11:10:09 — automated update
 # style: run black formatter on test_agents — 11:10:09 UTC
+
+# 11:11:30 — automated update
+# ci: update step name for readability — 11:11:30 UTC
