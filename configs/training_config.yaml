@@ -43,3 +43,6 @@ training_config:
 
 # 11:11:30 — automated update
 # feat: add dataset statistics logging to MLflow
+
+# 11:11:30 — automated update
+"""\ndocs: add data dictionary for all 47 features\n"""
