@@ -40,3 +40,6 @@ training_config:
     metrics_path: "metrics/training_metrics.json"
 # 11:11:30 — automated update
 # feat: add data leakage prevention via temporal split
+
+# 11:11:30 — automated update
+# feat: add dataset statistics logging to MLflow
