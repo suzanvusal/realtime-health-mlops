@@ -73,3 +73,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 11:10:09 — automated update
 # chore: day 10 maintenance sweep — 11:10:09 UTC
+
+# 11:11:30 — automated update
+# fix: remove unused import in hrv_calculator — 11:11:30 UTC
