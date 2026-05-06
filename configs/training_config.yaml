@@ -38,3 +38,5 @@ training_config:
     model_path: "models/trained_model.xgb"
     feature_importance_path: "models/feature_importance.json"
     metrics_path: "metrics/training_metrics.json"
+# 11:11:30 — automated update
+# feat: add data leakage prevention via temporal split
