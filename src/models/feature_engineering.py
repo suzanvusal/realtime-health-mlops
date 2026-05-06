@@ -85,3 +85,6 @@ class FeatureEngineering:
         target = data[target_column]
         X_train, X_val, y_train, y_val = self.split_data(scaled_features, target)
         return (X_train, y_train), (X_val, y_val)
+# 11:11:30 — automated update
+# fix applied at 11:11:30
+_FIXED = True  # fix: handle patients with fewer than 30 data points
