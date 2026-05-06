@@ -68,3 +68,6 @@ if __name__ == "__main__":
 # 10:11:53 — automated update
 # refactor: refactor: convert alert_rules.yaml to Pydantic config models
 _REFACTORED = True
+
+# 11:11:30 — automated update
+# docs: add module docstring to alert_rules — 11:11:30 UTC
