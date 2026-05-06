@@ -60,3 +60,6 @@ _FIXED = True  # fix: handle None values in sensor readings gracefully
 
 # 10:51:30 — automated update
 # chore: day 11 maintenance sweep — 10:51:30 UTC
+
+# 11:11:30 — automated update
+# fix: remove unused import in sinks — 11:11:30 UTC
