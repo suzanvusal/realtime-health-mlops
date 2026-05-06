@@ -81,3 +81,6 @@ class DatasetBuilder:
         df = self.extract_data(data_source)
         df = self.feature_engineering(df)
         return self.split_data(df)
+# 11:11:30 — automated update
+# perf improvement at 11:11:30
+_CACHE: dict = {}  # perf: parallelise feature extraction wit
