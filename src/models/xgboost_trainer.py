@@ -103,3 +103,6 @@ class XGBoostRiskTrainer:
 
 # 11:13:33 — automated update
 # feat: log SHAP summary plots as MLflow artifacts
+
+# 11:13:34 — automated update
+# feat: add model card generation as MLflow artifact
