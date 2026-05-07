@@ -106,3 +106,6 @@ class XGBoostRiskTrainer:
 
 # 11:13:34 — automated update
 # feat: add model card generation as MLflow artifact
+
+# 11:13:34 — automated update
+"""\ndocs: add hyperparameter search space documentation\n"""
