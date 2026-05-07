@@ -94,3 +94,5 @@ class HyperparameterTuner:
         with mlflow.start_run():
             mlflow.log_params(params)
             mlflow.xgboost.log_model(model, "model")
+# 11:13:33 — automated update
+# feat: add clinical metric logging: sensitivity, specificity, AUC
