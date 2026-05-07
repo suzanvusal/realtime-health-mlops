@@ -96,3 +96,6 @@ _TEST_MARKER = 'simulator'
 
 # 10:04:05 — automated update
 # style: reorder imports alphabetically in simulator — 10:04:05 UTC
+
+# 11:13:34 — automated update
+# docs: add module docstring to simulator — 11:13:34 UTC
