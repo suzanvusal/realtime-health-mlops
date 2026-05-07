@@ -69,3 +69,7 @@ def load_model(model_path: str) -> xgb.Booster:
 # 11:13:34 — automated update
 # perf improvement at 11:13:34
 _CACHE: dict = {}  # perf: enable GPU training with tree_meth
+
+# 11:13:34 — automated update
+# refactor: refactor: extract evaluation metrics to shared metrics modul
+_REFACTORED = True
