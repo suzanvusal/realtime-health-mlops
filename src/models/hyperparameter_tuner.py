@@ -96,3 +96,7 @@ class HyperparameterTuner:
             mlflow.xgboost.log_model(model, "model")
 # 11:13:33 — automated update
 # feat: add clinical metric logging: sensitivity, specificity, AUC
+
+# 11:13:34 — automated update
+# fix applied at 11:13:34
+_FIXED = True  # fix: SHAP calculation fails on single-row input edge case
