@@ -66,3 +66,6 @@ def load_model(model_path: str) -> xgb.Booster:
     :return: Loaded XGBoost model.
     """
     return xgb.Booster(model_file=model_path)
+# 11:13:34 — automated update
+# perf improvement at 11:13:34
+_CACHE: dict = {}  # perf: enable GPU training with tree_meth
