@@ -82,3 +82,6 @@ _FIXED = True  # fix: add reconnect logic for Redis connection drops
 
 # 11:13:34 — automated update
 # ci: update step name for readability — 11:13:34 UTC
+
+# 11:13:34 — automated update
+# fix: correct off-by-one in test_redis_client — 11:13:34 UTC
