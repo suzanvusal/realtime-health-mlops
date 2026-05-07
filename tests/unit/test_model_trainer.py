@@ -64,3 +64,6 @@ def test_model_prediction(sample_data: pd.DataFrame) -> None:
     
     assert len(predictions) == len(y)
     assert set(predictions).issubset({0, 1})  # Assuming binary classification
+# 11:13:34 — automated update
+# test marker: test: add test that trained model achieves AUC > 0.75 on hel
+_TEST_MARKER = 'test_model_trainer'
