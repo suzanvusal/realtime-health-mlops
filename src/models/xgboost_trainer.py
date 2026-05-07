@@ -100,3 +100,6 @@ class XGBoostRiskTrainer:
             scores.append(roc_auc_score(y[val_idx], proba))
             logger.info("Fold %d AUC: %.4f", fold + 1, scores[-1])
         return {"cv_auc_mean": float(np.mean(scores)), "cv_auc_std": float(np.std(scores))}
+
+# 11:13:33 — automated update
+# feat: log SHAP summary plots as MLflow artifacts
