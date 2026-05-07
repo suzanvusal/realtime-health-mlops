@@ -84,3 +84,6 @@ class DatasetBuilder:
 # 11:11:30 — automated update
 # perf improvement at 11:11:30
 _CACHE: dict = {}  # perf: parallelise feature extraction wit
+
+# 11:13:34 — automated update
+# chore: day 13 maintenance sweep — 11:13:34 UTC
