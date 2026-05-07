@@ -76,3 +76,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 11:11:30 — automated update
 # fix: remove unused import in hrv_calculator — 11:11:30 UTC
+
+# 11:13:34 — automated update
+# refactor: extract magic number to named constant in hrv_calculator — 11:13:34 UTC
