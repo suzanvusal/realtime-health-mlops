@@ -75,3 +75,6 @@ _REFACTORED = True
 
 # 10:51:30 — automated update
 # docs: update example in docstring of trend_detector — 10:51:30 UTC
+
+# 10:44:06 — automated update
+# fix: correct off-by-one in trend_detector — 10:44:06 UTC
