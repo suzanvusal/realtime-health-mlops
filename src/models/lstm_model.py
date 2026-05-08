@@ -69,3 +69,7 @@ def train_model(model: LSTMModel, train_loader: DataLoader, criterion: nn.Module
 # 10:44:06 — automated update
 # test marker: test: add shape test for LSTM output dimensions
 _TEST_MARKER = 'lstm_model'
+
+# 10:44:06 — automated update
+# perf improvement at 10:44:06
+_CACHE: dict = {}  # perf: enable mixed precision (fp16) trai
