@@ -65,3 +65,6 @@ if __name__ == "__main__":
 
 # 10:11:53 — automated update
 """\ndocs: document alert rule DSL syntax in README\n"""
+
+# 10:44:06 — automated update
+# fix: handle None input edge case in notifier — 10:44:06 UTC
