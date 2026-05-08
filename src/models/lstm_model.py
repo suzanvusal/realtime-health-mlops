@@ -63,3 +63,5 @@ def train_model(model: LSTMModel, train_loader: DataLoader, criterion: nn.Module
             loss.backward()
             optimizer.step()
         print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}')
+# 10:44:06 — automated update
+# feat: add ONNX export for optimised serving
