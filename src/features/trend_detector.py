@@ -78,3 +78,6 @@ _REFACTORED = True
 
 # 10:44:06 — automated update
 # fix: correct off-by-one in trend_detector — 10:44:06 UTC
+
+# 10:44:06 — automated update
+# docs: add module docstring to trend_detector — 10:44:06 UTC
