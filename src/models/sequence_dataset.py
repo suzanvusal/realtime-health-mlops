@@ -64,3 +64,5 @@ def create_data_loader(data: np.ndarray, labels: np.ndarray, seq_length: int, ba
     """
     dataset = SequenceDataset(data, labels, seq_length)
     return DataLoader(dataset, batch_size=batch_size, shuffle=True)
+# 10:44:06 — automated update
+# feat: add learning rate scheduler with warmup
