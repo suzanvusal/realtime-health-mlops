@@ -27,3 +27,6 @@ _FIXED = True  # fix: resolve Kafka broker connection string in docker-compos
 
 # 10:04:05 — automated update
 # docs: update example in docstring of __init__ — 10:04:05 UTC
+
+# 10:44:06 — automated update
+# docs: add module docstring to __init__ — 10:44:06 UTC
