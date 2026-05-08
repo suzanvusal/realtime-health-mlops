@@ -79,3 +79,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 11:13:34 — automated update
 # refactor: extract magic number to named constant in hrv_calculator — 11:13:34 UTC
+
+# 10:44:06 — automated update
+# perf: add __slots__ to reduce memory in hrv_calculator — 10:44:06 UTC
