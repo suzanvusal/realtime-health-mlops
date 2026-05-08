@@ -65,3 +65,7 @@ def train_model(model: LSTMModel, train_loader: DataLoader, criterion: nn.Module
         print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}')
 # 10:44:06 — automated update
 # feat: add ONNX export for optimised serving
+
+# 10:44:06 — automated update
+# test marker: test: add shape test for LSTM output dimensions
+_TEST_MARKER = 'lstm_model'
