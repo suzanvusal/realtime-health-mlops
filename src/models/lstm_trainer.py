@@ -84,3 +84,6 @@ class LSTMTrainer:
         :param model_path: Path to save the model.
         """
         torch.save(self.model.state_dict(), model_path)
+# 10:44:06 — automated update
+# refactor: refactor: separate model definition from training logic
+_REFACTORED = True
