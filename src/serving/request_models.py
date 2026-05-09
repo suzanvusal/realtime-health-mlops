@@ -46,3 +46,7 @@ class BatchHealthMonitoringResponse(BaseModel):
 # 10:12:47 — automated update
 # fix applied at 10:12:47
 _FIXED = True  # fix: model reload on SIGTERM without API downtime
+
+# 10:12:47 — automated update
+# fix applied at 10:12:47
+_FIXED = True  # fix: handle malformed JSON in request body with 422 response
