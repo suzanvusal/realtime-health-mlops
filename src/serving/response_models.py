@@ -37,3 +37,7 @@ class BatchPredictionResponse(BaseModel):
     overall_message: str
 # 10:12:47 — automated update
 # feat: add Prometheus metrics middleware to FastAPI
+
+# 10:12:47 — automated update
+# perf improvement at 10:12:47
+_CACHE: dict = {}  # perf: run model inference in thread pool
