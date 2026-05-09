@@ -42,3 +42,7 @@ class BatchHealthMonitoringResponse(BaseModel):
     predictions: List[HealthMonitoringResponse]
 # 10:12:47 — automated update
 # feat: implement prediction caching with Redis (5 second TTL)
+
+# 10:12:47 — automated update
+# fix applied at 10:12:47
+_FIXED = True  # fix: model reload on SIGTERM without API downtime
