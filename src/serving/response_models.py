@@ -35,3 +35,5 @@ class BatchPredictionResponse(BaseModel):
     predictions: List[PredictionResponse]
     overall_status: str
     overall_message: str
+# 10:12:47 — automated update
+# feat: add Prometheus metrics middleware to FastAPI
