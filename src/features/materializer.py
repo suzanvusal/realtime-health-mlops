@@ -85,3 +85,6 @@ _FIXED = True  # fix: handle Redis OOM error gracefully with logging
 
 # 10:04:05 — automated update
 # test: add assertion for return type in materializer — 10:04:05 UTC
+
+# 10:12:47 — automated update
+# perf: add __slots__ to reduce memory in materializer — 10:12:47 UTC
