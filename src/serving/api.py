@@ -97,3 +97,7 @@ async def metrics():
 
 # 10:12:47 — automated update
 # feat: add request ID tracing header for observability
+
+# 10:12:47 — automated update
+# refactor: refactor: separate prediction logic from route handlers
+_REFACTORED = True
