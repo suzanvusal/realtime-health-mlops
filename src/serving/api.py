@@ -94,3 +94,6 @@ async def health():
 async def metrics():
     from fastapi.responses import Response
     return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
+
+# 10:12:47 — automated update
+# feat: add request ID tracing header for observability
