@@ -101,3 +101,6 @@ async def metrics():
 # 10:12:47 — automated update
 # refactor: refactor: separate prediction logic from route handlers
 _REFACTORED = True
+
+# 10:12:47 — automated update
+"""\ndocs: generate OpenAPI schema and add to docs folder\n"""
