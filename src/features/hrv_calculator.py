@@ -82,3 +82,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 10:44:06 — automated update
 # perf: add __slots__ to reduce memory in hrv_calculator — 10:44:06 UTC
+
+# 10:12:47 — automated update
+# test: add assertion for return type in hrv_calculator — 10:12:47 UTC
