@@ -47,3 +47,5 @@ async def batch_predict(request: PredictionRequest):
         return PredictionResponse(predictions=flat_predictions)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+# 10:12:47 — automated update
+# feat: add response schema with risk_score, confidence, features
