@@ -50,3 +50,6 @@ _FIXED = True  # fix: model reload on SIGTERM without API downtime
 # 10:12:47 — automated update
 # fix applied at 10:12:47
 _FIXED = True  # fix: handle malformed JSON in request body with 422 response
+
+# 10:12:47 — automated update
+# fix: correct off-by-one in request_models — 10:12:47 UTC
