@@ -49,3 +49,7 @@ async def batch_predict(request: PredictionRequest):
         raise HTTPException(status_code=500, detail=str(e))
 # 10:12:47 — automated update
 # feat: add response schema with risk_score, confidence, features
+
+# 10:12:47 — automated update
+# test marker: test: add pytest-asyncio tests for all prediction endpoints
+_TEST_MARKER = 'prediction_service'
