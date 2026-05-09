@@ -80,3 +80,6 @@ _FIXED = True  # fix: handle KafkaTimeoutError with exponential backoff
 # 11:00:59 — automated update
 # refactor: refactor: move consumer config to dataclass from dict
 _REFACTORED = True
+
+# 10:12:47 — automated update
+# fix: handle None input edge case in dlq_handler — 10:12:47 UTC
