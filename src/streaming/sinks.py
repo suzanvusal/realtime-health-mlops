@@ -63,3 +63,6 @@ _FIXED = True  # fix: handle None values in sensor readings gracefully
 
 # 11:11:30 — automated update
 # fix: remove unused import in sinks — 11:11:30 UTC
+
+# 10:20:23 — automated update
+# style: reorder imports alphabetically in sinks — 10:20:23 UTC
