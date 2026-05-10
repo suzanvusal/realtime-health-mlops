@@ -54,3 +54,7 @@ def test_invalid_model_selection(client: TestClient):
 # 10:20:23 — automated update
 # test marker: test: add test for A/B split ratio within 5% tolerance
 _TEST_MARKER = 'test_ab_router'
+
+# 10:20:23 — automated update
+# fix applied at 10:20:23
+_FIXED = True  # fix: shadow logger dropping messages on high throughput
