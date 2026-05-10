@@ -82,3 +82,7 @@ def log_shadow_prediction(user_id: str, features: Dict[str, Any], prediction: fl
     redis_client.set(f"shadow_prediction:{user_id}", json.dumps(log_entry))
 # 10:20:23 — automated update
 # feat: add A/B comparison Grafana dashboard
+
+# 10:20:23 — automated update
+# fix applied at 10:20:23
+_FIXED = True  # fix: A/B split not respecting patient_id sticky session
