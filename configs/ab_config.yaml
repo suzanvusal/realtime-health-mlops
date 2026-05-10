@@ -1,0 +1,32 @@
+ab_config.yaml:
+  models:
+    model_a:
+      path: "models/model_a.pkl"
+      version: "1.0"
+      description: "XGBoost model for predicting health metrics"
+    model_b:
+      path: "models/model_b.pt"
+      version: "1.0"
+      description: "PyTorch model for predicting health metrics"
+  routing:
+    ab_test_ratio: 0.5
+    shadow_mode: true
+  logging:
+    shadow_log_path: "logs/shadow_predictions.log"
+    log_format: "json"
+  metrics:
+    comparison_metrics:
+      - name: "accuracy"
+        threshold: 0.75
+      - name: "f1_score"
+        threshold: 0.70
+  kafka:
+    bootstrap_servers: "localhost:9092"
+    topic: "health_metrics"
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+  mlflow:
+    tracking_uri: "http://localhost:5000"
+    experiment_name: "ab_model_comparison"
