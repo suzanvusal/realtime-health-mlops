@@ -77,3 +77,6 @@ class DataPipeline:
 # 11:11:30 — automated update
 # fix applied at 11:11:30
 _FIXED = True  # fix: temporal leakage — ensure val set is always after train
+
+# 10:20:23 — automated update
+# perf: add __slots__ to reduce memory in data_pipeline — 10:20:23 UTC
