@@ -48,3 +48,5 @@ def test_invalid_model_selection(client: TestClient):
     assert response.status_code == 400
     assert "error" in response.json()
     assert response.json()["error"] == "Invalid model selected."
+# 10:20:23 — automated update
+# feat: implement statistical significance calculator for A/B results
