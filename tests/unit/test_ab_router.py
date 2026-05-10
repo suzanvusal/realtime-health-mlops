@@ -50,3 +50,7 @@ def test_invalid_model_selection(client: TestClient):
     assert response.json()["error"] == "Invalid model selected."
 # 10:20:23 — automated update
 # feat: implement statistical significance calculator for A/B results
+
+# 10:20:23 — automated update
+# test marker: test: add test for A/B split ratio within 5% tolerance
+_TEST_MARKER = 'test_ab_router'
