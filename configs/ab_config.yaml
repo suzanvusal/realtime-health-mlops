@@ -32,3 +32,7 @@ ab_config.yaml:
     experiment_name: "ab_model_comparison"
 # 10:20:23 — automated update
 # feat: implement feature flag service for A/B config hot-reload
+
+# 10:20:23 — automated update
+# refactor: refactor: extract A/B config to separate Pydantic model
+_REFACTORED = True
