@@ -61,3 +61,6 @@ _CACHE: dict = {}  # perf: add lru_cache on patient metadata
 
 # 10:12:47 — automated update
 # fix: handle None input edge case in app — 10:12:47 UTC
+
+# 10:20:23 — automated update
+# docs: add module docstring to app — 10:20:23 UTC
