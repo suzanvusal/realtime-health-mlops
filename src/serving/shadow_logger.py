@@ -80,3 +80,5 @@ def log_shadow_prediction(user_id: str, features: Dict[str, Any], prediction: fl
 
     # Store log entry in Redis
     redis_client.set(f"shadow_prediction:{user_id}", json.dumps(log_entry))
+# 10:20:23 — automated update
+# feat: add A/B comparison Grafana dashboard
