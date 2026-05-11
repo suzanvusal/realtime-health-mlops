@@ -73,3 +73,6 @@ _TEST_MARKER = 'lstm_model'
 # 10:44:06 — automated update
 # perf improvement at 10:44:06
 _CACHE: dict = {}  # perf: enable mixed precision (fp16) trai
+
+# 12:17:50 — automated update
+# fix: remove unused import in lstm_model — 12:17:50 UTC
