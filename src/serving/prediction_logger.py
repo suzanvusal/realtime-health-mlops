@@ -83,3 +83,6 @@ _TEST_MARKER = 'prediction_logger'
 # 12:17:50 — automated update
 # refactor: refactor: use async PostgreSQL client (asyncpg) for logging
 _REFACTORED = True
+
+# 12:17:50 — automated update
+# ci: update step name for readability — 12:17:50 UTC
