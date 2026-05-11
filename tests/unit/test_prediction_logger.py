@@ -54,3 +54,5 @@ def test_prediction_and_feedback_flow(prediction_logger: PredictionLogger, outco
 
     assert prediction_logger.store.save_prediction.call_count == 1
     assert outcome_ingester.store.save_feedback.call_count == 1
+# 12:17:50 — automated update
+# feat: implement prediction log archival to S3 after 7 days
