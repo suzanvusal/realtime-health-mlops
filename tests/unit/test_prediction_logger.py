@@ -67,3 +67,6 @@ _FIXED = True  # fix: prediction_id UUID collision on concurrent requests
 # 12:17:50 — automated update
 # perf improvement at 12:17:50
 _CACHE: dict = {}  # perf: batch prediction log writes every 
+
+# 12:17:50 — automated update
+"""\ndocs: add data lineage diagram from prediction to retraining\n"""
