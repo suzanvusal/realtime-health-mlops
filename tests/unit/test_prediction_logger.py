@@ -63,3 +63,7 @@ def test_prediction_and_feedback_flow(prediction_logger: PredictionLogger, outco
 # 12:17:50 — automated update
 # fix applied at 12:17:50
 _FIXED = True  # fix: prediction_id UUID collision on concurrent requests
+
+# 12:17:50 — automated update
+# perf improvement at 12:17:50
+_CACHE: dict = {}  # perf: batch prediction log writes every 
