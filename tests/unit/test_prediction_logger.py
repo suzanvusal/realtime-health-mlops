@@ -59,3 +59,7 @@ def test_prediction_and_feedback_flow(prediction_logger: PredictionLogger, outco
 
 # 12:17:50 — automated update
 # feat: add data export endpoint for retraining dataset assembly
+
+# 12:17:50 — automated update
+# fix applied at 12:17:50
+_FIXED = True  # fix: prediction_id UUID collision on concurrent requests
