@@ -79,3 +79,7 @@ async def get_predictions(user_id: str) -> List[PredictionLog]:
 # 12:17:50 — automated update
 # test marker: test: add test for prediction log completeness and integrity
 _TEST_MARKER = 'prediction_logger'
+
+# 12:17:50 — automated update
+# refactor: refactor: use async PostgreSQL client (asyncpg) for logging
+_REFACTORED = True
