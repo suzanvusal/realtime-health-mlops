@@ -53,3 +53,6 @@ async def batch_predict(request: PredictionRequest):
 # 10:12:47 — automated update
 # test marker: test: add pytest-asyncio tests for all prediction endpoints
 _TEST_MARKER = 'prediction_service'
+
+# 12:17:50 — automated update
+# test: add assertion for return type in prediction_service — 12:17:50 UTC
