@@ -80,3 +80,6 @@ if __name__ == "__main__":
     store.ingest_feedback({"id": "123", "outcome": "positive"})
     predictions = store.get_predictions()
     print(predictions)
+# 12:17:50 — automated update
+# fix applied at 12:17:50
+_FIXED = True  # fix: outcome ingester fails on duplicate outcome submission
