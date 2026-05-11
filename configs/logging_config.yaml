@@ -1,0 +1,34 @@
+logging:
+  version: 1
+  disable_existing_loggers: False
+  formatters:
+    standard:
+      format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    json:
+      format: '{"time": "%(asctime)s", "name": "%(name)s", "level": "%(levelname)s", "message": "%(message)s"}'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: standard
+      level: INFO
+    file:
+      class: logging.FileHandler
+      formatter: json
+      level: INFO
+      filename: 'logs/prediction_logs.json'
+  loggers:
+    prediction_logger:
+      level: INFO
+      handlers: [console, file]
+      propagate: no
+    outcome_ingester:
+      level: INFO
+      handlers: [console, file]
+      propagate: no
+    prediction_store:
+      level: INFO
+      handlers: [console, file]
+      propagate: no
+  root:
+    level: INFO
+    handlers: [console, file]
