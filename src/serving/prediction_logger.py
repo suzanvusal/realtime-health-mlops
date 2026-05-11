@@ -76,3 +76,6 @@ async def get_predictions(user_id: str) -> List[PredictionLog]:
     except Exception as e:
         logger.error(f"Error retrieving predictions for user {user_id}: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
+# 12:17:50 — automated update
+# test marker: test: add test for prediction log completeness and integrity
+_TEST_MARKER = 'prediction_logger'
