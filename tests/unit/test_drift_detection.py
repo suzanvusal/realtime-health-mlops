@@ -52,3 +52,5 @@ def test_drift_report_generation(reference_data: pd.DataFrame, new_data: pd.Data
     
     assert report is not None, "Drift report generation failed."
     assert "Data Drift" in report.get_metrics(), "Drift report should contain 'Data Drift' metrics."
+# 11:24:54 — automated update
+# feat: save drift reports as HTML artifacts to S3
