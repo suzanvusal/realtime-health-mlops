@@ -1,0 +1,52 @@
+reference_dataset:
+  path: "data/reference/reference_data.csv"
+  schema:
+    features:
+      - name: "heart_rate"
+        type: "float"
+      - name: "blood_pressure"
+        type: "float"
+      - name: "temperature"
+        type: "float"
+      - name: "oxygen_saturation"
+        type: "float"
+    target:
+      name: "health_status"
+      type: "categorical"
+
+current_dataset:
+  path: "data/current/current_data.csv"
+  schema:
+    features:
+      - name: "heart_rate"
+        type: "float"
+      - name: "blood_pressure"
+        type: "float"
+      - name: "temperature"
+        type: "float"
+      - name: "oxygen_saturation"
+        type: "float"
+    target:
+      name: "health_status"
+      type: "categorical"
+
+drift_detection:
+  method: "Kullback-Leibler Divergence"
+  threshold: 0.05
+  report:
+    output_path: "reports/drift_report.html"
+    generate_on: "daily"
+
+logging:
+  level: "INFO"
+  file: "logs/drift_detection.log"
+
+notifications:
+  enabled: true
+  email:
+    recipients:
+      - "health_monitoring_team@example.com"
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    username: "user@example.com"
+    password: "securepassword"
