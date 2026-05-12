@@ -74,3 +74,7 @@ class ReferenceBuilder:
         self.save_drift_report(report, output_path)
 # 11:24:54 — automated update
 # feat: implement drift severity classification (none/warn/critical)
+
+# 11:24:54 — automated update
+# perf improvement at 11:24:54
+_CACHE: dict = {}  # perf: run drift reports in parallel for 
