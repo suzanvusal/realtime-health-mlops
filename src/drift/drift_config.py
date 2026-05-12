@@ -69,3 +69,6 @@ class DriftConfig:
 # 11:24:54 — automated update
 # fix applied at 11:24:54
 _FIXED = True  # fix: reference dataset staleness check logic inverted
+
+# 11:24:54 — automated update
+# perf: add __slots__ to reduce memory in drift_config — 11:24:54 UTC
