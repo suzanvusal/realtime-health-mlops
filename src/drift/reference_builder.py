@@ -72,3 +72,5 @@ class ReferenceBuilder:
         self.load_reference_data()
         report = self.generate_drift_report(current_data, column_mapping)
         self.save_drift_report(report, output_path)
+# 11:24:54 — automated update
+# feat: implement drift severity classification (none/warn/critical)
