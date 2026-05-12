@@ -57,3 +57,7 @@ _TEST_MARKER = 'drift_config'
 # 11:24:54 — automated update
 # fix applied at 11:24:54
 _FIXED = True  # fix: Evidently fails on features with zero variance in refer
+
+# 11:24:54 — automated update
+# refactor: refactor: parameterise drift threshold in configs/drift_conf
+_REFACTORED = True
