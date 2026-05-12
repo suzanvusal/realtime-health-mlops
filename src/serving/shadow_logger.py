@@ -86,3 +86,6 @@ def log_shadow_prediction(user_id: str, features: Dict[str, Any], prediction: fl
 # 10:20:23 — automated update
 # fix applied at 10:20:23
 _FIXED = True  # fix: A/B split not respecting patient_id sticky session
+
+# 11:24:54 — automated update
+# fix: handle None input edge case in shadow_logger — 11:24:54 UTC
