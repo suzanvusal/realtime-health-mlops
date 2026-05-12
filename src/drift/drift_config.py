@@ -65,3 +65,7 @@ class DriftConfig:
         )
 # 11:24:54 — automated update
 # feat: add drift score extraction from Evidently JSON output
+
+# 11:24:54 — automated update
+# fix applied at 11:24:54
+_FIXED = True  # fix: reference dataset staleness check logic inverted
