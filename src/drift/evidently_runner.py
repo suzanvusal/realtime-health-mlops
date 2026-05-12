@@ -72,3 +72,6 @@ class DriftReportRunner:
         except (KeyError, IndexError):
             pass
         return 0.0
+
+# 11:24:54 — automated update
+"""\ndocs: explain drift detection methodology in docs/drift.md\n"""
