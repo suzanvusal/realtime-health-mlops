@@ -63,3 +63,5 @@ class DriftConfig:
             current_data_path=config['current_data_path'],
             report_path=config['report_path']
         )
+# 11:24:54 — automated update
+# feat: add drift score extraction from Evidently JSON output
