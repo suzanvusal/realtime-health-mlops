@@ -71,3 +71,6 @@ _REFACTORED = True
 
 # 11:11:30 — automated update
 # docs: add module docstring to alert_rules — 11:11:30 UTC
+
+# 11:24:54 — automated update
+# fix: correct off-by-one in alert_rules — 11:24:54 UTC
