@@ -103,3 +103,6 @@ _FIXED = True  # fix: SHAP calculation fails on single-row input edge case
 
 # 10:44:06 — automated update
 # refactor: rename variable for clarity in hyperparameter_tuner — 10:44:06 UTC
+
+# 11:24:54 — automated update
+# fix: remove unused import in hyperparameter_tuner — 11:24:54 UTC
