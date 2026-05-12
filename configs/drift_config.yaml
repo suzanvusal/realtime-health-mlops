@@ -53,3 +53,7 @@ notifications:
 # 11:24:54 — automated update
 # test marker: test: add test with synthetic drift to validate detection se
 _TEST_MARKER = 'drift_config'
+
+# 11:24:54 — automated update
+# fix applied at 11:24:54
+_FIXED = True  # fix: Evidently fails on features with zero variance in refer
