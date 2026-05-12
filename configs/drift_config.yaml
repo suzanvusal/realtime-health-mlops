@@ -50,3 +50,6 @@ notifications:
     smtp_port: 587
     username: "user@example.com"
     password: "securepassword"
+# 11:24:54 — automated update
+# test marker: test: add test with synthetic drift to validate detection se
+_TEST_MARKER = 'drift_config'
