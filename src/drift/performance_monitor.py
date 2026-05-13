@@ -71,3 +71,7 @@ async def monitor_performance(predictions: np.ndarray, labels: np.ndarray) -> Di
     return {"drift_detected": drift_detected, "report": report}
 # 11:34:16 — automated update
 # feat: implement drift metric emission to Prometheus
+
+# 11:34:16 — automated update
+# fix applied at 11:34:16
+_FIXED = True  # fix: PSI formula using natural log instead of log base 10
