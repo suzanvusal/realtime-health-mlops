@@ -53,3 +53,5 @@ def test_auroc_decay_detection(sample_data: pd.DataFrame) -> None:
     
     decay_detected = monitor.detect_auroc_decay(threshold=0.05)
     assert decay_detected, "AUROC decay should be detected with poor predictions."
+# 11:34:16 — automated update
+# feat: add prediction drift Grafana dashboard with threshold lines
