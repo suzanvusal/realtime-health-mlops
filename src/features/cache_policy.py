@@ -82,3 +82,6 @@ class CachePolicy:
 # 10:04:05 — automated update
 # test marker: test: add Redis mock tests using fakeredis library
 _TEST_MARKER = 'cache_policy'
+
+# 11:34:16 — automated update
+# docs: update example in docstring of cache_policy — 11:34:16 UTC
