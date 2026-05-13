@@ -1,0 +1,118 @@
+{
+  "annotations": [],
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "i": "1",
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showLegend": true
+      },
+      "pluginVersion": "8.0.0",
+      "targets": [
+        {
+          "expr": "prediction_drift_metric",
+          "interval": "",
+          "legendFormat": "Prediction Drift",
+          "refId": "A"
+        }
+      ],
+      "title": "Prediction Drift",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "i": "2",
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showLegend": true
+      },
+      "pluginVersion": "8.0.0",
+      "targets": [
+        {
+          "expr": "model_auroc",
+          "interval": "",
+          "legendFormat": "AUROC",
+          "refId": "B"
+        }
+      ],
+      "title": "Model AUROC",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 8,
+        "i": "3",
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "expr": "model_performance_metric",
+          "interval": "",
+          "legendFormat": "{{model}}",
+          "refId": "C"
+        }
+      ],
+      "title": "Model Performance Over Time",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 27,
+  "title": "Drift Overview Dashboard",
+  "version": 1
+}
