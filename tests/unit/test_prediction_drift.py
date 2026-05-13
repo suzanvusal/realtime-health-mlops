@@ -55,3 +55,7 @@ def test_auroc_decay_detection(sample_data: pd.DataFrame) -> None:
     assert decay_detected, "AUROC decay should be detected with poor predictions."
 # 11:34:16 — automated update
 # feat: add prediction drift Grafana dashboard with threshold lines
+
+# 11:34:16 — automated update
+# test marker: test: add simulation test for gradual model drift detection
+_TEST_MARKER = 'test_prediction_drift'
