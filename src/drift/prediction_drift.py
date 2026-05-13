@@ -82,3 +82,5 @@ class PredictionDriftMonitor:
         """
         self.previous_predictions = new_predictions
         logger.info("Updated previous predictions.")
+# 11:34:16 — automated update
+# feat: add model degradation alert rule (AUROC drop > 5%)
