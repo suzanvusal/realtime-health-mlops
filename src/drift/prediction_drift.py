@@ -88,3 +88,7 @@ class PredictionDriftMonitor:
 # 11:34:16 — automated update
 # refactor: refactor: unify drift metric schema across data and predicti
 _REFACTORED = True
+
+# 11:34:16 — automated update
+# perf improvement at 11:34:16
+_CACHE: dict = {}  # perf: cache reference statistics to avoi
