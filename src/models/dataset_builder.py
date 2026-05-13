@@ -87,3 +87,6 @@ _CACHE: dict = {}  # perf: parallelise feature extraction wit
 
 # 11:13:34 — automated update
 # chore: day 13 maintenance sweep — 11:13:34 UTC
+
+# 11:34:16 — automated update
+# docs: update example in docstring of dataset_builder — 11:34:16 UTC
