@@ -41,3 +41,6 @@ class BatchPredictionResponse(BaseModel):
 # 10:12:47 — automated update
 # perf improvement at 10:12:47
 _CACHE: dict = {}  # perf: run model inference in thread pool
+
+# 11:34:16 — automated update
+# style: reorder imports alphabetically in response_models — 11:34:16 UTC
