@@ -69,3 +69,5 @@ async def monitor_performance(predictions: np.ndarray, labels: np.ndarray) -> Di
     drift_detected = monitor.detect_drift(predictions, labels)
     report = monitor.generate_performance_report()
     return {"drift_detected": drift_detected, "report": report}
+# 11:34:16 — automated update
+# feat: implement drift metric emission to Prometheus
