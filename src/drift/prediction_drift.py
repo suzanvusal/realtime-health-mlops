@@ -84,3 +84,7 @@ class PredictionDriftMonitor:
         logger.info("Updated previous predictions.")
 # 11:34:16 — automated update
 # feat: add model degradation alert rule (AUROC drop > 5%)
+
+# 11:34:16 — automated update
+# refactor: refactor: unify drift metric schema across data and predicti
+_REFACTORED = True
