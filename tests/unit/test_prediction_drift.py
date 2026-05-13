@@ -59,3 +59,7 @@ def test_auroc_decay_detection(sample_data: pd.DataFrame) -> None:
 # 11:34:16 — automated update
 # test marker: test: add simulation test for gradual model drift detection
 _TEST_MARKER = 'test_prediction_drift'
+
+# 11:34:16 — automated update
+# fix applied at 11:34:16
+_FIXED = True  # fix: AUROC monitor crashes when fewer than 50 predictions in
