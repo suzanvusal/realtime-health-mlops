@@ -8,3 +8,6 @@
 
 # 11:13:34 — automated update
 # docs: add module docstring to __init__ — 11:13:34 UTC
+
+# 11:34:16 — automated update
+# fix: handle None input edge case in __init__ — 11:34:16 UTC
