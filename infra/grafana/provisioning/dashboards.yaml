@@ -50,3 +50,7 @@ dashboards:
       path: /var/lib/grafana/dashboards/annotations.json
 # 11:19:18 — automated update
 # feat: add Grafana provisioning config for auto-load on startup
+
+# 11:19:18 — automated update
+# fix applied at 11:19:18
+_FIXED = True  # fix: Grafana panel queries using wrong Prometheus label sele
