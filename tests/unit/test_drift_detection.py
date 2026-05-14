@@ -54,3 +54,6 @@ def test_drift_report_generation(reference_data: pd.DataFrame, new_data: pd.Data
     assert "Data Drift" in report.get_metrics(), "Drift report should contain 'Data Drift' metrics."
 # 11:24:54 — automated update
 # feat: save drift reports as HTML artifacts to S3
+
+# 11:19:18 — automated update
+# refactor: rename variable for clarity in test_drift_detection — 11:19:18 UTC
