@@ -91,3 +91,6 @@ _FIXED = True  # fix: correct RMSSD formula — was using mean instead of RMS
 
 # 11:10:09 — automated update
 # chore: day 10 maintenance sweep — 11:10:09 UTC
+
+# 11:19:18 — automated update
+# fix: correct off-by-one in feature_store — 11:19:18 UTC
