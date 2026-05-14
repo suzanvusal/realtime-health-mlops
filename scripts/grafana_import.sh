@@ -37,3 +37,7 @@ echo "All dashboards imported successfully."
 
 # 11:19:18 — automated update
 """\ndocs: add screenshot of dashboards to README\n"""
+
+# 11:19:18 — automated update
+# refactor: refactor: extract repeated panel JSON into shared template
+_REFACTORED = True
