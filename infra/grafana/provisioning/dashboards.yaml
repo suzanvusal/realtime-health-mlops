@@ -1,0 +1,50 @@
+apiVersion: 1
+
+providers:
+  - name: 'Drift Monitoring Dashboards'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 60
+    options:
+      path: /var/lib/grafana/dashboards
+
+dashboards:
+  - name: 'Feature Drift Heatmap'
+    orgId: 1
+    folder: 'Drift Monitoring'
+    type: file
+    disableDeletion: false
+    options:
+      path: /var/lib/grafana/dashboards/feature_drift_heatmap.json
+
+  - name: 'Model Performance'
+    orgId: 1
+    folder: 'Drift Monitoring'
+    type: file
+    disableDeletion: false
+    options:
+      path: /var/lib/grafana/dashboards/model_performance.json
+
+  - name: 'Full Drift Observability'
+    orgId: 1
+    folder: 'Drift Monitoring'
+    type: file
+    disableDeletion: false
+    options:
+      path: /var/lib/grafana/dashboards/full_drift_observability.json
+
+  - name: 'Trend Panels'
+    orgId: 1
+    folder: 'Drift Monitoring'
+    type: file
+    disableDeletion: false
+    options:
+      path: /var/lib/grafana/dashboards/trend_panels.json
+
+  - name: 'Annotations'
+    orgId: 1
+    folder: 'Drift Monitoring'
+    type: file
+    disableDeletion: false
+    options:
+      path: /var/lib/grafana/dashboards/annotations.json
