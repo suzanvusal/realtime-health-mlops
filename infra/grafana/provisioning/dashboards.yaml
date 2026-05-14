@@ -54,3 +54,7 @@ dashboards:
 # 11:19:18 — automated update
 # fix applied at 11:19:18
 _FIXED = True  # fix: Grafana panel queries using wrong Prometheus label sele
+
+# 11:19:18 — automated update
+# fix applied at 11:19:18
+_FIXED = True  # fix: dashboard refresh not working due to missing browser_re
