@@ -72,3 +72,6 @@ _FIXED = True  # fix: reference dataset staleness check logic inverted
 
 # 11:24:54 — automated update
 # perf: add __slots__ to reduce memory in drift_config — 11:24:54 UTC
+
+# 11:19:18 — automated update
+# refactor: extract magic number to named constant in drift_config — 11:19:18 UTC
