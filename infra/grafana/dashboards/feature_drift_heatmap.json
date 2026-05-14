@@ -1,0 +1,104 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "panels": [
+    {
+      "type": "heatmap",
+      "title": "Feature Drift Heatmap",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "drift_metric{feature=~\".*\"}",
+          "interval": "",
+          "legendFormat": "{{feature}}",
+          "refId": "A"
+        }
+      ],
+      "color": {
+        "mode": "spectrum",
+        "cardinality": "auto",
+        "colors": [
+          "#d53e4f",
+          "#f46d43",
+          "#fee08b",
+          "#99d594",
+          "#3288bd"
+        ],
+        "colorScale": "sqrt"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "legend": {
+        "show": true
+      },
+      "options": {
+        "dataFormat": "time_series",
+        "valueMaps": [],
+        "tooltip": {
+          "show": true
+        }
+      },
+      "id": 1
+    },
+    {
+      "type": "graph",
+      "title": "Feature Drift Over Time",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "drift_metric{feature=~\".*\"}",
+          "legendFormat": "{{feature}}",
+          "refId": "B"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "lines": true,
+      "fill": 1,
+      "legend": {
+        "show": true
+      },
+      "id": 2
+    },
+    {
+      "type": "table",
+      "title": "Feature Drift Summary",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "drift_summary{feature=~\".*\"}",
+          "refId": "C"
+        }
+      ],
+      "columns": [
+        {
+          "text": "Feature",
+          "value": "feature"
+        },
+        {
+          "text": "Drift Score",
+          "value": "drift_score"
+        }
+      ],
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3
+    }
+  ],
+  "title": "Feature Drift Monitoring Dashboard",
+  "uid": "feature-drift-heatmap",
+  "version": 1
+}
