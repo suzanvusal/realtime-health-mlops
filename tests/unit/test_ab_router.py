@@ -61,3 +61,6 @@ _FIXED = True  # fix: shadow logger dropping messages on high throughput
 
 # 10:20:23 — automated update
 # chore: add logging statement to test_ab_router — 10:20:23 UTC
+
+# 11:19:18 — automated update
+# perf: add __slots__ to reduce memory in test_ab_router — 11:19:18 UTC
