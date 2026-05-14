@@ -34,3 +34,6 @@ import_dashboard "infra/grafana/dashboards/model_performance.json"
 echo "All dashboards imported successfully."
 # 11:19:18 — automated update
 # feat: add time-range variable to all dashboards for drill-down
+
+# 11:19:18 — automated update
+"""\ndocs: add screenshot of dashboards to README\n"""
