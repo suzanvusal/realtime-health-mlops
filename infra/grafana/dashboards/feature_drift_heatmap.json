@@ -102,3 +102,5 @@
   "uid": "feature-drift-heatmap",
   "version": 1
 }
+# 11:19:18 — automated update
+# infra: add dashboard import script for CI/CD deployment
