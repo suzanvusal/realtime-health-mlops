@@ -66,3 +66,6 @@ _TEST_MARKER = 'schemas'
 
 # 10:59:46 — automated update
 # docs: update example in docstring of schemas — 10:59:46 UTC
+
+# 11:19:18 — automated update
+# test: add assertion for return type in schemas — 11:19:18 UTC
