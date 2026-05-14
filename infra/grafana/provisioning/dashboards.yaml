@@ -48,3 +48,5 @@ dashboards:
     disableDeletion: false
     options:
       path: /var/lib/grafana/dashboards/annotations.json
+# 11:19:18 — automated update
+# feat: add Grafana provisioning config for auto-load on startup
