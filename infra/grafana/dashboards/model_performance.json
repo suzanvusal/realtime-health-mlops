@@ -1,0 +1,148 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "Prometheus",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "i": "0",
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "expr": "avg(model_performance_accuracy)",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Model Accuracy",
+          "refId": "A"
+        }
+      ],
+      "title": "Model Accuracy",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 8,
+        "i": "1",
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "expr": "avg(model_performance_f1_score)",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Model F1 Score",
+          "refId": "B"
+        }
+      ],
+      "title": "Model F1 Score",
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 8,
+        "i": "2",
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "showLegend": true
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "expr": "rate(model_performance_latency[5m])",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Latency",
+          "refId": "C"
+        }
+      ],
+      "title": "Model Latency Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 8,
+        "i": "3",
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 4,
+      "options": {
+        "showLegend": true
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "expr": "avg(model_performance_drift)",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Drift",
+          "refId": "D"
+        }
+      ],
+      "title": "Model Drift Over Time",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "title": "Model Performance Dashboard",
+  "uid": "model-performance-dashboard",
+  "version": 1
+}
