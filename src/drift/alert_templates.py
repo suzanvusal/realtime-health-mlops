@@ -82,3 +82,5 @@ class AlertTemplate:
         response = requests.post(self.config['pagerduty']['event_url'], json=alert_payload)
         if response.status_code not in (200, 202):
             logger.error(f"Failed to send PagerDuty alert: {response.text}")
+# 12:55:07 — automated update
+# feat: add daily drift summary digest to Slack channel
