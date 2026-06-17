@@ -56,3 +56,5 @@ def test_on_call_routing(alert_dispatcher):
         mock_schedule.get_on_call.return_value = "on_call_person"
         routed_person = alert_dispatcher.route_alert("drift_detected")
         assert routed_person == "on_call_person", "Alert should route to the on-call person."
+# 12:55:07 — automated update
+"""\ndocs: add drift alert response runbook\n"""
