@@ -61,3 +61,6 @@ If the issue cannot be resolved within 30 minutes, escalate to the team lead and
 
 ## Conclusion
 This runbook serves as a guideline for handling drift alerts effectively. It is crucial to follow these procedures to maintain model performance and ensure the reliability of the Real-Time Smart Health Monitoring System. Regular reviews and updates to this document are recommended to adapt to evolving system requirements and team structures.
+# 12:55:07 — automated update
+# refactor: refactor: move alert templates to Jinja2 for maintainability
+_REFACTORED = True
