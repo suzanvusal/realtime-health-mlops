@@ -64,3 +64,6 @@ This runbook serves as a guideline for handling drift alerts effectively. It is 
 # 12:55:07 — automated update
 # refactor: refactor: move alert templates to Jinja2 for maintainability
 _REFACTORED = True
+
+# 12:55:07 — automated update
+"""\ndocs: add Slack channel setup guide to CONTRIBUTING\n"""
