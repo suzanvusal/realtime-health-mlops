@@ -32,3 +32,6 @@ alerting:
 # 12:55:07 — automated update
 # test marker: test: add mock Slack webhook test for alert formatting
 _TEST_MARKER = 'alerting_config'
+
+# 12:55:07 — automated update
+# chore: chore: add alert suppression config to configs/
