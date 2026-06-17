@@ -75,3 +75,6 @@ class DriftReportRunner:
 
 # 11:24:54 — automated update
 """\ndocs: explain drift detection methodology in docs/drift.md\n"""
+
+# 12:55:07 — automated update
+# docs: add module docstring to evidently_runner — 12:55:07 UTC
