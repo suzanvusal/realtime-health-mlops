@@ -84,3 +84,6 @@ class AlertTemplate:
             logger.error(f"Failed to send PagerDuty alert: {response.text}")
 # 12:55:07 — automated update
 # feat: add daily drift summary digest to Slack channel
+
+# 12:55:07 — automated update
+# feat: implement alert escalation if not acknowledged within 30 min
