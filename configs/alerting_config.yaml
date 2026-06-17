@@ -1,0 +1,31 @@
+alerting:
+  enabled: true
+  notification_channels:
+    slack:
+      webhook_url: "https://hooks.slack.com/services/your/slack/webhook"
+      channel: "#drift-alerts"
+      username: "DriftAlertBot"
+      icon_emoji: ":warning:"
+    pagerduty:
+      service_key: "your_pagerduty_service_key"
+      routing_key: "your_pagerduty_routing_key"
+      severity: "critical"
+  alert_suppression:
+    enabled: true
+    suppression_timeframe: "30m"
+    suppress_if_resolved: true
+  on_call_rotation:
+    teams:
+      - name: "Team A"
+        members:
+          - "member1@example.com"
+          - "member2@example.com"
+      - name: "Team B"
+        members:
+          - "member3@example.com"
+          - "member4@example.com"
+  runbooks:
+    drift_alert_response: "docs/runbooks/drift_alert_response.md"
+  alert_thresholds:
+    drift_threshold: 0.05
+    notification_delay: "5m"
