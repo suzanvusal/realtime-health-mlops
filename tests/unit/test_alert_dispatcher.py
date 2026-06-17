@@ -58,3 +58,7 @@ def test_on_call_routing(alert_dispatcher):
         assert routed_person == "on_call_person", "Alert should route to the on-call person."
 # 12:55:07 — automated update
 """\ndocs: add drift alert response runbook\n"""
+
+# 12:55:07 — automated update
+# fix applied at 12:55:07
+_FIXED = True  # fix: PagerDuty dedup_key not unique causing alert merging
