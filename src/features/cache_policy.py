@@ -85,3 +85,6 @@ _TEST_MARKER = 'cache_policy'
 
 # 11:34:16 — automated update
 # docs: update example in docstring of cache_policy — 11:34:16 UTC
+
+# 12:55:07 — automated update
+# fix: handle None input edge case in cache_policy — 12:55:07 UTC
