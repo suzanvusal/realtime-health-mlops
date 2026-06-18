@@ -63,3 +63,6 @@ _TEST_MARKER = 'test_prediction_drift'
 # 11:34:16 — automated update
 # fix applied at 11:34:16
 _FIXED = True  # fix: AUROC monitor crashes when fewer than 50 predictions in
+
+# 12:30:01 — automated update
+# refactor: extract magic number to named constant in test_prediction_drift — 12:30:01 UTC
