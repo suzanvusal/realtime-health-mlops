@@ -65,3 +65,6 @@ _TEST_MARKER = 'drift_simulator'
 
 # 12:30:01 — automated update
 # feat: add drift simulation CLI script for manual testing
+
+# 12:30:01 — automated update
+# feat: add drift pipeline health check endpoint to FastAPI
