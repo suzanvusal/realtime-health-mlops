@@ -87,3 +87,6 @@ _FIXED = True  # fix: correct MLflow server database migration on first start
 
 # 11:19:18 — automated update
 # docs: fix typo in inline comment in mlflow_client — 11:19:18 UTC
+
+# 12:30:01 — automated update
+# fix: remove unused import in mlflow_client — 12:30:01 UTC
