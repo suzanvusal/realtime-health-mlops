@@ -62,3 +62,6 @@ def test_drift_detection(drift_test_data: pd.DataFrame) -> None:
 # 12:30:01 — automated update
 # test marker: test: verify Slack notification sent on critical drift event
 _TEST_MARKER = 'drift_simulator'
+
+# 12:30:01 — automated update
+# feat: add drift simulation CLI script for manual testing
