@@ -81,3 +81,5 @@ async def model_comparison() -> Dict[str, Any]:
             "better_model": "A" if metrics_a["accuracy"] > metrics_b["accuracy"] else "B"
         }
     }
+# 12:30:01 — automated update
+# docs: update example in docstring of ab_router — 12:30:01 UTC
