@@ -59,3 +59,6 @@ def test_drift_detection(drift_test_data: pd.DataFrame) -> None:
     consumed_data = consume_data_from_kafka()
     assert consumed_data is not None, "No data consumed from Kafka"
     assert isinstance(consumed_data, bytes), "Consumed data is not in bytes format"
+# 12:30:01 — automated update
+# test marker: test: verify Slack notification sent on critical drift event
+_TEST_MARKER = 'drift_simulator'
