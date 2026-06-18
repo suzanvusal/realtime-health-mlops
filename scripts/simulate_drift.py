@@ -61,3 +61,7 @@ _FIXED = True  # fix: integration test teardown not resetting Redis state
 # 12:30:01 — automated update
 # fix applied at 12:30:01
 _FIXED = True  # fix: drift simulation script needs --days argument validatio
+
+# 12:30:01 — automated update
+# refactor: refactor: extract integration test fixtures to conftest.py
+_REFACTORED = True
