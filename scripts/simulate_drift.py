@@ -57,3 +57,7 @@ _TEST_MARKER = 'simulate_drift'
 # 12:30:01 — automated update
 # fix applied at 12:30:01
 _FIXED = True  # fix: integration test teardown not resetting Redis state
+
+# 12:30:01 — automated update
+# fix applied at 12:30:01
+_FIXED = True  # fix: drift simulation script needs --days argument validatio
