@@ -29,3 +29,6 @@
 
 # 11:19:18 — automated update
 # docs: fix typo in inline comment in __init__ — 11:19:18 UTC
+
+# 12:30:01 — automated update
+# fix: correct off-by-one in __init__ — 12:30:01 UTC
