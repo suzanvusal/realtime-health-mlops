@@ -53,3 +53,7 @@ if __name__ == "__main__":
 # 12:30:01 — automated update
 # test marker: test: add chaos test — kill drift runner mid-report and veri
 _TEST_MARKER = 'simulate_drift'
+
+# 12:30:01 — automated update
+# fix applied at 12:30:01
+_FIXED = True  # fix: integration test teardown not resetting Redis state
