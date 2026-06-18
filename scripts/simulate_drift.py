@@ -50,3 +50,6 @@ def simulate_drift(num_samples: int = 10) -> str:
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+# 12:30:01 — automated update
+# test marker: test: add chaos test — kill drift runner mid-report and veri
+_TEST_MARKER = 'simulate_drift'
