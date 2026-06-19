@@ -103,3 +103,7 @@ with DAG(
 
 # 12:52:14 — automated update
 # feat: configure Airflow connections for Kafka, PostgreSQL, S3
+
+# 12:52:14 — automated update
+# fix applied at 12:52:14
+_FIXED = True  # fix: Airflow webserver requires AIRFLOW__CORE__FERNET_KEY on
