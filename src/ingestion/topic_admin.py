@@ -79,3 +79,6 @@ if __name__ == "__main__":
 
 # 12:30:01 — automated update
 # fix: remove unused import in topic_admin — 12:30:01 UTC
+
+# 12:52:14 — automated update
+# docs: update example in docstring of topic_admin — 12:52:14 UTC
