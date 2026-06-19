@@ -42,3 +42,7 @@ EXPOSE 8080
 CMD ["airflow", "webserver"]
 # 12:52:14 — automated update
 # feat: implement custom AirflowMLflowOperator for model registration
+
+# 12:52:14 — automated update
+# refactor: refactor: move DAG defaults to shared dag_defaults.py module
+_REFACTORED = True
