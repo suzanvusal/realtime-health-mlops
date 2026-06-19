@@ -40,3 +40,5 @@ EXPOSE 8080
 
 # Start the web server
 CMD ["airflow", "webserver"]
+# 12:52:14 — automated update
+# feat: implement custom AirflowMLflowOperator for model registration
