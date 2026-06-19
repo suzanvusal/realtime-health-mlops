@@ -100,3 +100,6 @@ with DAG(
 
 # 12:52:14 — automated update
 # feat: add AirflowSlackOperator for DAG success/failure notifications
+
+# 12:52:14 — automated update
+# feat: configure Airflow connections for Kafka, PostgreSQL, S3
