@@ -45,3 +45,7 @@ airflow_connections:
     extra: '{"timeout": 30}'
 # 12:52:14 — automated update
 # ci: updated at 12:52:14
+
+# 12:52:14 — automated update
+# fix applied at 12:52:14
+_FIXED = True  # fix: celery worker not picking up DAG changes without restar
