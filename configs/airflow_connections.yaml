@@ -1,0 +1,45 @@
+airflow_connections:
+  - conn_id: kafka_default
+    conn_type: Kafka
+    host: kafka-broker
+    port: 9092
+    schema: PLAINTEXT
+    login: ""
+    password: ""
+    extra: '{"security.protocol": "PLAINTEXT"}'
+
+  - conn_id: redis_default
+    conn_type: Redis
+    host: redis-server
+    port: 6379
+    schema: ""
+    login: ""
+    password: ""
+    extra: '{"db": 0}'
+
+  - conn_id: mlflow_default
+    conn_type: HTTP
+    host: mlflow-tracking-server
+    port: 5000
+    schema: http
+    login: ""
+    password: ""
+    extra: '{"tracking_uri": "http://mlflow-tracking-server:5000"}'
+
+  - conn_id: postgres_default
+    conn_type: Postgres
+    host: postgres-db
+    port: 5432
+    schema: health_monitoring
+    login: admin
+    password: admin_password
+    extra: '{"sslmode": "prefer"}'
+
+  - conn_id: fastapi_default
+    conn_type: HTTP
+    host: fastapi-server
+    port: 8000
+    schema: http
+    login: ""
+    password: ""
+    extra: '{"timeout": 30}'
