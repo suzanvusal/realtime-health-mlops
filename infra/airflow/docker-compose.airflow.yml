@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  airflow-webserver:
+    image: apache/airflow:2.5.0
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/airflow.db
+      - AIRFLOW__WEBSERVER__WORKERS=4
+      - AIRFLOW__WEBSERVER__SECRET_KEY=your_secret_key
+      - AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      - ./plugins:/usr/local/airflow/plugins
+      - ./logs:/usr/local/airflow/logs
+    depends_on:
+      - airflow-scheduler
+
+  airflow-scheduler:
+    image: apache/airflow:2.5.0
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/airflow.db
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      - ./plugins:/usr/local/airflow/plugins
+      - ./logs:/usr/local/airflow/logs
+
+  airflow-worker:
+    image: apache/airflow:2.5.0
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////usr/local/airflow/airflow.db
+    volumes:
+      - ./dags:/usr/local/airflow/dags
+      - ./plugins:/usr/local/airflow/plugins
+      - ./logs:/usr/local/airflow/logs
+
+  redis:
+    image: redis:6.0
+    ports:
+      - "6379:6379"
+
+  flower:
+    image: mher/flower
+    command: flower --broker=redis://redis:6379/0
+    ports:
+      - "5555:5555"
+    depends_on:
+      - redis
+
+networks:
+  default:
+    driver: bridge
