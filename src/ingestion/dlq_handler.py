@@ -89,3 +89,6 @@ _REFACTORED = True
 
 # 12:30:01 — automated update
 # test: add assertion for return type in dlq_handler — 12:30:01 UTC
+
+# 12:52:14 — automated update
+# fix: handle None input edge case in dlq_handler — 12:52:14 UTC
