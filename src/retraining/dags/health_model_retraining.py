@@ -97,3 +97,6 @@ with DAG(
     start >> drift_branch >> [assemble, skip]
     assemble >> train >> validate_branch >> [promote, failed]
     [promote, failed, skip] >> end
+
+# 12:52:14 — automated update
+# feat: add AirflowSlackOperator for DAG success/failure notifications
