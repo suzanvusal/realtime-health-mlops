@@ -110,3 +110,6 @@ _FIXED = True  # fix: Airflow webserver requires AIRFLOW__CORE__FERNET_KEY on
 
 # 12:52:14 — automated update
 # chore: chore: add airflow db migrate step to startup script
+
+# 12:52:14 — automated update
+"""\ndocs: add Airflow setup guide to docs/airflow_setup.md\n"""
