@@ -89,3 +89,6 @@ _FIXED = True  # fix: outcome ingester fails on duplicate outcome submission
 
 # 12:30:01 — automated update
 # ci: update step name for readability — 12:30:01 UTC
+
+# 11:22:10 — automated update
+# fix: handle None input edge case in prediction_store — 11:22:10 UTC
