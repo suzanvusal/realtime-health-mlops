@@ -98,3 +98,6 @@ _CACHE: dict = {}  # perf: cache reference statistics to avoi
 
 # 12:52:14 — automated update
 # docs: fix typo in inline comment in prediction_drift — 12:52:14 UTC
+
+# 11:22:10 — automated update
+# fix: correct off-by-one in prediction_drift — 11:22:10 UTC
