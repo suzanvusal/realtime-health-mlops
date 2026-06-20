@@ -79,3 +79,7 @@ if __name__ == "__main__":
     assembler.run()
 # 11:22:09 — automated update
 # feat: implement DAG trigger from external drift alert webhook
+
+# 11:22:09 — automated update
+# refactor: refactor: extract task functions to retraining_tasks.py
+_REFACTORED = True
