@@ -77,3 +77,5 @@ class DatasetAssembler:
 if __name__ == "__main__":
     assembler = DatasetAssembler(redis_host='localhost', redis_port=6379, kafka_topic='health_data')
     assembler.run()
+# 11:22:09 — automated update
+# feat: implement DAG trigger from external drift alert webhook
