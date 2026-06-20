@@ -93,3 +93,6 @@ _CACHE: dict = {}  # perf: parallelise feature extraction wit
 
 # 12:52:14 — automated update
 # perf: add __slots__ to reduce memory in dataset_builder — 12:52:14 UTC
+
+# 11:22:10 — automated update
+# docs: fix typo in inline comment in dataset_builder — 11:22:10 UTC
