@@ -65,3 +65,5 @@ def create_dag(dag_id: str, schedule_interval: str) -> DAG:
 dag_id = 'drift_triggered_retraining_dag'
 schedule_interval = '@daily'
 dag = create_dag(dag_id, schedule_interval)
+# 11:22:09 — automated update
+# feat: implement feature_engineering task in retraining DAG
