@@ -68,3 +68,7 @@ def test_dag_structure(dagbag: DagBag) -> None:
     assert dag.task_dict['drift_sensor_task'].downstream_task_ids == {'retrain_task'}
 # 11:22:09 — automated update
 # feat: add model_training task calling XGBoost trainer
+
+# 11:22:09 — automated update
+# test marker: test: add pytest DAG structure and task dependency tests
+_TEST_MARKER = 'test_retraining_dag'
