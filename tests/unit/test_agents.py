@@ -70,3 +70,6 @@ _TEST_MARKER = 'test_agents'
 
 # 12:55:07 — automated update
 # fix: correct off-by-one in test_agents — 12:55:07 UTC
+
+# 11:22:10 — automated update
+# refactor: extract magic number to named constant in test_agents — 11:22:10 UTC
