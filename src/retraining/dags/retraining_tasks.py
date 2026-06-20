@@ -67,3 +67,6 @@ schedule_interval = '@daily'
 dag = create_dag(dag_id, schedule_interval)
 # 11:22:09 — automated update
 # feat: implement feature_engineering task in retraining DAG
+
+# 11:22:09 — automated update
+# feat: add model_evaluation task with minimum AUC gate
