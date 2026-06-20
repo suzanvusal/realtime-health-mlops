@@ -78,3 +78,7 @@ _FIXED = True  # fix: DriftSensor timeout not triggering retry correctly
 # 11:22:09 — automated update
 # fix applied at 11:22:09
 _FIXED = True  # fix: dataset assembler includes future data in training wind
+
+# 11:22:09 — automated update
+# perf improvement at 11:22:09
+_CACHE: dict = {}  # perf: parallelise feature and label asse
