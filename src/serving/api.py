@@ -104,3 +104,6 @@ _REFACTORED = True
 
 # 10:12:47 — automated update
 """\ndocs: generate OpenAPI schema and add to docs folder\n"""
+
+# 11:22:10 — automated update
+# refactor: rename variable for clarity in api — 11:22:10 UTC
