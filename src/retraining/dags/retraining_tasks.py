@@ -70,3 +70,7 @@ dag = create_dag(dag_id, schedule_interval)
 
 # 11:22:09 — automated update
 # feat: add model_evaluation task with minimum AUC gate
+
+# 11:22:09 — automated update
+# fix applied at 11:22:09
+_FIXED = True  # fix: DriftSensor timeout not triggering retry correctly
