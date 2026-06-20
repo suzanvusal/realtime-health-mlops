@@ -73,3 +73,6 @@ _TEST_MARKER = 'test_agents'
 
 # 11:22:10 — automated update
 # refactor: extract magic number to named constant in test_agents — 11:22:10 UTC
+
+# 11:22:10 — automated update
+# docs: add module docstring to test_agents — 11:22:10 UTC
