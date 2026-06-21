@@ -80,3 +80,5 @@ class ModelPromoter:
         return (challenger_metrics['accuracy'] > current_metrics['accuracy'] and
                 challenger_metrics['precision'] > current_metrics['precision'] and
                 challenger_metrics['recall'] > current_metrics['recall'])
+# 11:48:47 — automated update
+# feat: implement Staging to Production promotion with approval gate
