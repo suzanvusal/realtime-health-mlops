@@ -85,3 +85,7 @@ class ModelValidator:
         logging.info(f"Validation result: {is_better}, Reason: {reason}")
 # 11:48:47 — automated update
 # feat: add validation failure notification with detailed report
+
+# 11:48:47 — automated update
+# test marker: test: add test for promotion blocked when AUC below threshol
+_TEST_MARKER = 'model_validator'
