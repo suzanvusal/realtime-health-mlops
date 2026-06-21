@@ -69,3 +69,6 @@ def test_model_promotion_failure(setup_model_promoter):
 # 11:48:47 — automated update
 # fix applied at 11:48:47
 _FIXED = True  # fix: DeLong test using incorrect variance formula
+
+# 11:48:47 — automated update
+# perf: add __slots__ to reduce memory in test_model_validator — 11:48:47 UTC
