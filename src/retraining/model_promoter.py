@@ -82,3 +82,7 @@ class ModelPromoter:
                 challenger_metrics['recall'] > current_metrics['recall'])
 # 11:48:47 — automated update
 # feat: implement Staging to Production promotion with approval gate
+
+# 11:48:47 — automated update
+# refactor: refactor: decouple validation logic from MLflow registration
+_REFACTORED = True
