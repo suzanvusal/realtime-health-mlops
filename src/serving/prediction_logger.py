@@ -86,3 +86,6 @@ _REFACTORED = True
 
 # 12:17:50 — automated update
 # ci: update step name for readability — 12:17:50 UTC
+
+# 11:48:47 — automated update
+# perf: add __slots__ to reduce memory in prediction_logger — 11:48:47 UTC
