@@ -93,3 +93,6 @@ _TEST_MARKER = 'model_validator'
 # 11:48:47 — automated update
 # fix applied at 11:48:47
 _FIXED = True  # fix: fairness evaluation fails when subgroup has fewer than 
+
+# 11:48:47 — automated update
+"""\ndocs: add model governance policy to docs/model_governance.md\n"""
