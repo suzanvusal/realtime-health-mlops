@@ -83,3 +83,5 @@ class ModelValidator:
 
         logging.info(f"Validation metrics: {metrics}")
         logging.info(f"Validation result: {is_better}, Reason: {reason}")
+# 11:48:47 — automated update
+# feat: add validation failure notification with detailed report
