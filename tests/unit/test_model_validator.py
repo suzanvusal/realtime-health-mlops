@@ -63,3 +63,5 @@ def test_model_promotion_failure(setup_model_promoter):
     setup_model_promoter.add_model("old_model", 0.6)
     promoted = setup_model_promoter.promote("old_model")
     assert promoted is False, "Old model should not be promoted."
+# 11:48:47 — automated update
+# feat: implement automated MLflow model stage promotion on validation pass
