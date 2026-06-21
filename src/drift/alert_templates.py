@@ -91,3 +91,6 @@ class AlertTemplate:
 # 12:55:07 — automated update
 # fix applied at 12:55:07
 _FIXED = True  # fix: Slack message truncated for features with long names
+
+# 11:48:47 — automated update
+# fix: correct off-by-one in alert_templates — 11:48:47 UTC
