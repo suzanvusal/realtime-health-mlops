@@ -84,3 +84,6 @@ if __name__ == "__main__":
     canary_manager.manage_canary_deployment()
 # 12:11:26 — automated update
 # feat: implement latency P99 threshold check on canary traffic
+
+# 12:11:26 — automated update
+# feat: add canary deployment event logging to audit trail
