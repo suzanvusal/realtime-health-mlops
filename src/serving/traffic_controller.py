@@ -83,3 +83,6 @@ def startup_event():
 def health_check() -> Dict[str, Any]:
     """Health check endpoint."""
     return {"status": "healthy"}
+# 12:11:26 — automated update
+# test marker: test: add integration test for end-to-end canary deployment 
+_TEST_MARKER = 'traffic_controller'
