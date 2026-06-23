@@ -56,3 +56,6 @@ canary_tests:
       expected_max_error_rate: 0.05  # 5% error rate
 # 12:11:26 — automated update
 # feat: implement full traffic cutover after successful canary soak
+
+# 12:11:26 — automated update
+# feat: add canary deployment status endpoint to API
