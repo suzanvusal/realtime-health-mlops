@@ -54,3 +54,6 @@ def test_chaos_testing(setup_drift_simulation: None) -> None:
     assert drift_info["drift_detected"] is True, "No drift detected during chaos testing"
 # 12:30:01 — automated update
 # ci: updated at 12:30:01
+
+# 12:11:26 — automated update
+# test: add assertion for return type in test_drift_pipeline — 12:11:26 UTC
