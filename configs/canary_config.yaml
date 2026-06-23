@@ -1,0 +1,56 @@
+canary_deployment:
+  enabled: true
+  canary_percentage: 10
+  traffic_shift_interval: 5  # in minutes
+  max_retries: 3
+  promotion_threshold: 0.95  # 95% success rate for promotion
+  rollback_threshold: 0.80  # 80% success rate for rollback
+
+health_monitoring:
+  metrics:
+    response_time:
+      threshold: 200  # in milliseconds
+    error_rate:
+      threshold: 0.05  # 5% error rate
+
+deployment:
+  canary_version: "v1.1"
+  stable_version: "v1.0"
+  deployment_strategy: "blue-green"  # options: blue-green, rolling, canary
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/canary_deployment.log"
+
+notifications:
+  enabled: true
+  webhook_url: "https://example.com/notify"
+  alert_threshold: 0.90  # 90% success rate for alerts
+
+rollback:
+  enabled: true
+  rollback_strategy: "automatic"  # options: automatic, manual
+  rollback_timeout: 30  # in minutes
+
+monitoring:
+  enabled: true
+  monitoring_tool: "Evidently"
+  metrics_collection_interval: 1  # in minute
+  alerting:
+    enabled: true
+    alert_threshold: 0.85  # 85% success rate for alerts
+
+traffic_shifting:
+  enabled: true
+  shift_strategy: "linear"  # options: linear, exponential
+  shift_steps: 5  # number of steps to shift traffic
+  step_size: 2  # percentage of traffic to shift per step
+
+canary_tests:
+  enabled: true
+  test_cases:
+    - name: "response_time_test"
+      expected_max_time: 200  # in milliseconds
+    - name: "error_rate_test"
+      expected_max_error_rate: 0.05  # 5% error rate
