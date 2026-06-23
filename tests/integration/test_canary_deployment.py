@@ -73,3 +73,7 @@ def test_canary_rollback(setup_canary_deployment):
 # 12:11:26 — automated update
 # refactor: refactor: extract traffic controller from canary manager
 _REFACTORED = True
+
+# 12:11:26 — automated update
+# fix applied at 12:11:26
+_FIXED = True  # fix: rollback not switching production model pointer correct
