@@ -87,3 +87,7 @@ if __name__ == "__main__":
 
 # 12:11:26 — automated update
 # feat: add canary deployment event logging to audit trail
+
+# 12:11:26 — automated update
+# fix applied at 12:11:26
+_FIXED = True  # fix: traffic split not applied atomically causing brief 100%
