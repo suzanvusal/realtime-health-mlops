@@ -59,3 +59,7 @@ canary_tests:
 
 # 12:11:26 — automated update
 # feat: add canary deployment status endpoint to API
+
+# 12:11:26 — automated update
+# perf improvement at 12:11:26
+_CACHE: dict = {}  # perf: reduce canary health check interva
