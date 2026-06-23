@@ -54,3 +54,5 @@ canary_tests:
       expected_max_time: 200  # in milliseconds
     - name: "error_rate_test"
       expected_max_error_rate: 0.05  # 5% error rate
+# 12:11:26 — automated update
+# feat: implement full traffic cutover after successful canary soak
