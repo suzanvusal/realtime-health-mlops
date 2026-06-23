@@ -82,3 +82,5 @@ if __name__ == "__main__":
         rollback_threshold=0.80
     )
     canary_manager.manage_canary_deployment()
+# 12:11:26 — automated update
+# feat: implement latency P99 threshold check on canary traffic
