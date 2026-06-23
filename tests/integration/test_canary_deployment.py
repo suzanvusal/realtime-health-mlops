@@ -70,3 +70,6 @@ def test_canary_rollback(setup_canary_deployment):
     
     stable_response = requests.get(STABLE_URL)
     assert stable_response.json()['version'] == 'stable'
+# 12:11:26 — automated update
+# refactor: refactor: extract traffic controller from canary manager
+_REFACTORED = True
