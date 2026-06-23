@@ -85,3 +85,6 @@ class AlertDispatcher:
         logger.info("AlertDispatcher has been shut down.")
 # 12:55:07 — automated update
 # ci: update step name for readability — 12:55:07 UTC
+
+# 12:11:26 — automated update
+# docs: fix typo in inline comment in alert_dispatcher — 12:11:26 UTC
