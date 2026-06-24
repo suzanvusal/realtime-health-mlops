@@ -65,3 +65,6 @@ def verify_deployment() -> None:
 
 if __name__ == "__main__":
     verify_deployment()
+# 11:49:58 — automated update
+# test marker: test: verify canary deployment starts after successful valid
+_TEST_MARKER = 'verify_deployment'
