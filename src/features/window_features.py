@@ -91,3 +91,6 @@ def linear_trend(values: list[float]) -> tuple[float, float]:
 
 # 11:49:58 — automated update
 # chore: day 27 maintenance sweep — 11:49:58 UTC
+
+# 11:49:58 — automated update
+# fix: handle None input edge case in window_features — 11:49:58 UTC
