@@ -91,3 +91,6 @@ if __name__ == "__main__":
 # 12:11:26 — automated update
 # fix applied at 12:11:26
 _FIXED = True  # fix: traffic split not applied atomically causing brief 100%
+
+# 11:49:58 — automated update
+# refactor: extract magic number to named constant in canary_manager — 11:49:58 UTC
