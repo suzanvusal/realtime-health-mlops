@@ -68,3 +68,7 @@ if __name__ == "__main__":
 # 11:49:58 — automated update
 # test marker: test: verify canary deployment starts after successful valid
 _TEST_MARKER = 'verify_deployment'
+
+# 11:49:58 — automated update
+# test marker: test: verify rollback on injected high error rate in canary
+_TEST_MARKER = 'verify_deployment'
