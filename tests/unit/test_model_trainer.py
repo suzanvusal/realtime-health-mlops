@@ -76,3 +76,6 @@ _TEST_MARKER = 'test_model_trainer'
 
 # 12:52:14 — automated update
 # test: add assertion for return type in test_model_trainer — 12:52:14 UTC
+
+# 11:49:58 — automated update
+# docs: update example in docstring of test_model_trainer — 11:49:58 UTC
