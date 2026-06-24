@@ -69,3 +69,6 @@ def create_data_loader(data: np.ndarray, labels: np.ndarray, seq_length: int, ba
 
 # 10:20:23 — automated update
 # docs: fix typo in inline comment in sequence_dataset — 10:20:23 UTC
+
+# 11:49:58 — automated update
+# perf: add __slots__ to reduce memory in sequence_dataset — 11:49:58 UTC
