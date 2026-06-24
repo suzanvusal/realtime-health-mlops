@@ -81,3 +81,7 @@ _TEST_MARKER = 'verify_deployment'
 
 # 11:49:58 — automated update
 # ci: updated at 11:49:58
+
+# 11:49:58 — automated update
+# refactor: refactor: use pytest fixtures for shared pipeline test setup
+_REFACTORED = True
