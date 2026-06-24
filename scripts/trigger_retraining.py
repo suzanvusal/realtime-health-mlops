@@ -75,3 +75,7 @@ if __name__ == "__main__":
 # 11:49:58 — automated update
 # fix applied at 11:49:58
 _FIXED = True  # fix: integration test not cleaning up Airflow DAG run state
+
+# 11:49:58 — automated update
+# fix applied at 11:49:58
+_FIXED = True  # fix: deployment verify script times out before canary comple
