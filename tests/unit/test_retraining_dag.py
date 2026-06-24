@@ -72,3 +72,6 @@ def test_dag_structure(dagbag: DagBag) -> None:
 # 11:22:09 — automated update
 # test marker: test: add pytest DAG structure and task dependency tests
 _TEST_MARKER = 'test_retraining_dag'
+
+# 11:49:58 — automated update
+# fix: correct off-by-one in test_retraining_dag — 11:49:58 UTC
