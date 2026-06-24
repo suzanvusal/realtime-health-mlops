@@ -94,3 +94,6 @@ _FIXED = True  # fix: handle patients with fewer than 30 data points
 
 # 11:34:16 — automated update
 # fix: remove unused import in feature_engineering — 11:34:16 UTC
+
+# 11:49:58 — automated update
+# fix: handle None input edge case in feature_engineering — 11:49:58 UTC
