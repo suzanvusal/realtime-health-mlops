@@ -24,3 +24,6 @@ enabled = true
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+# 11:44:19 — automated update
+# test marker: test: add snapshot tests for Grafana dashboard JSON
+_TEST_MARKER = 'pyproject'
