@@ -51,3 +51,7 @@ _TEST_MARKER = 'test_feature_engineering'
 
 # 11:44:19 — automated update
 # ci: updated at 11:44:19
+
+# 11:44:19 — automated update
+# refactor: refactor: consolidate test fixtures in conftest.py
+_REFACTORED = True
