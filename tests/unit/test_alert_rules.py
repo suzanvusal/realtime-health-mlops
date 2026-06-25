@@ -78,3 +78,6 @@ _FIXED = True  # fix: 12 failing tests due to schema field rename in day 2
 
 # 11:44:19 — automated update
 """\ndocs: document test strategy in docs/testing.md\n"""
+
+# 11:44:19 — automated update
+# docs: add module docstring to test_alert_rules — 11:44:19 UTC
