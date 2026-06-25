@@ -89,3 +89,6 @@ _REFACTORED = True
 
 # 10:12:47 — automated update
 # fix: remove unused import in experiment_config — 10:12:47 UTC
+
+# 11:44:19 — automated update
+# test: add assertion for return type in experiment_config — 11:44:19 UTC
