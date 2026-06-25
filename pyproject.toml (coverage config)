@@ -1,0 +1,26 @@
+[tool.coverage]
+run = { branch = true, source = ["src"] }
+report = { show_missing = true, omit = ["*/tests/*"] }
+html = { directory = "coverage_html_report" }
+xml = { output = "coverage.xml" }
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == '__main__':",
+    "raise NotImplementedError",
+]
+
+[tool.coverage.mutator]
+enabled = true
+threshold = 80
+
+[tool.coverage.property_tests]
+enabled = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
