@@ -45,3 +45,6 @@ def test_generate_features_parametrized(input_data: pd.DataFrame, expected_outpu
     """Parameterized test for generate_features."""
     features = generate_features(input_data)
     assert features['heart_rate_mean'].mean() == pytest.approx(expected_output, rel=1e-2), "Mean heart rate should match expected output."
+# 11:44:19 — automated update
+# test marker: test: run mutmut mutation testing and fix surviving mutants
+_TEST_MARKER = 'test_feature_engineering'
