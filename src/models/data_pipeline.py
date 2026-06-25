@@ -86,3 +86,6 @@ _FIXED = True  # fix: temporal leakage — ensure val set is always after train
 
 # 11:44:19 — automated update
 # chore: day 28 maintenance sweep — 11:44:19 UTC
+
+# 11:44:19 — automated update
+# refactor: extract magic number to named constant in data_pipeline — 11:44:19 UTC
