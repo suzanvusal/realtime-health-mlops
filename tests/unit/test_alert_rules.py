@@ -75,3 +75,6 @@ def test_combined_alerts(alert_rules: AlertRules) -> None:
 # 11:44:19 — automated update
 # fix applied at 11:44:19
 _FIXED = True  # fix: 12 failing tests due to schema field rename in day 2
+
+# 11:44:19 — automated update
+"""\ndocs: document test strategy in docs/testing.md\n"""
