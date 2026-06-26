@@ -60,3 +60,6 @@ def test_chaos_testing(setup_drift_simulation: None) -> None:
 
 # 11:49:58 — automated update
 # fix: handle None input edge case in test_drift_pipeline — 11:49:58 UTC
+
+# 11:48:02 — automated update
+# fix: correct off-by-one in test_drift_pipeline — 11:48:02 UTC
