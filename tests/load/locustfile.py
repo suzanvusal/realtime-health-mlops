@@ -71,3 +71,6 @@ _CACHE: dict = {}  # perf: profile and fix N+1 query in predi
 # 11:48:02 — automated update
 # fix applied at 11:48:02
 _FIXED = True  # fix: Kafka producer buffer full under burst load
+
+# 11:48:02 — automated update
+"""\ndocs: add capacity planning guide based on load test results\n"""
