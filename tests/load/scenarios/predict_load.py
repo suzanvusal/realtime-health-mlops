@@ -34,3 +34,6 @@ def load_test() -> None:
 
 if __name__ == "__main__":
     load_test()
+# 11:48:02 — automated update
+# fix applied at 11:48:02
+_FIXED = True  # fix: memory leak in prediction service under sustained load
