@@ -72,3 +72,6 @@ _TEST_MARKER = 'schemas'
 
 # 12:52:14 — automated update
 # test: add assertion for return type in schemas — 12:52:14 UTC
+
+# 11:48:02 — automated update
+# docs: fix typo in inline comment in schemas — 11:48:02 UTC
