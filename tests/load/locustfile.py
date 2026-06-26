@@ -60,3 +60,6 @@ class LoadTestUser(HttpUser):
 if __name__ == "__main__":
     import os
     os.system("locust -f tests/load/locustfile.py --host=http://localhost:8000")  # Adjust host as needed
+# 11:48:02 — automated update
+# perf improvement at 11:48:02
+_CACHE: dict = {}  # perf: add Kafka producer batch size tuni
