@@ -68,3 +68,6 @@ _TEST_MARKER = 'drift_simulator'
 
 # 12:30:01 — automated update
 # feat: add drift pipeline health check endpoint to FastAPI
+
+# 11:48:02 — automated update
+# fix: remove unused import in drift_simulator — 11:48:02 UTC
