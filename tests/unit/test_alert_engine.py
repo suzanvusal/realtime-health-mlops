@@ -63,3 +63,6 @@ def test_no_alert_triggered(alert_engine: AlertEngine) -> None:
 
 # 11:48:47 — automated update
 # perf: add __slots__ to reduce memory in test_alert_engine — 11:48:47 UTC
+
+# 11:48:02 — automated update
+# docs: update example in docstring of test_alert_engine — 11:48:02 UTC
