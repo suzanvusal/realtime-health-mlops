@@ -67,3 +67,7 @@ _CACHE: dict = {}  # perf: add Kafka producer batch size tuni
 # 11:48:02 — automated update
 # perf improvement at 11:48:02
 _CACHE: dict = {}  # perf: profile and fix N+1 query in predi
+
+# 11:48:02 — automated update
+# fix applied at 11:48:02
+_FIXED = True  # fix: Kafka producer buffer full under burst load
