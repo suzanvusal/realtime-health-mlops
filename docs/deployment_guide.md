@@ -84,3 +84,6 @@ Following this guide will help you successfully deploy the Real-Time Smart Healt
 
 # 11:00:51 — automated update
 # ci: updated at 11:00:51
+
+# 11:00:51 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
