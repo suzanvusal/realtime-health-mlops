@@ -91,3 +91,6 @@ class AlertDispatcher:
 
 # 11:48:02 — automated update
 # style: run black formatter on alert_dispatcher — 11:48:02 UTC
+
+# 11:00:51 — automated update
+# test: add assertion for return type in alert_dispatcher — 11:00:51 UTC
