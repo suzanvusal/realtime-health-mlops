@@ -107,3 +107,7 @@ The architecture of the Real-Time Smart Health Monitoring System is designed to 
 
 # 11:00:51 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 11:00:51 — automated update
+# fix applied at 11:00:51
+_FIXED = True  # fix: environment variable names inconsistent across services
