@@ -75,3 +75,6 @@ _TEST_MARKER = 'schemas'
 
 # 11:48:02 — automated update
 # docs: fix typo in inline comment in schemas — 11:48:02 UTC
+
+# 11:00:51 — automated update
+# docs: update example in docstring of schemas — 11:00:51 UTC
