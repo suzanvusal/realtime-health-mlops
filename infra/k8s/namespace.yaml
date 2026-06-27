@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: smart-health-monitoring
+  labels:
+    name: smart-health-monitoring
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kafka-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  kafka-username: <base64-encoded-username>
+  kafka-password: <base64-encoded-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  redis-password: <base64-encoded-redis-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mlflow-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  mlflow-tracking-uri: <base64-encoded-tracking-uri>
+  mlflow-username: <base64-encoded-username>
+  mlflow-password: <base64-encoded-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pytorch-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  pytorch-model-path: <base64-encoded-model-path>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: smart-health-monitoring
+data:
+  KAFKA_BROKER: "kafka:9092"
+  REDIS_HOST: "redis"
+  MLFLOW_URI: "http://mlflow:5000"
+  EVIDENTLY_URL: "http://evidently:8080"
