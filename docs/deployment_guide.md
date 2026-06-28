@@ -1,89 +1,102 @@
 # Deployment Guide for Real-Time Smart Health Monitoring System
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Prerequisites](#prerequisites)
-3. [Deployment Steps](#deployment-steps)
-   - [1. Clone the Repository](#1-clone-the-repository)
-   - [2. Set Up Environment Variables](#2-set-up-environment-variables)
-   - [3. Deploy Kafka](#3-deploy-kafka)
-   - [4. Deploy Redis](#4-deploy-redis)
-   - [5. Deploy FastAPI Application](#5-deploy-fastapi-application)
-   - [6. Deploy Airflow](#6-deploy-airflow)
-4. [Monitoring and Logging](#monitoring-and-logging)
-5. [Security Hardening](#security-hardening)
-6. [Conclusion](#conclusion)
-
 ## Introduction
-This deployment guide provides step-by-step instructions for deploying the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow.
+
+This deployment guide provides step-by-step instructions for deploying the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. 
 
 ## Prerequisites
-- Kubernetes cluster
-- kubectl installed and configured
-- Helm installed
-- Docker installed
-- Python 3.8 or higher
-- Access to a cloud provider or local setup for Redis and Kafka
+
+Before deploying the system, ensure you have the following prerequisites:
+
+- Docker and Docker Compose installed
+- Kubernetes cluster set up (e.g., GKE, EKS, AKS)
+- Helm installed for managing Kubernetes applications
+- Access to a Redis instance
+- Kafka broker running
+- MLflow tracking server configured
 
 ## Deployment Steps
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
+
+Clone the repository to your local machine:
+
 ```bash
 git clone https://github.com/yourusername/smart-health-monitoring.git
 cd smart-health-monitoring
 ```
 
-### 2. Set Up Environment Variables
-Create a `.env` file in the root directory and add the following variables:
+### Step 2: Build Docker Images
+
+Build the Docker images for the FastAPI application and the Kafka consumer:
+
+```bash
+docker-compose build
 ```
-KAFKA_BROKER=your_kafka_broker
+
+### Step 3: Configure Environment Variables
+
+Create a `.env` file in the root of the project with the following variables:
+
+```plaintext
 REDIS_URL=redis://your_redis_url
-MLFLOW_TRACKING_URI=http://your_mlflow_server
+KAFKA_BROKER=your_kafka_broker_url
+MLFLOW_TRACKING_URI=http://your_mlflow_tracking_server
 ```
 
-### 3. Deploy Kafka
-Use Helm to deploy Kafka:
+### Step 4: Deploy to Kubernetes
+
+Use Helm to deploy the application to your Kubernetes cluster. First, navigate to the `infra/k8s` directory:
+
 ```bash
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install kafka bitnami/kafka
+cd infra/k8s
 ```
 
-### 4. Deploy Redis
-Use Helm to deploy Redis:
+Then, install the Helm chart:
+
 ```bash
-helm install redis bitnami/redis
+helm install smart-health-monitoring ./chart
 ```
 
-### 5. Deploy FastAPI Application
-Build and deploy the FastAPI application:
+### Step 5: Set Up Airflow
+
+Deploy Airflow using the provided Helm chart. Ensure you have the correct configuration in `airflow/values.yaml`:
+
+```yaml
+executor: CeleryExecutor
+dags:
+  path: /usr/local/airflow/dags
+```
+
+Install Airflow:
+
 ```bash
-docker build -t yourusername/health-monitoring-api .
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+helm install airflow ./airflow
 ```
 
-### 6. Deploy Airflow
-Use Helm to deploy Airflow:
+### Step 6: Monitor with Evidently
+
+To monitor model performance, configure Evidently in your FastAPI application. Ensure the endpoint for monitoring is set up correctly in your FastAPI routes.
+
+### Step 7: Verify Deployment
+
+After deployment, verify that all services are running correctly:
+
 ```bash
-helm repo add apache-airflow https://airflow.apache.org
-helm install airflow apache-airflow/airflow
+kubectl get pods
+kubectl get services
 ```
 
-## Monitoring and Logging
-Utilize Prometheus and Grafana for monitoring. Set up logging using ELK stack or similar.
+### Step 8: Access the Application
 
-## Security Hardening
-- Use network policies to restrict access to services.
-- Enable TLS for Kafka and Redis.
-- Regularly update dependencies and monitor for vulnerabilities.
+Access the FastAPI application through the service exposed in your Kubernetes cluster. You can use port forwarding for local testing:
+
+```bash
+kubectl port-forward svc/smart-health-monitoring 8000:80
+```
+
+Visit `http://localhost:8000/docs` to access the FastAPI documentation.
 
 ## Conclusion
-Following this guide will help you successfully deploy the Real-Time Smart Health Monitoring System. Ensure to monitor the system and apply security best practices for a robust deployment.
-# 11:00:51 — automated update
-# security: add Dependabot config for automated dependency updates
 
-# 11:00:51 — automated update
-# ci: updated at 11:00:51
-
-# 11:00:51 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+You have successfully deployed the Real-Time Smart Health Monitoring System. For further customization and scaling, refer to the individual service documentation and Kubernetes best practices.
