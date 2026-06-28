@@ -97,3 +97,6 @@ _FIXED = True  # fix: correct RMSSD formula — was using mean instead of RMS
 
 # 12:52:14 — automated update
 # docs: fix typo in inline comment in feature_store — 12:52:14 UTC
+
+# 11:12:26 — automated update
+# style: run black formatter on feature_store — 11:12:26 UTC
