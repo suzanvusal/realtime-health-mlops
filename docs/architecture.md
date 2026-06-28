@@ -1,113 +1,38 @@
-# Architecture of Real-Time Smart Health Monitoring System
+# Architecture Overview of Real-Time Smart Health Monitoring System
 
-## Overview
+## Introduction
+The Real-Time Smart Health Monitoring System is designed to continuously monitor health metrics and provide insights using advanced machine learning techniques. The architecture leverages a combination of streaming data processing, machine learning model serving, and data storage solutions to ensure real-time performance and reliability.
 
-The Real-Time Smart Health Monitoring System is designed to continuously monitor health metrics and provide real-time insights using advanced machine learning techniques. The architecture leverages various technologies to ensure scalability, reliability, and efficiency.
+## Architecture Diagram
+![Architecture Diagram](./images/architecture_diagram.png)
 
 ## Components
 
 ### 1. Data Ingestion
+- **Kafka**: Acts as the backbone for data ingestion, allowing for real-time streaming of health data from various sources such as wearable devices and health applications.
 
-- **Kafka**: Acts as the message broker to handle real-time data streams from various health monitoring devices.
-- **Faust**: A stream processing library for Python that processes the incoming data from Kafka topics, performing transformations and aggregations as needed.
+### 2. Stream Processing
+- **Faust**: A stream processing library that consumes data from Kafka topics, processes it, and prepares it for further analysis. Faust enables us to apply real-time transformations and aggregations on the incoming health data.
 
-### 2. Data Storage
+### 3. Model Serving
+- **XGBoost & PyTorch**: These libraries are used for building and serving machine learning models. XGBoost is utilized for structured data predictions, while PyTorch is used for deep learning tasks, such as anomaly detection in health metrics.
 
-- **Redis**: Used for caching real-time data and storing intermediate results to ensure low-latency access for the application.
+### 4. Data Storage
+- **Redis**: A fast in-memory data structure store used for caching real-time health metrics and providing quick access for analytics and monitoring dashboards.
 
-### 3. Machine Learning Models
+### 5. Monitoring and Evaluation
+- **Evidently**: This tool is integrated to monitor the performance of machine learning models in production. It provides insights into data drift, model performance, and other critical metrics.
 
-- **XGBoost**: Utilized for structured data predictions, such as risk scoring based on historical health data.
-- **PyTorch**: Employed for deep learning tasks, particularly for image or signal processing from health monitoring devices.
-
-### 4. Model Management
-
-- **MLflow**: Manages the lifecycle of machine learning models, including tracking experiments, packaging code into reproducible runs, and sharing and deploying models.
-
-### 5. API Layer
-
-- **FastAPI**: Provides a RESTful API for clients to interact with the system, allowing for real-time data submission and retrieval of health insights.
-
-### 6. Monitoring and Evaluation
-
-- **Evidently**: Monitors model performance and data quality, providing insights into model drift and data anomalies.
+### 6. API Layer
+- **FastAPI**: A modern web framework for building APIs that serve real-time health data and model predictions. FastAPI ensures high performance and easy integration with front-end applications.
 
 ### 7. Workflow Orchestration
-
-- **Airflow**: Manages the scheduling and execution of data pipelines, ensuring that data flows seamlessly from ingestion to processing and model inference.
-
-## Architecture Diagram
-
-```
-+---------------------+
-| Health Monitoring   |
-| Devices             |
-+----------+----------+
-           |
-           v
-+----------+----------+
-|       Kafka         |
-|  (Message Broker)   |
-+----------+----------+
-           |
-           v
-+----------+----------+
-|        Faust        |
-| (Stream Processing) |
-+----------+----------+
-           |
-           v
-+----------+----------+
-|       Redis         |
-|  (Caching Layer)    |
-+----------+----------+
-           |
-           v
-+----------+----------+       +------------------+
-|      XGBoost        |       |      PyTorch     |
-| (Structured Models) |<----->| (Deep Learning)  |
-+----------+----------+       +------------------+
-           |
-           v
-+----------+----------+
-|       MLflow        |
-| (Model Management)  |
-+----------+----------+
-           |
-           v
-+----------+----------+
-|      FastAPI        |
-|   (API Layer)       |
-+----------+----------+
-           |
-           v
-+----------+----------+
-|     Evidently       |
-| (Monitoring)        |
-+----------+----------+
-           |
-           v
-+----------+----------+
-|      Airflow        |
-| (Workflow Orchestration) |
-+---------------------+
-```
+- **Airflow**: Used for scheduling and managing data workflows, including batch processing tasks, model retraining, and data pipeline management.
 
 ## Security Considerations
-
-- Implement secure communication channels (e.g., TLS) for data transmission.
-- Use environment variables and secret management tools for sensitive configurations.
-- Regularly update dependencies and apply security patches.
+- Implement strict access controls for Kafka and Redis.
+- Use TLS encryption for data in transit.
+- Regularly audit and rotate secrets used in the system.
 
 ## Conclusion
-
-The architecture of the Real-Time Smart Health Monitoring System is designed to be robust and scalable, ensuring that health data is processed efficiently while maintaining high standards of security and performance.
-# 11:00:51 — automated update
-# security: add network policies to Kubernetes manifests
-
-# 11:00:51 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 11:00:51 — automated update
-# fix applied at 11:00:51
-_FIXED = True  # fix: environment variable names inconsistent across services
+The Real-Time Smart Health Monitoring System architecture is designed for scalability, reliability, and performance. By leveraging modern technologies and best practices, the system aims to provide timely health insights and improve patient outcomes.
