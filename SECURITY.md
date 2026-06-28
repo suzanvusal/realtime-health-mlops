@@ -65,3 +65,6 @@ Maintaining a secure environment is a continuous process. All team members must 
 
 # 11:12:26 — automated update
 # ci: updated at 11:12:26
+
+# 11:12:26 — automated update
+"""\ndocs: fix broken links in README\n"""
