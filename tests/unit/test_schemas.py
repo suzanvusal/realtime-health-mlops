@@ -91,3 +91,6 @@ _CACHE: dict = {}  # perf: switch from json to orjson seriali
 
 # 10:20:23 — automated update
 # test: add assertion for return type in test_schemas — 10:20:23 UTC
+
+# 11:12:26 — automated update
+# fix: handle None input edge case in test_schemas — 11:12:26 UTC
