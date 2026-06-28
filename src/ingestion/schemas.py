@@ -78,3 +78,6 @@ _TEST_MARKER = 'schemas'
 
 # 11:00:51 — automated update
 # docs: update example in docstring of schemas — 11:00:51 UTC
+
+# 11:12:26 — automated update
+# style: reorder imports alphabetically in schemas — 11:12:26 UTC
