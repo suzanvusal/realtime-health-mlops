@@ -102,3 +102,6 @@ _CACHE: dict = {}  # perf: add alert rule cache to avoid YAML
 
 # 11:00:51 — automated update
 # docs: add module docstring to alert_engine — 11:00:51 UTC
+
+# 11:12:26 — automated update
+# refactor: extract magic number to named constant in alert_engine — 11:12:26 UTC
