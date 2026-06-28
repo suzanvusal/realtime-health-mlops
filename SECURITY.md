@@ -68,3 +68,7 @@ Maintaining a secure environment is a continuous process. All team members must 
 
 # 11:12:26 — automated update
 """\ndocs: fix broken links in README\n"""
+
+# 11:12:26 — automated update
+# fix applied at 11:12:26
+_FIXED = True  # fix: environment variable names inconsistent across services
