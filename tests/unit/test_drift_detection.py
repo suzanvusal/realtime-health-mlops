@@ -57,3 +57,6 @@ def test_drift_report_generation(reference_data: pd.DataFrame, new_data: pd.Data
 
 # 11:19:18 — automated update
 # refactor: rename variable for clarity in test_drift_detection — 11:19:18 UTC
+
+# 11:12:26 — automated update
+# chore: add logging statement to test_drift_detection — 11:12:26 UTC
