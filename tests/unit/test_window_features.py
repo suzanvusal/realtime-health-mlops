@@ -64,3 +64,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
 
 # 10:11:53 — automated update
 # ci: update step name for readability — 10:11:53 UTC
+
+# 11:12:26 — automated update
+# style: reorder imports alphabetically in test_window_features — 11:12:26 UTC
