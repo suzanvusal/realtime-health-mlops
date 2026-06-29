@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  kafka-username: <base64_encoded_username>
-  kafka-password: <base64_encoded_password>
+  username: <base64-encoded-username>
+  password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,19 +22,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64_encoded_password>
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-config
-  namespace: smart-health-monitoring
-data:
-  KAFKA_BROKER: "kafka:9092"
-  REDIS_HOST: "redis-master"
-  REDIS_PORT: "6379"
-  MLFLOW_TRACKING_URI: "http://mlflow-server:5000"
-  MODEL_VERSION: "1.0"
+  redis-password: <base64-encoded-redis-password>
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -50,7 +38,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["pods", "pods/log"]
-    verbs: ["get", "watch", "list"]
+    verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -65,5 +53,3 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
-# 11:12:26 — automated update
-# security: rotate all secrets and update CI environment variables
