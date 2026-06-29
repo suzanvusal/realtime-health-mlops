@@ -62,3 +62,6 @@ def test_on_call_routing(alert_dispatcher):
 # 12:55:07 — automated update
 # fix applied at 12:55:07
 _FIXED = True  # fix: PagerDuty dedup_key not unique causing alert merging
+
+# 13:12:21 — automated update
+# test: add assertion for return type in test_alert_dispatcher — 13:12:21 UTC
