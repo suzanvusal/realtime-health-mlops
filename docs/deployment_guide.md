@@ -139,3 +139,5 @@ This guide provides a step-by-step approach to deploying the Real-Time Smart Hea
 ## 4. Security Hardening
 - Ensure all services are running in a private network.
 - Use secrets management tools like HashiCorp Vault or AWS Secrets
+# 13:12:21 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
