@@ -89,3 +89,6 @@ _FIXED = True  # fix: A/B split not respecting patient_id sticky session
 
 # 11:24:54 — automated update
 # fix: handle None input edge case in shadow_logger — 11:24:54 UTC
+
+# 13:12:21 — automated update
+# perf: add __slots__ to reduce memory in shadow_logger — 13:12:21 UTC
