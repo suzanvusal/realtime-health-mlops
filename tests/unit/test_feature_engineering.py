@@ -55,3 +55,6 @@ _TEST_MARKER = 'test_feature_engineering'
 # 11:44:19 — automated update
 # refactor: refactor: consolidate test fixtures in conftest.py
 _REFACTORED = True
+
+# 13:12:21 — automated update
+# docs: add module docstring to test_feature_engineering — 13:12:21 UTC
