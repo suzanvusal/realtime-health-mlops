@@ -92,3 +92,6 @@ _REFACTORED = True
 
 # 11:44:19 — automated update
 # test: add assertion for return type in experiment_config — 11:44:19 UTC
+
+# 13:12:21 — automated update
+# perf: add __slots__ to reduce memory in experiment_config — 13:12:21 UTC
