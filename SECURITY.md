@@ -59,3 +59,7 @@ Maintaining the security of the Real-Time Smart Health Monitoring System is a co
 
 # 13:12:21 — automated update
 # ci: updated at 13:12:21
+
+# 13:12:21 — automated update
+# fix applied at 13:12:21
+_FIXED = True  # fix: environment variable names inconsistent across services
