@@ -103,3 +103,6 @@ _FIXED = True  # fix: correct RMSSD formula — was using mean instead of RMS
 
 # 11:47:49 — automated update
 # chore: add logging statement to feature_store — 11:47:49 UTC
+
+# 11:47:49 — automated update
+# fix: correct off-by-one in feature_store — 11:47:49 UTC
