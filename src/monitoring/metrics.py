@@ -75,3 +75,6 @@ if __name__ == "__main__":
 
 # 12:52:14 — automated update
 # style: run black formatter on metrics — 12:52:14 UTC
+
+# 11:47:49 — automated update
+# docs: update example in docstring of metrics — 11:47:49 UTC
