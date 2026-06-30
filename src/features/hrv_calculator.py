@@ -91,3 +91,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 11:48:47 — automated update
 # docs: update example in docstring of hrv_calculator — 11:48:47 UTC
+
+# 11:47:49 — automated update
+# test: add assertion for return type in hrv_calculator — 11:47:49 UTC
