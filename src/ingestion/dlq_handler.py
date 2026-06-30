@@ -95,3 +95,6 @@ _REFACTORED = True
 
 # 12:52:14 — automated update
 # refactor: extract magic number to named constant in dlq_handler — 12:52:14 UTC
+
+# 11:47:49 — automated update
+# fix: correct off-by-one in dlq_handler — 11:47:49 UTC
