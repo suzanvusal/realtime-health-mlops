@@ -80,3 +80,6 @@ kubectl get svc -n your-namespace
 This guide provides a comprehensive overview of deploying the Real-Time Smart Health Monitoring System. Follow the steps carefully to ensure a successful deployment. For further assistance, refer to the README and architecture documentation.
 # 11:47:49 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 11:47:49 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
