@@ -1,143 +1,80 @@
 # Deployment Guide for Real-Time Smart Health Monitoring System
 
-## Table of Contents
-1. Introduction
-2. Prerequisites
-3. Deployment Steps
-   - 3.1 Setting Up Kafka
-   - 3.2 Deploying Faust Worker
-   - 3.3 Configuring Redis
-   - 3.4 Deploying XGBoost and PyTorch Models
-   - 3.5 Setting Up FastAPI
-   - 3.6 Integrating MLflow
-   - 3.7 Monitoring with Evidently
-   - 3.8 Orchestrating with Airflow
-4. Security Hardening
-5. Conclusion
+## Introduction
+This deployment guide provides instructions for deploying the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. 
 
-## 1. Introduction
-This guide provides a step-by-step approach to deploying the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow.
+## Prerequisites
+Before deploying the system, ensure you have the following installed:
+- Docker
+- Kubernetes (kubectl)
+- Helm
+- Python 3.8+
+- Kafka and Redis services running
 
-## 2. Prerequisites
-- Docker and Docker Compose installed
-- Kubernetes cluster set up
-- Access to a cloud provider or local environment for deployment
-- Basic knowledge of Python and machine learning concepts
+## Architecture Overview
+The system consists of several components:
+- **Data Ingestion**: Kafka for streaming data from health devices.
+- **Stream Processing**: Faust for real-time data processing.
+- **Model Serving**: FastAPI for serving machine learning models.
+- **Model Training**: XGBoost and PyTorch for training models.
+- **Monitoring**: Evidently for monitoring model performance.
+- **Workflow Orchestration**: Airflow for managing workflows.
 
-## 3. Deployment Steps
+## Deployment Steps
 
-### 3.1 Setting Up Kafka
-1. Pull the Kafka Docker image:
-   ```bash
-   docker pull wurstmeister/kafka
-   ```
-2. Start Kafka using Docker Compose:
-   ```yaml
-   version: '2'
-   services:
-     zookeeper:
-       image: wurstmeister/zookeeper:3.4.6
-       ports:
-         - "2181:2181"
-     kafka:
-       image: wurstmeister/kafka:latest
-       ports:
-         - "9092:9092"
-       expose:
-         - "9093"
-       environment:
-         KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
-         KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-         KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
-         KAFKA_ZOOKEEPER: zookeeper:2181
-   ```
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/your-repo/smart-health-monitoring.git
+cd smart-health-monitoring
+```
 
-### 3.2 Deploying Faust Worker
-1. Create a Faust application:
-   ```python
-   from faust import App
+### Step 2: Configure Environment Variables
+Create a `.env` file in the root directory and add the following environment variables:
+```plaintext
+KAFKA_BROKER=your_kafka_broker
+REDIS_URL=redis://your_redis_url
+MLFLOW_TRACKING_URI=http://your_mlflow_server
+```
 
-   app = App('health_monitoring', broker='kafka://localhost:9092')
+### Step 3: Deploy Kafka and Redis
+Use Helm to deploy Kafka and Redis:
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-kafka bitnami/kafka
+helm install my-redis bitnami/redis
+```
 
-   @app.agent()
-   async def process_health_data(stream):
-       async for value in stream:
-           # Process the health data
-           pass
-   ```
-2. Run the Faust worker:
-   ```bash
-   faust -A your_faust_app worker -l info
-   ```
+### Step 4: Build Docker Images
+Build the Docker images for the FastAPI application and the stream processing service:
+```bash
+docker build -t health-monitoring-api ./api
+docker build -t health-monitoring-stream ./stream
+```
 
-### 3.3 Configuring Redis
-1. Pull the Redis Docker image:
-   ```bash
-   docker pull redis
-   ```
-2. Start Redis:
-   ```bash
-   docker run --name redis -d -p 6379:6379 redis
-   ```
+### Step 5: Deploy to Kubernetes
+Apply the Kubernetes manifests:
+```bash
+kubectl apply -f infra/k8s/namespace.yaml
+kubectl apply -f infra/k8s/deployment.yaml
+kubectl apply -f infra/k8s/service.yaml
+```
 
-### 3.4 Deploying XGBoost and PyTorch Models
-1. Save your models using MLflow:
-   ```python
-   import mlflow
-   import xgboost as xgb
+### Step 6: Set Up Airflow
+Deploy Airflow using Helm:
+```bash
+helm install airflow apache/airflow --namespace airflow --values airflow/values.yaml
+```
 
-   mlflow.start_run()
-   model = xgb.XGBClassifier()
-   model.fit(X_train, y_train)
-   mlflow.xgboost.log_model(model, "model")
-   mlflow.end_run()
-   ```
+### Step 7: Access the Application
+Once deployed, access the FastAPI application via the service endpoint:
+```bash
+kubectl get svc -n your-namespace
+```
 
-### 3.5 Setting Up FastAPI
-1. Create a FastAPI application:
-   ```python
-   from fastapi import FastAPI
+## Security Hardening
+- Ensure all services are running with the least privilege.
+- Use network policies to restrict communication between services.
+- Regularly update dependencies to mitigate vulnerabilities.
 
-   app = FastAPI()
-
-   @app.post("/predict")
-   async def predict(data: dict):
-       # Load model and make predictions
-       return {"prediction": "result"}
-   ```
-
-### 3.6 Integrating MLflow
-1. Start the MLflow server:
-   ```bash
-   mlflow ui
-   ```
-
-### 3.7 Monitoring with Evidently
-1. Set up Evidently to monitor model performance:
-   ```python
-   from evidently import Report
-
-   report = Report(metrics=[...])
-   report.run(reference_data, current_data)
-   ```
-
-### 3.8 Orchestrating with Airflow
-1. Create an Airflow DAG for scheduling:
-   ```python
-   from airflow import DAG
-   from airflow.operators.python_operator import PythonOperator
-
-   def run_model():
-       # Code to run the model
-       pass
-
-   dag = DAG('health_monitoring_dag', schedule_interval='@daily')
-
-   task = PythonOperator(task_id='run_model', python_callable=run_model, dag=dag)
-   ```
-
-## 4. Security Hardening
-- Ensure all services are running in a private network.
-- Use secrets management tools like HashiCorp Vault or AWS Secrets
-# 13:12:21 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+## Conclusion
+This guide provides a comprehensive overview of deploying the Real-Time Smart Health Monitoring System. Follow the steps carefully to ensure a successful deployment. For further assistance, refer to the README and architecture documentation.
