@@ -99,3 +99,5 @@ Use Evidently to monitor the performance of your models. Ensure that you have se
 ## Conclusion
 
 Your Real-Time Smart Health Monitoring System should now be up and running. Ensure to monitor the system for any issues and optimize as necessary. For further assistance, refer to the README and architecture documentation.
+# 12:12:47 — automated update
+"""\ndocs: fix broken links in README\n"""
