@@ -53,3 +53,5 @@ data:
   REDIS_HOST: "redis-master"
   MLFLOW_TRACKING_URI: "http://mlflow:5000"
   FASTAPI_PORT: "8000"
+# 12:12:47 — automated update
+# security: rotate all secrets and update CI environment variables
