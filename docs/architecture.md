@@ -49,3 +49,5 @@ The Real-Time Smart Health Monitoring System is designed to continuously track a
 ## Conclusion
 
 The architecture of the Real-Time Smart Health Monitoring System is designed to be robust, scalable, and secure, enabling effective health monitoring and analytics. By leveraging modern technologies, the system aims to provide timely insights and improve health outcomes for users.
+# 12:12:47 — automated update
+# security: add Dependabot config for automated dependency updates
