@@ -100,3 +100,6 @@ _FIXED = True  # fix: handle patients with fewer than 30 data points
 
 # 11:47:49 — automated update
 # chore: add logging statement to feature_engineering — 11:47:49 UTC
+
+# 12:12:47 — automated update
+# docs: update example in docstring of feature_engineering — 12:12:47 UTC
