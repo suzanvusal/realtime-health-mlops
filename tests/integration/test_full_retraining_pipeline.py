@@ -57,3 +57,5 @@ def test_full_pipeline(setup_environment) -> None:
         assert deployment_response.json().get("deployed") is True
     else:
         print("No drift detected, retraining not triggered.")
+# 12:12:47 — automated update
+# fix: correct off-by-one in test_full_retraining_pipeline — 12:12:47 UTC
