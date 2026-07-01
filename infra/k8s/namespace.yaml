@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  username: <base64_encoded_username>
-  password: <base64_encoded_password>
+  kafka-username: <base64-encoded-username>
+  kafka-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,49 +22,34 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64_encoded_redis_password>
+  redis-password: <base64-encoded-redis-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mlflow-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  mlflow-tracking-uri: <base64-encoded-mlflow-uri>
+  mlflow-access-key: <base64-encoded-access-key>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fastapi-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  fastapi-secret-key: <base64-encoded-secret-key>
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mlflow-config
+  name: app-config
   namespace: smart-health-monitoring
 data:
-  MLFLOW_TRACKING_URI: "http://mlflow-server:5000"
-  MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: monitoring-sa
-  namespace: smart-health-monitoring
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: monitoring-role
-  namespace: smart-health-monitoring
-rules:
-  - apiGroups: [""]
-    resources: ["pods", "pods/log"]
-    verbs: ["get", "watch", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: monitoring-role-binding
-  namespace: smart-health-monitoring
-subjects:
-  - kind: ServiceAccount
-    name: monitoring-sa
-    namespace: smart-health-monitoring
-roleRef:
-  kind: Role
-  name: monitoring-role
-  apiGroup: rbac.authorization.k8s.io
-# 11:47:49 — automated update
-# ci: updated at 11:47:49
-
-# 11:47:49 — automated update
-# fix applied at 11:47:49
-_FIXED = True  # fix: environment variable names inconsistent across services
+  KAFKA_BROKER: "kafka-broker:9092"
+  REDIS_HOST: "redis-master"
+  MLFLOW_TRACKING_URI: "http://mlflow:5000"
+  FASTAPI_PORT: "8000"
