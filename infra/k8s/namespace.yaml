@@ -31,17 +31,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  mlflow-tracking-uri: <base64-encoded-mlflow-uri>
-  mlflow-access-key: <base64-encoded-access-key>
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: fastapi-secret
-  namespace: smart-health-monitoring
-type: Opaque
-data:
-  fastapi-secret-key: <base64-encoded-secret-key>
+  mlflow-tracking-uri: <base64-encoded-mlflow-tracking-uri>
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -52,6 +42,34 @@ data:
   KAFKA_BROKER: "kafka-broker:9092"
   REDIS_HOST: "redis-master"
   MLFLOW_TRACKING_URI: "http://mlflow:5000"
-  FASTAPI_PORT: "8000"
-# 12:12:47 — automated update
-# security: rotate all secrets and update CI environment variables
+  EVIDENTLY_API_URL: "http://evidently:8080"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-service-account
+  namespace: smart-health-monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: app-role
+  namespace: smart-health-monitoring
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app-role-binding
+  namespace: smart-health-monitoring
+subjects:
+  - kind: ServiceAccount
+    name: app-service-account
+    namespace: smart-health-monitoring
+roleRef:
+  kind: Role
+  name: app-role
+  apiGroup: rbac.authorization.k8s.io
