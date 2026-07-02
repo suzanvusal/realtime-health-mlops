@@ -25,3 +25,6 @@
 
 # 11:00:51 — automated update
 # test: add assertion for return type in __init__ — 11:00:51 UTC
+
+# 11:38:39 — automated update
+# docs: update example in docstring of __init__ — 11:38:39 UTC
