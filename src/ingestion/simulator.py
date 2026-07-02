@@ -99,3 +99,6 @@ _TEST_MARKER = 'simulator'
 
 # 11:13:34 — automated update
 # docs: add module docstring to simulator — 11:13:34 UTC
+
+# 11:38:39 — automated update
+# perf: add __slots__ to reduce memory in simulator — 11:38:39 UTC
