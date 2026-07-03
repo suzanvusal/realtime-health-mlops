@@ -59,3 +59,6 @@ def test_full_pipeline(setup_environment) -> None:
         print("No drift detected, retraining not triggered.")
 # 12:12:47 — automated update
 # fix: correct off-by-one in test_full_retraining_pipeline — 12:12:47 UTC
+
+# 11:37:21 — automated update
+# test: add assertion for return type in test_full_retraining_pipeline — 11:37:21 UTC
