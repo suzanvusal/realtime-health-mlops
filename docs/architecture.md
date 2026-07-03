@@ -43,3 +43,6 @@ The system is designed to be deployed in a Kubernetes environment, ensuring scal
 This architecture provides a robust framework for real-time health monitoring, leveraging modern technologies to ensure high performance and reliability. Future enhancements may include additional data sources, improved model accuracy, and expanded monitoring capabilities.
 # 11:37:21 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 11:37:21 — automated update
+# security: add Dependabot config for automated dependency updates
