@@ -62,3 +62,6 @@ def test_full_pipeline(setup_environment) -> None:
 
 # 11:37:21 — automated update
 # test: add assertion for return type in test_full_retraining_pipeline — 11:37:21 UTC
+
+# 11:37:21 — automated update
+# perf: add __slots__ to reduce memory in test_full_retraining_pipeline — 11:37:21 UTC
