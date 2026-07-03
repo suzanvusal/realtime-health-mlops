@@ -84,3 +84,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Airflow for workflow orchestration.
 # 11:37:21 — automated update
 # ci: updated at 11:37:21
+
+# 11:37:21 — automated update
+"""\ndocs: fix broken links in README\n"""
