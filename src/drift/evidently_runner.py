@@ -81,3 +81,6 @@ class DriftReportRunner:
 
 # 11:37:21 — automated update
 # fix: correct off-by-one in evidently_runner — 11:37:21 UTC
+
+# 10:57:16 — automated update
+# docs: add module docstring to evidently_runner — 10:57:16 UTC
