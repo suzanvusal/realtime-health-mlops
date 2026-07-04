@@ -29,3 +29,6 @@
 
 # 11:37:21 — automated update
 # chore: add logging statement to __init__ — 11:37:21 UTC
+
+# 10:57:16 — automated update
+# fix: correct off-by-one in __init__ — 10:57:16 UTC
