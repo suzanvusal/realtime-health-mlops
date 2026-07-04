@@ -62,3 +62,5 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
+# 10:57:16 — automated update
+# security: add Dependabot config for automated dependency updates
