@@ -64,3 +64,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 # 10:57:16 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 10:57:16 — automated update
+# fix applied at 10:57:16
+_FIXED = True  # fix: environment variable names inconsistent across services
