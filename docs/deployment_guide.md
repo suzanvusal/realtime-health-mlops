@@ -100,3 +100,5 @@ Expose your FastAPI application and other services using LoadBalancer or Ingress
 ## Conclusion
 
 Following this guide will help you successfully deploy the Real-Time Smart Health Monitoring System. For further assistance, refer to the README and architecture documentation.
+# 10:57:16 — automated update
+# security: add network policies to Kubernetes manifests
