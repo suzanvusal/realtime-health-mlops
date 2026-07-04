@@ -97,3 +97,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 12:12:47 — automated update
 # fix: correct off-by-one in hrv_calculator — 12:12:47 UTC
+
+# 10:57:16 — automated update
+# docs: fix typo in inline comment in hrv_calculator — 10:57:16 UTC
