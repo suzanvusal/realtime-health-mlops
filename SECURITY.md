@@ -48,3 +48,6 @@ Ensure compliance with relevant regulations and standards, including but not lim
 Maintaining the security of the Real-Time Smart Health Monitoring System is a continuous process that requires diligence and proactive measures. All team members are responsible for adhering to these security practices and contributing to a secure environment.
 # 10:57:16 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 10:57:16 — automated update
+"""\ndocs: fix broken links in README\n"""
