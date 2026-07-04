@@ -51,3 +51,6 @@ Maintaining the security of the Real-Time Smart Health Monitoring System is a co
 
 # 10:57:16 — automated update
 """\ndocs: fix broken links in README\n"""
+
+# 10:57:16 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
