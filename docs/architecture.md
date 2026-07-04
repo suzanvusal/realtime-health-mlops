@@ -1,48 +1,78 @@
-# Architecture Documentation for Real-Time Smart Health Monitoring System
+# Architecture Overview
 
-## Overview
-The Real-Time Smart Health Monitoring System is designed to continuously monitor health metrics and provide insights using advanced machine learning techniques. The system leverages a microservices architecture to ensure scalability, reliability, and maintainability.
+## System Components
 
-## Architecture Diagram
-![Architecture Diagram](path/to/architecture_diagram.png)
+The Real-Time Smart Health Monitoring System consists of several key components that work together to provide a seamless health monitoring experience. Below is an overview of each component and its role in the architecture.
 
-## Components
+### 1. Data Ingestion Layer
 
-### 1. Data Ingestion
-- **Kafka**: Acts as the message broker to handle real-time data streams from various health monitoring devices.
-- **Faust**: A stream processing library that consumes data from Kafka, processes it in real-time, and sends it to the next components.
+- **Kafka**: Acts as the message broker to handle real-time data streams from various health monitoring devices. It ensures reliable and scalable data ingestion.
 
-### 2. Data Storage
-- **Redis**: Used for caching real-time data and storing intermediate results to improve performance and reduce latency.
+### 2. Stream Processing Layer
 
-### 3. Machine Learning
-- **XGBoost**: Utilized for predictive modeling based on historical health data.
-- **PyTorch**: Employed for deep learning tasks, particularly for complex pattern recognition in health metrics.
+- **Faust**: A stream processing library for Python that processes the incoming data from Kafka. It performs real-time analytics and feature extraction on the health data.
 
-### 4. Model Management
-- **MLflow**: Manages the lifecycle of machine learning models, including tracking experiments, packaging code into reproducible runs, and sharing models.
+### 3. Model Serving Layer
+
+- **XGBoost & PyTorch**: These machine learning frameworks are used to build and serve predictive models. XGBoost is used for structured data, while PyTorch is utilized for deep learning tasks.
+
+### 4. Data Storage Layer
+
+- **Redis**: An in-memory data store that caches processed data and model predictions for low-latency access. It supports fast retrieval of health metrics and alerts.
 
 ### 5. API Layer
-- **FastAPI**: Provides a RESTful API for clients to interact with the system, allowing users to retrieve health insights and predictions.
 
-### 6. Monitoring and Evaluation
-- **Evidently**: Monitors the performance of machine learning models in production, providing insights into data drift and model accuracy.
+- **FastAPI**: A modern web framework for building APIs. It serves as the interface for external applications to interact with the health monitoring system, providing endpoints for data submission and retrieval.
 
-### 7. Orchestration
-- **Airflow**: Manages the workflow of data processing and model training, ensuring that tasks are executed in the correct order and at the right times.
+### 6. Monitoring and Evaluation Layer
+
+- **Evidently**: A tool for monitoring machine learning models in production. It provides insights into model performance and data drift, ensuring that the models remain accurate over time.
+
+### 7. Orchestration Layer
+
+- **Airflow**: A workflow orchestration tool that manages the scheduling and execution of data pipelines, model training, and deployment processes.
+
+## Architecture Diagram
+
+```plaintext
++-------------------+      +-------------------+      +-------------------+
+| Health Monitoring | ---> |       Kafka       | ---> |       Faust       |
+| Devices           |      |                   |      |                   |
++-------------------+      +-------------------+      +-------------------+
+                                                             |
+                                                             v
+                                                    +-------------------+
+                                                    |   Redis Cache     |
+                                                    +-------------------+
+                                                             |
+                                                             v
+                                                    +-------------------+
+                                                    |   XGBoost /      |
+                                                    |   PyTorch Model   |
+                                                    +-------------------+
+                                                             |
+                                                             v
+                                                    +-------------------+
+                                                    |      FastAPI      |
+                                                    +-------------------+
+                                                             |
+                                                             v
+                                                    +-------------------+
+                                                    |     Evidently     |
+                                                    +-------------------+
+                                                             |
+                                                             v
+                                                    +-------------------+
+                                                    |      Airflow      |
+                                                    +-------------------+
+```
 
 ## Security Considerations
-- Implement role-based access control (RBAC) for sensitive data.
-- Use HTTPS for all API communications.
-- Regularly update dependencies to mitigate vulnerabilities.
 
-## Deployment
-The system is designed to be deployed in a Kubernetes environment, ensuring scalability and resilience. Configuration files for Kubernetes resources are located in the `infra/k8s` directory.
+- **Secrets Management**: Use environment variables or secret management tools (e.g., HashiCorp Vault) to manage sensitive information such as API keys and database credentials.
+- **Network Security**: Implement network policies and firewalls to restrict access to sensitive components of the architecture.
+- **Data Encryption**: Ensure that data in transit and at rest is encrypted to protect patient information.
 
 ## Conclusion
-This architecture provides a robust framework for real-time health monitoring, leveraging modern technologies to ensure high performance and reliability. Future enhancements may include additional data sources, improved model accuracy, and expanded monitoring capabilities.
-# 11:37:21 — automated update
-# security: rotate all secrets and update CI environment variables
 
-# 11:37:21 — automated update
-# security: add Dependabot config for automated dependency updates
+This architecture provides a robust framework for building a Real-Time Smart Health Monitoring System, ensuring scalability, reliability, and security. Each component is designed to work seamlessly with the others, enabling efficient health data processing and analysis.
