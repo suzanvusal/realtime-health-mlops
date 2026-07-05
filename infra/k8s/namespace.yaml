@@ -63,3 +63,5 @@ data:
   kafka_broker: "kafka:9092"
   redis_url: "redis://redis:6379"
   mlflow_tracking_uri: "http://mlflow:5000"
+# 11:08:02 — automated update
+"""\ndocs: fix broken links in README\n"""
