@@ -4,53 +4,52 @@
 
 ## Introduction
 
-This document outlines the security measures and practices for the Real-Time Smart Health Monitoring System. It is essential to protect sensitive health data and ensure the integrity and availability of the system.
+This document outlines the security measures and policies implemented in the Real-Time Smart Health Monitoring System. It is essential to protect sensitive health data and ensure compliance with relevant regulations.
 
 ## Security Measures
 
 ### 1. Data Encryption
-- **In Transit**: All data transmitted between clients and servers must be encrypted using TLS (Transport Layer Security).
-- **At Rest**: Sensitive data stored in databases and file systems must be encrypted using industry-standard encryption algorithms.
+
+- **At Rest**: All sensitive data stored in databases (Redis, Kafka) is encrypted using AES-256 encryption.
+- **In Transit**: TLS 1.2 or higher is used to encrypt data transmitted between services and clients.
 
 ### 2. Authentication and Authorization
-- **User Authentication**: Implement OAuth2.0 for secure user authentication.
-- **Role-Based Access Control (RBAC)**: Define roles and permissions to restrict access to sensitive data and functionalities.
+
+- **API Security**: FastAPI is configured to use OAuth2 with JWT tokens for secure API access.
+- **Role-Based Access Control (RBAC)**: Different roles are defined (admin, user, viewer) with specific permissions.
 
 ### 3. Secrets Management
-- Use a secrets management tool (e.g., HashiCorp Vault, AWS Secrets Manager) to store and manage sensitive information such as API keys, database credentials, and encryption keys.
-- Ensure that secrets are not hardcoded in the codebase and are retrieved securely at runtime.
+
+- **Environment Variables**: Sensitive information such as API keys and database credentials are stored in environment variables.
+- **Secret Management Tools**: Use tools like HashiCorp Vault or AWS Secrets Manager for managing secrets securely.
 
 ### 4. Logging and Monitoring
-- Implement logging of all access and changes to sensitive data.
-- Use monitoring tools to detect and alert on suspicious activities or anomalies in the system.
 
-### 5. Regular Security Audits
-- Conduct regular security audits and vulnerability assessments to identify and mitigate potential security risks.
-- Keep dependencies and libraries up to date to protect against known vulnerabilities.
+- **Centralized Logging**: All logs are sent to a centralized logging system (e.g., ELK stack) for monitoring and auditing.
+- **Anomaly Detection**: Implement monitoring for unusual access patterns or data anomalies using Evidently.
+
+### 5. Vulnerability Management
+
+- **Regular Scans**: Conduct regular vulnerability scans on the application and dependencies using tools like Snyk or OWASP Dependency-Check.
+- **Patch Management**: Ensure timely updates and patches for all libraries and frameworks used in the application.
 
 ## Incident Response
 
-In the event of a security incident:
-1. Identify and contain the breach.
-2. Assess the impact and scope of the incident.
-3. Notify affected users and stakeholders as per legal and regulatory requirements.
-4. Conduct a post-incident review to improve security measures and prevent future incidents.
+In the event of a security incident, the following steps should be taken:
+
+1. **Detection**: Monitor logs and alerts for suspicious activity.
+2. **Containment**: Isolate affected systems to prevent further damage.
+3. **Eradication**: Remove the cause of the incident.
+4. **Recovery**: Restore systems from backups and ensure they are secure.
+5. **Post-Incident Review**: Conduct a review to identify lessons learned and improve security measures.
 
 ## Compliance
 
-Ensure compliance with relevant regulations and standards, including but not limited to:
-- Health Insurance Portability and Accountability Act (HIPAA)
-- General Data Protection Regulation (GDPR)
-- Payment Card Industry Data Security Standard (PCI DSS)
+Ensure compliance with relevant regulations such as:
+
+- **HIPAA**: Protecting patient health information.
+- **GDPR**: Managing personal data of EU citizens.
 
 ## Conclusion
 
-Maintaining the security of the Real-Time Smart Health Monitoring System is a continuous process that requires diligence and proactive measures. All team members are responsible for adhering to these security practices and contributing to a secure environment.
-# 10:57:16 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 10:57:16 — automated update
-"""\ndocs: fix broken links in README\n"""
-
-# 10:57:16 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+Maintaining the security of the Real-Time Smart Health Monitoring System is a continuous process that requires regular updates and vigilance. All team members are responsible for adhering to these security policies.
