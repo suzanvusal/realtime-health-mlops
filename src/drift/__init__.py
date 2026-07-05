@@ -32,3 +32,6 @@
 
 # 10:57:16 — automated update
 # fix: correct off-by-one in __init__ — 10:57:16 UTC
+
+# 11:08:03 — automated update
+# fix: handle None input edge case in __init__ — 11:08:03 UTC
