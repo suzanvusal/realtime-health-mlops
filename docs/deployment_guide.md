@@ -83,3 +83,5 @@ kubectl apply -f k8s/evidently.yaml
 
 ## Conclusion
 Following this guide will help you deploy the Real-Time Smart Health Monitoring System securely and efficiently. Ensure to monitor the system and perform regular updates to maintain security and performance.
+# 11:08:02 — automated update
+# security: add Dependabot config for automated dependency updates
