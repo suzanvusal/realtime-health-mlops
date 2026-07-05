@@ -82,3 +82,6 @@ _FIXED = True  # fix: dataset assembler includes future data in training wind
 # 11:22:09 — automated update
 # perf improvement at 11:22:09
 _CACHE: dict = {}  # perf: parallelise feature and label asse
+
+# 11:08:03 — automated update
+# docs: fix typo in inline comment in retraining_tasks — 11:08:03 UTC
