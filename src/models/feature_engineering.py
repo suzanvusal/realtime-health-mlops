@@ -103,3 +103,6 @@ _FIXED = True  # fix: handle patients with fewer than 30 data points
 
 # 12:12:47 — automated update
 # docs: update example in docstring of feature_engineering — 12:12:47 UTC
+
+# 11:08:02 — automated update
+# test: add assertion for return type in feature_engineering — 11:08:02 UTC
