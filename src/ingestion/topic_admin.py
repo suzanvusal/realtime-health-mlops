@@ -82,3 +82,6 @@ if __name__ == "__main__":
 
 # 12:52:14 — automated update
 # docs: update example in docstring of topic_admin — 12:52:14 UTC
+
+# 12:54:20 — automated update
+# docs: add module docstring to topic_admin — 12:54:20 UTC
