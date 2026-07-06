@@ -47,3 +47,5 @@ If you discover a security vulnerability in this system, please report it to the
 ## Conclusion
 
 Maintaining the security of the Real-Time Smart Health Monitoring System is a shared responsibility. By following the guidelines outlined in this document, we can help protect sensitive health data and ensure the system's integrity.
+# 12:54:19 — automated update
+# security: add network policies to Kubernetes manifests
