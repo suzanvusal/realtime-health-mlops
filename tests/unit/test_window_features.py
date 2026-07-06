@@ -67,3 +67,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
 
 # 11:12:26 — automated update
 # style: reorder imports alphabetically in test_window_features — 11:12:26 UTC
+
+# 12:54:20 — automated update
+# docs: add module docstring to test_window_features — 12:54:20 UTC
