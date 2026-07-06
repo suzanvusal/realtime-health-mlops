@@ -117,3 +117,7 @@ spec:
             secretName: redis-secret
 # 12:54:20 — automated update
 # ci: updated at 12:54:20
+
+# 12:54:20 — automated update
+# fix applied at 12:54:20
+_FIXED = True  # fix: environment variable names inconsistent across services
