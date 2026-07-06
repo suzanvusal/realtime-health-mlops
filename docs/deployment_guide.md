@@ -90,3 +90,5 @@ Access the dashboard at `http://localhost:8080`.
 
 ## Conclusion
 You have successfully deployed the Real-Time Smart Health Monitoring System. Ensure to monitor the system regularly and update the models as necessary. For further assistance, refer to the README.md or contact the development team.
+# 12:54:20 — automated update
+# security: add Dependabot config for automated dependency updates
