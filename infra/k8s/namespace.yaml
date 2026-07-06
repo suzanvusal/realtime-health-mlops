@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  username: <base64-encoded-username>
-  password: <base64-encoded-password>
+  username: <base64_encoded_username>
+  password: <base64_encoded_password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,37 +22,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64-encoded-redis-password>
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: monitoring-sa
-  namespace: smart-health-monitoring
----
-apiVersion: v1
-kind: Role
-metadata:
-  name: monitoring-role
-  namespace: smart-health-monitoring
-rules:
-  - apiGroups: [""]
-    resources: ["pods", "pods/log"]
-    verbs: ["get", "watch", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: monitoring-role-binding
-  namespace: smart-health-monitoring
-subjects:
-  - kind: ServiceAccount
-    name: monitoring-sa
-    namespace: smart-health-monitoring
-roleRef:
-  kind: Role
-  name: monitoring-role
-  apiGroup: rbac.authorization.k8s.io
+  redis-password: <base64_encoded_redis_password>
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -60,8 +30,88 @@ metadata:
   name: app-config
   namespace: smart-health-monitoring
 data:
-  kafka_broker: "kafka:9092"
-  redis_url: "redis://redis:6379"
-  mlflow_tracking_uri: "http://mlflow:5000"
-# 11:08:02 — automated update
-"""\ndocs: fix broken links in README\n"""
+  KAFKA_BROKER: "kafka:9092"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  MLFLOW_TRACKING_URI: "http://mlflow:5000"
+  FASTAPI_HOST: "0.0.0.0"
+  FASTAPI_PORT: "8000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: health-monitoring-service
+  namespace: smart-health-monitoring
+spec:
+  selector:
+    app: health-monitoring
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: health-monitoring-deployment
+  namespace: smart-health-monitoring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: health-monitoring
+  template:
+    metadata:
+      labels:
+        app: health-monitoring
+    spec:
+      containers:
+        - name: health-monitoring
+          image: your-docker-repo/health-monitoring:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: KAFKA_BROKER
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: KAFKA_BROKER
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: REDIS_PORT
+            - name: MLFLOW_TRACKING_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MLFLOW_TRACKING_URI
+            - name: FASTAPI_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: FASTAPI_HOST
+            - name: FASTAPI_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: FASTAPI_PORT
+          volumeMounts:
+            - name: kafka-secret
+              mountPath: /etc/secrets
+              readOnly: true
+            - name: redis-secret
+              mountPath: /etc/secrets
+              readOnly: true
+      volumes:
+        - name: kafka-secret
+          secret:
+            secretName: kafka-secret
+        - name: redis-secret
+          secret:
+            secretName: redis-secret
