@@ -85,3 +85,6 @@ _CACHE: dict = {}  # perf: parallelise feature and label asse
 
 # 11:08:03 — automated update
 # docs: fix typo in inline comment in retraining_tasks — 11:08:03 UTC
+
+# 12:54:20 — automated update
+# fix: correct off-by-one in retraining_tasks — 12:54:20 UTC
