@@ -55,3 +55,6 @@ This architecture provides a robust framework for real-time health monitoring, e
 
 # 11:57:42 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 11:57:42 — automated update
+"""\ndocs: fix broken links in README\n"""
