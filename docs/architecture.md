@@ -52,3 +52,6 @@ The Real-Time Smart Health Monitoring System is designed to continuously monitor
 This architecture provides a robust framework for real-time health monitoring, ensuring scalability, reliability, and security. Each component plays a critical role in delivering timely insights and maintaining the overall health of the system.
 # 11:57:42 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 11:57:42 — automated update
+# security: add Dependabot config for automated dependency updates
