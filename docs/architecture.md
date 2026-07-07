@@ -2,93 +2,51 @@
 
 ## Overview
 
-The Real-Time Smart Health Monitoring System is designed to continuously monitor and analyze health data from various sources. The architecture leverages modern technologies to ensure scalability, reliability, and real-time processing.
-
-## Components
-
-1. **Data Ingestion Layer**
-   - **Kafka**: Acts as the message broker to handle real-time data streams from various health monitoring devices.
-   - **Faust**: A stream processing library that processes data from Kafka and applies real-time transformations.
-
-2. **Data Storage Layer**
-   - **Redis**: Used for caching and storing real-time health metrics for quick access and retrieval.
-
-3. **Machine Learning Layer**
-   - **XGBoost**: Utilized for predictive modeling based on historical health data.
-   - **PyTorch**: Employed for deep learning tasks, such as anomaly detection in health metrics.
-
-4. **Model Management**
-   - **MLflow**: Manages the lifecycle of machine learning models, including tracking experiments, packaging code into reproducible runs, and sharing models.
-
-5. **API Layer**
-   - **FastAPI**: Provides a RESTful API for clients to access health data and predictions in real-time.
-
-6. **Monitoring and Evaluation**
-   - **Evidently**: Monitors model performance and data quality over time, providing insights into model drift and data anomalies.
-
-7. **Orchestration**
-   - **Airflow**: Manages workflows for data processing, model training, and deployment, ensuring that all components work together seamlessly.
+The Real-Time Smart Health Monitoring System is designed to continuously monitor health metrics and provide insights using advanced machine learning techniques. The architecture leverages a combination of Kafka for data streaming, Faust for stream processing, Redis for caching, XGBoost and PyTorch for machine learning, MLflow for model management, FastAPI for serving APIs, Evidently for monitoring model performance, and Airflow for orchestrating workflows.
 
 ## Architecture Diagram
 
-```
-+-------------------+        +-------------------+
-| Health Monitoring |        |   Kafka Cluster   |
-|   Devices         | -----> |                   |
-+-------------------+        +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |       Faust       |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |       Redis       |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |   XGBoost Model   |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |    PyTorch Model   |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |      MLflow       |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |      FastAPI      |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |     Evidently     |
-                          +-------------------+
-                                   |
-                                   v
-                          +-------------------+
-                          |      Airflow      |
-                          +-------------------+
-```
+![Architecture Diagram](path/to/architecture_diagram.png)
+
+## Components
+
+### 1. Data Ingestion
+
+- **Kafka**: Acts as the backbone for streaming health data from various sources such as wearables and medical devices.
+- **Faust**: A stream processing library that consumes data from Kafka, processes it in real-time, and pushes the results to downstream systems.
+
+### 2. Data Storage
+
+- **Redis**: Used for caching real-time health metrics to ensure low-latency access for the API and analytics.
+
+### 3. Machine Learning
+
+- **XGBoost**: Employed for structured data predictions, such as risk assessment based on historical health data.
+- **PyTorch**: Utilized for deep learning tasks, such as anomaly detection in health metrics.
+
+### 4. Model Management
+
+- **MLflow**: Manages the lifecycle of machine learning models, including tracking experiments, packaging code into reproducible runs, and sharing models.
+
+### 5. API Layer
+
+- **FastAPI**: Provides a RESTful API for clients to access real-time health data and predictions.
+
+### 6. Monitoring and Evaluation
+
+- **Evidently**: Monitors the performance of deployed models, providing insights into data drift and model accuracy.
+
+### 7. Workflow Orchestration
+
+- **Airflow**: Orchestrates data pipelines, model training, and deployment processes, ensuring that workflows run reliably and on schedule.
 
 ## Security Considerations
 
-- **Secrets Management**: Use environment variables or secret management tools (e.g., HashiCorp Vault) to manage sensitive information such as API keys and database credentials.
-- **Network Security**: Implement network policies in Kubernetes to restrict access to services.
-- **Data Encryption**: Ensure data in transit and at rest is encrypted to protect sensitive health information.
+- Implement role-based access control (RBAC) for API endpoints.
+- Use HTTPS for secure data transmission.
+- Regularly update dependencies to mitigate vulnerabilities.
+- Store sensitive information such as API keys and database credentials in a secure secrets management system.
 
 ## Conclusion
 
-This architecture provides a robust framework for building a Real-Time Smart Health Monitoring System, leveraging the strengths of modern technologies to deliver accurate and timely health insights.
-# 12:54:19 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 12:54:20 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+This architecture provides a robust framework for real-time health monitoring, ensuring scalability, reliability, and security. Each component plays a critical role in delivering timely insights and maintaining the overall health of the system.
