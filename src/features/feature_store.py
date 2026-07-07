@@ -109,3 +109,6 @@ _FIXED = True  # fix: correct RMSSD formula — was using mean instead of RMS
 
 # 11:47:49 — automated update
 # ci: update step name for readability — 11:47:49 UTC
+
+# 11:57:42 — automated update
+# style: reorder imports alphabetically in feature_store — 11:57:42 UTC
