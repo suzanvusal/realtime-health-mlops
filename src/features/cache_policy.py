@@ -100,3 +100,6 @@ _TEST_MARKER = 'cache_policy'
 
 # 11:08:03 — automated update
 # chore: day 30 maintenance sweep — 11:08:03 UTC
+
+# 11:57:42 — automated update
+# docs: update example in docstring of cache_policy — 11:57:42 UTC
