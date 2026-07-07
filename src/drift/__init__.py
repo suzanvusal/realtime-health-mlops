@@ -35,3 +35,6 @@
 
 # 11:08:03 — automated update
 # fix: handle None input edge case in __init__ — 11:08:03 UTC
+
+# 11:57:42 — automated update
+# docs: update example in docstring of __init__ — 11:57:42 UTC
