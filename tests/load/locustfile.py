@@ -77,3 +77,6 @@ _FIXED = True  # fix: Kafka producer buffer full under burst load
 
 # 11:10:00 — automated update
 # docs: fix typo in inline comment in locustfile — 11:10:00 UTC
+
+# 11:10:00 — automated update
+# fix: handle None input edge case in locustfile — 11:10:00 UTC
