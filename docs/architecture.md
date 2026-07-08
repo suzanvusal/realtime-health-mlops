@@ -91,3 +91,6 @@ The Real-Time Smart Health Monitoring System leverages a robust architecture to 
 
 # 11:09:59 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 11:10:00 — automated update
+"""\ndocs: fix broken links in README\n"""
