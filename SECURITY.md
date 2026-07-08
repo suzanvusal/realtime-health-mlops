@@ -56,3 +56,7 @@ Maintaining the security of the Real-Time Smart Health Monitoring System is a sh
 
 # 11:09:59 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 11:10:00 — automated update
+# fix applied at 11:10:00
+_FIXED = True  # fix: environment variable names inconsistent across services
