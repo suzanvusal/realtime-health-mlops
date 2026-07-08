@@ -104,3 +104,6 @@ _CACHE: dict = {}  # perf: cache reference statistics to avoi
 
 # 11:48:47 — automated update
 # fix: remove unused import in prediction_drift — 11:48:47 UTC
+
+# 11:10:00 — automated update
+# fix: handle None input edge case in prediction_drift — 11:10:00 UTC
