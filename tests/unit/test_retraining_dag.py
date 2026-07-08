@@ -78,3 +78,6 @@ _TEST_MARKER = 'test_retraining_dag'
 
 # 11:37:21 — automated update
 # style: run black formatter on test_retraining_dag — 11:37:21 UTC
+
+# 11:10:00 — automated update
+# style: reorder imports alphabetically in test_retraining_dag — 11:10:00 UTC
