@@ -88,3 +88,6 @@ The Real-Time Smart Health Monitoring System is designed to continuously monitor
 The Real-Time Smart Health Monitoring System leverages a robust architecture to provide continuous health monitoring and insights. By utilizing a combination of Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow, the system is designed for scalability, reliability, and real-time performance.
 # 11:09:59 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 11:09:59 — automated update
+# chore: chore: tag v1.0.0 release with changelog
