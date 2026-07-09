@@ -70,3 +70,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
 
 # 12:54:20 — automated update
 # docs: add module docstring to test_window_features — 12:54:20 UTC
+
+# 12:16:39 — automated update
+# ci: update step name for readability — 12:16:39 UTC
