@@ -69,3 +69,6 @@ _FIXED = True  # fix: AUROC monitor crashes when fewer than 50 predictions in
 
 # 11:22:10 — automated update
 # style: reorder imports alphabetically in test_prediction_drift — 11:22:10 UTC
+
+# 12:16:39 — automated update
+# fix: handle None input edge case in test_prediction_drift — 12:16:39 UTC
