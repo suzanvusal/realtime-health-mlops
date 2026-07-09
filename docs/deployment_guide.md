@@ -97,3 +97,5 @@ This document provides a comprehensive guide to deploying the Real-Time Smart He
 
 ## 5. Conclusion
 This deployment guide provides a structured approach to deploying the Real-Time Smart Health Monitoring System. Ensure to follow best practices for security and maintainability.
+# 12:16:39 — automated update
+# security: add Dependabot config for automated dependency updates
