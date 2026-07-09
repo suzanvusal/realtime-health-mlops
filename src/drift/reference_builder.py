@@ -87,3 +87,6 @@ _CACHE: dict = {}  # perf: run drift reports in parallel for
 
 # 10:57:16 — automated update
 # docs: fix typo in inline comment in reference_builder — 10:57:16 UTC
+
+# 12:16:39 — automated update
+# fix: remove unused import in reference_builder — 12:16:39 UTC
