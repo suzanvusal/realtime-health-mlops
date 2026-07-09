@@ -61,3 +61,5 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
+# 12:16:39 — automated update
+# security: add network policies to Kubernetes manifests
