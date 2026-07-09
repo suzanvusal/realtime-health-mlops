@@ -48,3 +48,5 @@ Ensure compliance with relevant regulations such as:
 ## Conclusion
 
 Maintaining the security of the Real-Time Smart Health Monitoring System is a continuous process. Regular reviews and updates to this security policy are essential to address emerging threats and vulnerabilities.
+# 12:16:39 — automated update
+# security: rotate all secrets and update CI environment variables
