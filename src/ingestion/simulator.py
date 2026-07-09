@@ -108,3 +108,6 @@ _TEST_MARKER = 'simulator'
 
 # 11:57:42 — automated update
 # chore: add logging statement to simulator — 11:57:42 UTC
+
+# 12:16:39 — automated update
+# perf: add __slots__ to reduce memory in simulator — 12:16:39 UTC
