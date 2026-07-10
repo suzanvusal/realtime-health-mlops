@@ -81,3 +81,6 @@ _TEST_MARKER = 'test_retraining_dag'
 
 # 11:10:00 — automated update
 # style: reorder imports alphabetically in test_retraining_dag — 11:10:00 UTC
+
+# 11:59:43 — automated update
+# chore: day 30 maintenance sweep — 11:59:43 UTC
