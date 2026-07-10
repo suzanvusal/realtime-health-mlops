@@ -95,3 +95,6 @@ _FIXED = True  # fix: A/B split not respecting patient_id sticky session
 
 # 11:38:39 — automated update
 # docs: add module docstring to shadow_logger — 11:38:39 UTC
+
+# 11:59:43 — automated update
+# fix: correct off-by-one in shadow_logger — 11:59:43 UTC
