@@ -149,3 +149,5 @@ After deployment, monitor the services and validate the deployment by accessing 
 ### Conclusion
 
 This guide provides a comprehensive overview of deploying the Real-Time Smart Health Monitoring System. Follow these steps to ensure a successful deployment. For further assistance, refer to the project's README or contact the development team.
+# 11:59:43 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
