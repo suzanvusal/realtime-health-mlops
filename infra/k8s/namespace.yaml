@@ -8,20 +8,21 @@ metadata:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: redis-secret
-  namespace: smart-health-monitoring
-type: Opaque
-data:
-  redis-password: <base64_encoded_password>
----
-apiVersion: v1
-kind: Secret
-metadata:
   name: kafka-secret
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  kafka-password: <base64_encoded_password>
+  kafka-username: <base64-encoded-username>
+  kafka-password: <base64-encoded-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  redis-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -29,7 +30,7 @@ metadata:
   name: mlflow-config
   namespace: smart-health-monitoring
 data:
-  MLFLOW_TRACKING_URI: "http://mlflow:5000"
+  MLFLOW_TRACKING_URI: "http://mlflow-server:5000"
   MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
 ---
 apiVersion: v1
@@ -51,7 +52,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: monitoring-rolebinding
+  name: monitoring-role-binding
   namespace: smart-health-monitoring
 subjects:
   - kind: ServiceAccount
@@ -61,8 +62,3 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
-# 12:16:39 — automated update
-# security: add network policies to Kubernetes manifests
-
-# 12:16:39 — automated update
-# style: formatted at 12:16:39
