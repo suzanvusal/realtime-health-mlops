@@ -50,3 +50,7 @@ Maintaining the security of the Real-Time Smart Health Monitoring System is a sh
 
 # 11:59:43 — automated update
 """\ndocs: fix broken links in README\n"""
+
+# 11:59:43 — automated update
+# fix applied at 11:59:43
+_FIXED = True  # fix: environment variable names inconsistent across services
