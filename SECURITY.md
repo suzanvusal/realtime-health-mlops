@@ -47,3 +47,6 @@ If you discover a security vulnerability in the Real-Time Smart Health Monitorin
 Maintaining the security of the Real-Time Smart Health Monitoring System is a shared responsibility. By following the practices outlined in this document, we can help protect sensitive health data and ensure the integrity of our system.
 # 11:59:43 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 11:59:43 — automated update
+"""\ndocs: fix broken links in README\n"""
