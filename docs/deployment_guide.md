@@ -81,3 +81,6 @@ Access the monitoring dashboard at `http://localhost:8080`.
 This guide provides a step-by-step approach to deploying the Real-Time Smart Health Monitoring System. Ensure to follow best practices for security and maintainability throughout the deployment process.
 # 10:19:46 — automated update
 # ci: updated at 10:19:46
+
+# 10:19:46 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
