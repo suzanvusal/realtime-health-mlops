@@ -1,153 +1,81 @@
 # Deployment Guide for Real-Time Smart Health Monitoring System
 
 ## Introduction
-
-This deployment guide provides detailed instructions on how to deploy the Real-Time Smart Health Monitoring System using the specified stack: Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. 
+This document provides a comprehensive guide for deploying the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. 
 
 ## Prerequisites
+Before deploying the system, ensure that you have the following installed:
+- Docker
+- Kubernetes (kubectl)
+- Helm
+- Python 3.8+
+- Kafka
+- Redis
 
-Before deploying the system, ensure you have the following prerequisites:
-
-- Kubernetes cluster (minikube, GKE, EKS, or AKS)
-- kubectl installed and configured
-- Helm installed
-- Docker installed
-- Access to a Kafka broker
-- Redis instance
+## Architecture Overview
+The system is composed of several microservices that communicate via Kafka. The architecture includes:
+- Data Ingestion Service (Faust)
+- Model Training Service (XGBoost, PyTorch)
+- API Service (FastAPI)
+- Monitoring and Evaluation Service (Evidently)
+- Workflow Orchestration (Airflow)
 
 ## Deployment Steps
 
 ### Step 1: Clone the Repository
-
-Clone the repository containing the codebase:
-
 ```bash
 git clone https://github.com/yourusername/smart-health-monitoring.git
 cd smart-health-monitoring
 ```
 
-### Step 2: Build Docker Images
-
-Build the Docker images for the FastAPI application and the streaming service using Docker:
-
+### Step 2: Set Up Kubernetes Namespace
+Create a namespace for the application:
 ```bash
-# Build FastAPI app
-docker build -t smart-health-api ./app
-
-# Build Faust streaming service
-docker build -t smart-health-stream ./streaming
+kubectl apply -f infra/k8s/namespace.yaml
 ```
 
-### Step 3: Deploy Kafka
-
-Deploy Kafka using Helm:
-
+### Step 3: Deploy Kafka and Redis
+Use Helm to deploy Kafka and Redis:
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install kafka bitnami/kafka
+helm install kafka bitnami/kafka --namespace smart-health
+helm install redis bitnami/redis --namespace smart-health
 ```
 
-### Step 4: Deploy Redis
+### Step 4: Build and Deploy Microservices
+Build Docker images for each microservice and push them to your container registry.
 
-Deploy Redis using Helm:
-
+For example, to build the FastAPI service:
 ```bash
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install redis bitnami/redis
+cd api_service
+docker build -t yourusername/api_service:latest .
+docker push yourusername/api_service:latest
 ```
 
-### Step 5: Deploy FastAPI Application
-
-Create a Kubernetes deployment for the FastAPI application:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: smart-health-api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: smart-health-api
-  template:
-    metadata:
-      labels:
-        app: smart-health-api
-    spec:
-      containers:
-      - name: smart-health-api
-        image: smart-health-api:latest
-        ports:
-        - containerPort: 8000
-```
-
-Apply the deployment:
-
+Deploy the services using Kubernetes manifests:
 ```bash
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/api_service.yaml --namespace smart-health
+kubectl apply -f k8s/faust_service.yaml --namespace smart-health
+kubectl apply -f k8s/model_service.yaml --namespace smart-health
+kubectl apply -f k8s/monitoring_service.yaml --namespace smart-health
+kubectl apply -f k8s/airflow_service.yaml --namespace smart-health
 ```
 
-### Step 6: Deploy Streaming Service
-
-Create a Kubernetes deployment for the Faust streaming service:
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: smart-health-stream
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: smart-health-stream
-  template:
-    metadata:
-      labels:
-        app: smart-health-stream
-    spec:
-      containers:
-      - name: smart-health-stream
-        image: smart-health-stream:latest
-```
-
-Apply the deployment:
-
+### Step 5: Configure Secrets Management
+Use Kubernetes secrets to manage sensitive information:
 ```bash
-kubectl apply -f k8s/stream_deployment.yaml
+kubectl create secret generic db-credentials --from-literal=username=yourusername --from-literal=password=yourpassword --namespace smart-health
 ```
 
-### Step 7: Expose Services
+### Step 6: Set Up CI/CD Pipeline
+Integrate CI/CD using GitHub Actions or any other CI/CD tool of your choice to automate testing and deployment.
 
-Expose the FastAPI service:
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: smart-health-api
-spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 8000
-  selector:
-    app: smart-health-api
-```
-
-Apply the service:
-
+### Step 7: Monitor and Evaluate
+Use Evidently to monitor model performance and data quality:
 ```bash
-kubectl apply -f k8s/service.yaml
+kubectl port-forward svc/monitoring-service 8080:80 --namespace smart-health
 ```
+Access the monitoring dashboard at `http://localhost:8080`.
 
-### Step 8: Monitor and Validate
-
-After deployment, monitor the services and validate the deployment by accessing the FastAPI application through the LoadBalancer IP.
-
-### Conclusion
-
-This guide provides a comprehensive overview of deploying the Real-Time Smart Health Monitoring System. Follow these steps to ensure a successful deployment. For further assistance, refer to the project's README or contact the development team.
-# 11:59:43 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+## Conclusion
+This guide provides a step-by-step approach to deploying the Real-Time Smart Health Monitoring System. Ensure to follow best practices for security and maintainability throughout the deployment process.
