@@ -61,3 +61,6 @@ Contributions are welcome! Please submit a pull request or open an issue to disc
 This project is licensed under the MIT License. See the LICENSE file for details.
 # 10:19:46 — automated update
 # security: add network policies to Kubernetes manifests
+
+# 10:19:46 — automated update
+"""\ndocs: fix broken links in README\n"""
