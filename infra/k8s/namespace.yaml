@@ -12,8 +12,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  kafka-username: <base64-encoded-username>
-  kafka-password: <base64-encoded-password>
+  kafka-password: <base64_encoded_kafka_password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,52 +21,38 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64-encoded-password>
+  redis-password: <base64_encoded_redis_password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mlflow-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  mlflow-tracking-uri: <base64_encoded_mlflow_tracking_uri>
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mlflow-config
+  name: app-config
   namespace: smart-health-monitoring
 data:
-  MLFLOW_TRACKING_URI: "http://mlflow-server:5000"
-  MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+  REDIS_HOST: "redis"
+  MLFLOW_TRACKING_URI: "http://mlflow:5000"
+  EVIDENTLY_API_URL: "http://evidently:8080"
 ---
 apiVersion: v1
-kind: ServiceAccount
+kind: Service
 metadata:
-  name: monitoring-sa
+  name: health-monitoring-service
   namespace: smart-health-monitoring
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: monitoring-role
-  namespace: smart-health-monitoring
-rules:
-  - apiGroups: [""]
-    resources: ["pods", "pods/log"]
-    verbs: ["get", "list", "watch"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: monitoring-role-binding
-  namespace: smart-health-monitoring
-subjects:
-  - kind: ServiceAccount
-    name: monitoring-sa
-    namespace: smart-health-monitoring
-roleRef:
-  kind: Role
-  name: monitoring-role
-  apiGroup: rbac.authorization.k8s.io
-# 11:59:43 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 11:59:43 — automated update
-# chore: chore: tag v1.0.0 release with changelog
-
-# 11:59:43 — automated update
-# refactor: refactor: final code cleanup — remove all TODO comments
-_REFACTORED = True
+spec:
+  selector:
+    app: health-monitoring
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
