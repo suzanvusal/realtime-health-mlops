@@ -89,3 +89,6 @@ _REFACTORED = True
 
 # 11:38:39 — automated update
 # refactor: extract magic number to named constant in model_promoter — 11:38:39 UTC
+
+# 10:19:46 — automated update
+# docs: update example in docstring of model_promoter — 10:19:46 UTC
