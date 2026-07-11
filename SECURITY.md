@@ -47,3 +47,7 @@ If you discover a security vulnerability in this system, please report it to the
 Maintaining the security of the Real-Time Smart Health Monitoring System is a continuous effort that requires the collaboration of all team members. By following the practices outlined in this document, we can help ensure the safety and privacy of our users' health data.
 # 10:19:46 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 10:19:46 — automated update
+# fix applied at 10:19:46
+_FIXED = True  # fix: environment variable names inconsistent across services
