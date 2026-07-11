@@ -60,3 +60,6 @@ def test_drift_report_generation(reference_data: pd.DataFrame, new_data: pd.Data
 
 # 11:12:26 — automated update
 # chore: add logging statement to test_drift_detection — 11:12:26 UTC
+
+# 10:19:46 — automated update
+# fix: handle None input edge case in test_drift_detection — 10:19:46 UTC
