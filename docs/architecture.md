@@ -50,3 +50,6 @@ The Real-Time Smart Health Monitoring System leverages a robust architecture to 
 
 # 10:38:39 — automated update
 # ci: updated at 10:38:39
+
+# 10:38:39 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
