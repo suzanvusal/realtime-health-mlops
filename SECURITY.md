@@ -52,3 +52,6 @@ Ensure compliance with relevant regulations such as HIPAA, GDPR, and others appl
 Maintaining security is an ongoing process. Regularly review and update this security policy to adapt to new threats and changes in the system architecture.
 # 10:38:39 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 10:38:39 — automated update
+"""\ndocs: fix broken links in README\n"""
