@@ -73,3 +73,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
 
 # 12:16:39 — automated update
 # ci: update step name for readability — 12:16:39 UTC
+
+# 10:38:39 — automated update
+# test: add assertion for return type in test_window_features — 10:38:39 UTC
