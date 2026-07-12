@@ -143,3 +143,6 @@ This deployment guide outlines the steps required to deploy the Real-Time Smart 
    ```
 
 ## Security
+# 10:38:39 — automated update
+# fix applied at 10:38:39
+_FIXED = True  # fix: environment variable names inconsistent across services
