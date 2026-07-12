@@ -79,3 +79,6 @@ _TEST_MARKER = 'test_model_trainer'
 
 # 11:49:58 — automated update
 # docs: update example in docstring of test_model_trainer — 11:49:58 UTC
+
+# 10:38:39 — automated update
+# docs: add module docstring to test_model_trainer — 10:38:39 UTC
