@@ -103,3 +103,6 @@ Expose the FastAPI application using a LoadBalancer or Ingress. Access the appli
 This deployment guide provides the necessary steps to successfully deploy the Real-Time Smart Health Monitoring System. Ensure to follow best practices for security and maintainability.
 # 12:12:04 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 12:12:04 — automated update
+"""\ndocs: fix broken links in README\n"""
