@@ -111,3 +111,6 @@ _TEST_MARKER = 'simulator'
 
 # 12:16:39 — automated update
 # perf: add __slots__ to reduce memory in simulator — 12:16:39 UTC
+
+# 12:12:05 — automated update
+# fix: correct off-by-one in simulator — 12:12:05 UTC
