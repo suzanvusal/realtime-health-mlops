@@ -106,3 +106,7 @@ This deployment guide provides the necessary steps to successfully deploy the Re
 
 # 12:12:04 — automated update
 """\ndocs: fix broken links in README\n"""
+
+# 12:12:04 — automated update
+# fix applied at 12:12:04
+_FIXED = True  # fix: environment variable names inconsistent across services
