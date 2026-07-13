@@ -115,3 +115,6 @@ _FIXED = True  # fix: correct RMSSD formula — was using mean instead of RMS
 
 # 10:19:46 — automated update
 # chore: day 30 maintenance sweep — 10:19:46 UTC
+
+# 12:12:04 — automated update
+# test: add assertion for return type in feature_store — 12:12:04 UTC
