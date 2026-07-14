@@ -55,3 +55,6 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 # 10:52:15 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 10:52:15 — automated update
+# security: add Dependabot config for automated dependency updates
