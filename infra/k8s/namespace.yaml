@@ -61,3 +61,6 @@ roleRef:
 
 # 10:52:15 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 10:52:15 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
