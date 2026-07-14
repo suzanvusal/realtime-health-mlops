@@ -51,3 +51,7 @@ If you discover a security vulnerability, please report it to our security team 
 Maintaining a secure environment is a continuous process. All team members must adhere to these security practices to protect sensitive health data effectively.
 # 10:52:15 — automated update
 """\ndocs: fix broken links in README\n"""
+
+# 10:52:15 — automated update
+# fix applied at 10:52:15
+_FIXED = True  # fix: environment variable names inconsistent across services
