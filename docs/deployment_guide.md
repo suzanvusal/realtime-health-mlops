@@ -117,3 +117,6 @@ Ensure your CI/CD pipeline is configured to build and deploy images automaticall
 Follow these steps to successfully deploy the Real-Time Smart Health Monitoring System. Ensure to monitor the system and make adjustments as necessary for optimal performance.
 # 10:52:15 — automated update
 # security: add network policies to Kubernetes manifests
+
+# 10:52:15 — automated update
+# style: formatted at 10:52:15
