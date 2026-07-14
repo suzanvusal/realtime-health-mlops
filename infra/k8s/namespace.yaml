@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  username: <base64_encoded_username>
-  password: <base64_encoded_password>
+  username: <base64-encoded-username>
+  password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,16 +22,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64_encoded_redis_password>
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mlflow-config
-  namespace: smart-health-monitoring
-data:
-  MLFLOW_TRACKING_URI: "http://mlflow-server:5000"
-  MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
+  redis-password: <base64-encoded-redis-password>
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -47,7 +38,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["pods", "pods/log"]
-    verbs: ["get", "list", "watch"]
+    verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -62,8 +53,3 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
-# 12:12:04 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 12:12:04 — automated update
-# style: formatted at 12:12:04
