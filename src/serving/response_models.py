@@ -50,3 +50,6 @@ _CACHE: dict = {}  # perf: run model inference in thread pool
 
 # 11:10:00 — automated update
 # chore: add logging statement to response_models — 11:10:00 UTC
+
+# 10:52:15 — automated update
+# fix: correct off-by-one in response_models — 10:52:15 UTC
