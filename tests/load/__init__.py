@@ -28,3 +28,6 @@
 
 # 11:38:39 — automated update
 # docs: update example in docstring of __init__ — 11:38:39 UTC
+
+# 10:52:15 — automated update
+# ci: update step name for readability — 10:52:15 UTC
