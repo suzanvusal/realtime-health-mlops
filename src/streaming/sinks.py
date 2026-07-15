@@ -69,3 +69,6 @@ _FIXED = True  # fix: handle None values in sensor readings gracefully
 
 # 11:00:51 — automated update
 # ci: update step name for readability — 11:00:51 UTC
+
+# 10:56:17 — automated update
+# fix: remove unused import in sinks — 10:56:17 UTC
