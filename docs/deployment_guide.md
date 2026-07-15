@@ -133,3 +133,5 @@ After deployment, monitor the services using Kubernetes dashboard or any monitor
 ## Conclusion
 
 This deployment guide provides the necessary steps to deploy the Real-Time Smart Health Monitoring System. Ensure that you follow each step carefully and monitor the system for any issues post-deployment.
+# 10:56:17 — automated update
+# chore: chore: archive unused notebooks to notebooks/archive/
