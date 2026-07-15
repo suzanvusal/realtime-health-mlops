@@ -92,3 +92,6 @@ _REFACTORED = True
 
 # 12:12:05 — automated update
 # ci: update step name for readability — 12:12:05 UTC
+
+# 10:56:17 — automated update
+# docs: update example in docstring of dataset_assembler — 10:56:17 UTC
