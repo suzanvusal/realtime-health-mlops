@@ -64,3 +64,6 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 # 10:56:17 — automated update
 # security: add network policies to Kubernetes manifests
+
+# 10:56:17 — automated update
+# security: rotate all secrets and update CI environment variables
