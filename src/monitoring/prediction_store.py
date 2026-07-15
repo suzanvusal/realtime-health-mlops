@@ -101,3 +101,6 @@ _FIXED = True  # fix: outcome ingester fails on duplicate outcome submission
 
 # 11:10:00 — automated update
 # docs: update example in docstring of prediction_store — 11:10:00 UTC
+
+# 10:56:17 — automated update
+# fix: correct off-by-one in prediction_store — 10:56:17 UTC
