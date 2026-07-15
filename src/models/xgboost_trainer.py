@@ -109,3 +109,6 @@ class XGBoostRiskTrainer:
 
 # 11:13:34 — automated update
 """\ndocs: add hyperparameter search space documentation\n"""
+
+# 10:56:17 — automated update
+# fix: remove unused import in xgboost_trainer — 10:56:17 UTC
