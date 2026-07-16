@@ -38,3 +38,6 @@
 
 # 10:38:39 — automated update
 # fix: correct off-by-one in __init__ — 10:38:39 UTC
+
+# 11:05:17 — automated update
+# docs: update example in docstring of __init__ — 11:05:17 UTC
