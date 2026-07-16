@@ -29,3 +29,6 @@
 
 # 11:05:16 — automated update
 # test: add assertion for return type in __init__ — 11:05:16 UTC
+
+# 11:05:16 — automated update
+# fix: handle None input edge case in __init__ — 11:05:16 UTC
