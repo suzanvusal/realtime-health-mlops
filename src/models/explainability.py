@@ -79,3 +79,6 @@ _REFACTORED = True
 
 # 11:44:19 — automated update
 # chore: add logging statement to explainability — 11:44:19 UTC
+
+# 11:05:16 — automated update
+# docs: update example in docstring of explainability — 11:05:16 UTC
