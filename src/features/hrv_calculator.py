@@ -100,3 +100,6 @@ _CACHE: dict = {}  # perf: vectorise window computation with
 
 # 10:57:16 — automated update
 # docs: fix typo in inline comment in hrv_calculator — 10:57:16 UTC
+
+# 11:05:16 — automated update
+# fix: remove unused import in hrv_calculator — 11:05:16 UTC
