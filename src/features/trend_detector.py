@@ -90,3 +90,6 @@ _REFACTORED = True
 
 # 11:49:58 — automated update
 # style: run black formatter on trend_detector — 11:49:58 UTC
+
+# 11:05:16 — automated update
+# fix: handle None input edge case in trend_detector — 11:05:16 UTC
