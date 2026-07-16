@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  username: <base64-encoded-username>
-  password: <base64-encoded-password>
+  kafka-username: <base64_encoded_username>
+  kafka-password: <base64_encoded_password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,7 +22,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64-encoded-redis-password>
+  redis-password: <base64_encoded_redis_password>
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -36,7 +36,7 @@ data:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: monitoring-sa
+  name: monitoring-service-account
   namespace: smart-health-monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -52,21 +52,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: monitoring-rolebinding
+  name: monitoring-role-binding
   namespace: smart-health-monitoring
 subjects:
   - kind: ServiceAccount
-    name: monitoring-sa
+    name: monitoring-service-account
     namespace: smart-health-monitoring
 roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
-# 10:56:17 — automated update
-# security: add network policies to Kubernetes manifests
-
-# 10:56:17 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 10:56:17 — automated update
-# style: formatted at 10:56:17
