@@ -2,136 +2,98 @@
 
 ## Overview
 
-This document provides a comprehensive guide for deploying the Real-Time Smart Health Monitoring System. It covers the necessary steps to set up the environment, deploy the services, and ensure that the system runs smoothly.
+This deployment guide provides instructions for deploying the Real-Time Smart Health Monitoring System using Kubernetes. The system leverages Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow for real-time health monitoring and analytics.
 
 ## Prerequisites
 
-Before deploying the system, ensure that you have the following:
-
-- Kubernetes cluster (e.g., GKE, EKS, AKS)
+- Kubernetes cluster (version 1.18 or higher)
 - kubectl installed and configured
 - Helm installed
 - Docker installed
 - Access to a Kafka broker
 - Redis instance
-- MLflow server running
-- Airflow instance for orchestration
 
 ## Deployment Steps
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/yourusername/smart-health-monitoring.git
 cd smart-health-monitoring
 ```
 
-### 2. Build Docker Images
+### Step 2: Build Docker Images
 
-Navigate to the `services` directory and build the Docker images for each service.
-
-```bash
-cd services
-docker build -t health-monitoring-api ./api
-docker build -t health-monitoring-worker ./worker
-```
-
-### 3. Push Docker Images to Registry
-
-Push the built images to your Docker registry.
+Navigate to the Dockerfiles for each service and build the images.
 
 ```bash
-docker tag health-monitoring-api your-registry/health-monitoring-api
-docker push your-registry/health-monitoring-api
+# Build FastAPI service
+cd fastapi_service
+docker build -t yourusername/fastapi-service:latest .
 
-docker tag health-monitoring-worker your-registry/health-monitoring-worker
-docker push your-registry/health-monitoring-worker
+# Build Kafka consumer service
+cd ../kafka_consumer
+docker build -t yourusername/kafka-consumer:latest .
+
+# Build other services as needed...
 ```
 
-### 4. Deploy Kafka
-
-Use Helm to deploy Kafka in your Kubernetes cluster.
+### Step 3: Push Docker Images to Registry
 
 ```bash
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install kafka bitnami/kafka
+docker push yourusername/fastapi-service:latest
+docker push yourusername/kafka-consumer:latest
+# Push other services as needed...
 ```
 
-### 5. Deploy Redis
+### Step 4: Deploy Using Helm
 
-Deploy Redis using Helm.
+1. Navigate to the Helm charts directory.
 
 ```bash
-helm install redis bitnami/redis
+cd helm_charts
 ```
 
-### 6. Deploy MLflow
-
-Deploy MLflow using the following command:
+2. Install the Helm chart.
 
 ```bash
-kubectl apply -f infra/mlflow/deployment.yaml
+helm install smart-health-monitoring ./smart-health-monitoring-chart
 ```
 
-### 7. Deploy Airflow
+### Step 5: Configure Secrets
 
-Deploy Airflow using Helm.
+Use Kubernetes secrets to manage sensitive information.
 
 ```bash
-helm repo add apache-airflow https://airflow.apache.org
-helm install airflow apache-airflow/airflow
+kubectl create secret generic kafka-secret --from-literal=username='your_kafka_username' --from-literal=password='your_kafka_password'
+kubectl create secret generic redis-secret --from-literal=password='your_redis_password'
 ```
 
-### 8. Deploy FastAPI Application
+### Step 6: Monitor Deployment
 
-Create a Kubernetes deployment for the FastAPI application.
+Check the status of your deployment.
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: health-monitoring-api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: health-monitoring-api
-  template:
-    metadata:
-      labels:
-        app: health-monitoring-api
-    spec:
-      containers:
-      - name: health-monitoring-api
-        image: your-registry/health-monitoring-api
-        ports:
-        - containerPort: 8000
+```bash
+kubectl get pods
+kubectl logs <pod-name>
 ```
 
-### 9. Expose the FastAPI Service
+### Step 7: Access the Application
 
-Create a service to expose the FastAPI application.
+Expose the FastAPI service using a LoadBalancer or NodePort.
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: health-monitoring-api
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8000
-  selector:
-    app: health-monitoring-api
+```bash
+kubectl expose deployment fastapi-service --type=LoadBalancer --port=80
 ```
 
-### 10. Monitor and Maintain
+Access the application using the external IP provided by the LoadBalancer.
 
-After deployment, monitor the services using Kubernetes dashboard or any monitoring tool of your choice. Ensure that logs are being captured and that the system is functioning as expected.
+## Security Hardening
+
+- Ensure that all secrets are stored securely using Kubernetes secrets.
+- Limit access to the Kubernetes API server.
+- Use Network Policies to restrict communication between services.
 
 ## Conclusion
 
-This deployment guide provides the necessary steps to deploy the Real-Time Smart Health Monitoring System. Ensure that you follow each step carefully and monitor the system for any issues post-deployment.
-# 10:56:17 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+This guide provides a comprehensive overview of deploying the Real-Time Smart Health Monitoring System. Ensure to follow best practices for security and monitoring as you deploy and maintain the system.
