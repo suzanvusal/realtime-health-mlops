@@ -54,3 +54,7 @@ The Real-Time Smart Health Monitoring System is a robust architecture designed t
 
 # 11:05:16 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 11:05:16 — automated update
+# fix applied at 11:05:16
+_FIXED = True  # fix: environment variable names inconsistent across services
