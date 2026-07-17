@@ -71,3 +71,6 @@ def test_full_pipeline(setup_environment) -> None:
 
 # 10:38:39 — automated update
 # chore: day 30 maintenance sweep — 10:38:39 UTC
+
+# 10:52:53 — automated update
+# docs: add module docstring to test_full_retraining_pipeline — 10:52:53 UTC
