@@ -112,3 +112,6 @@ class XGBoostRiskTrainer:
 
 # 10:56:17 — automated update
 # fix: remove unused import in xgboost_trainer — 10:56:17 UTC
+
+# 10:52:53 — automated update
+# test: add assertion for return type in xgboost_trainer — 10:52:53 UTC
