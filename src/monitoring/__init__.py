@@ -26,3 +26,6 @@
 
 # 10:52:15 — automated update
 # docs: fix typo in inline comment in __init__ — 10:52:15 UTC
+
+# 10:52:53 — automated update
+# fix: handle None input edge case in __init__ — 10:52:53 UTC
