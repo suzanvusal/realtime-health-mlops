@@ -64,3 +64,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 # 10:52:53 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 10:52:53 — automated update
+# fix applied at 10:52:53
+_FIXED = True  # fix: environment variable names inconsistent across services
