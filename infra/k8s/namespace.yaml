@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  kafka-username: <base64_encoded_username>
-  kafka-password: <base64_encoded_password>
+  kafka-username: <base64-encoded-username>
+  kafka-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,7 +22,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64_encoded_redis_password>
+  redis-password: <base64-encoded-redis-password>
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -30,13 +30,13 @@ metadata:
   name: mlflow-config
   namespace: smart-health-monitoring
 data:
-  MLFLOW_TRACKING_URI: "http://mlflow:5000"
-  MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
+  MLFLOW_TRACKING_URI: "http://mlflow-tracking:5000"
+  MLFLOW_EXPERIMENT_NAME: "smart-health-experiment"
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: monitoring-service-account
+  name: monitoring-sa
   namespace: smart-health-monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -47,7 +47,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["pods", "pods/log"]
-    verbs: ["get", "list", "watch"]
+    verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -56,14 +56,9 @@ metadata:
   namespace: smart-health-monitoring
 subjects:
   - kind: ServiceAccount
-    name: monitoring-service-account
+    name: monitoring-sa
     namespace: smart-health-monitoring
 roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
-# 11:05:16 — automated update
-"""\ndocs: fix broken links in README\n"""
-
-# 11:05:16 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
