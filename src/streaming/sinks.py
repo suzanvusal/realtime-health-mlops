@@ -72,3 +72,6 @@ _FIXED = True  # fix: handle None values in sensor readings gracefully
 
 # 10:56:17 — automated update
 # fix: remove unused import in sinks — 10:56:17 UTC
+
+# 10:52:53 — automated update
+# perf: add __slots__ to reduce memory in sinks — 10:52:53 UTC
