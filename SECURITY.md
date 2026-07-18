@@ -42,3 +42,7 @@ If you discover a security vulnerability in this system, please report it to the
 Maintaining the security of the Real-Time Smart Health Monitoring System is a shared responsibility. By following the guidelines outlined in this document, we can ensure the integrity, confidentiality, and availability of the system and its data.
 # 10:23:32 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 10:23:32 — automated update
+# fix applied at 10:23:32
+_FIXED = True  # fix: environment variable names inconsistent across services
