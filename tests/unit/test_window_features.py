@@ -76,3 +76,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
 
 # 10:38:39 — automated update
 # test: add assertion for return type in test_window_features — 10:38:39 UTC
+
+# 10:23:32 — automated update
+# docs: update example in docstring of test_window_features — 10:23:32 UTC
