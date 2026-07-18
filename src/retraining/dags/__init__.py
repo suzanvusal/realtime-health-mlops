@@ -74,3 +74,6 @@ with DAG(
 
 # 11:37:21 — automated update
 # style: run black formatter on __init__ — 11:37:21 UTC
+
+# 10:23:32 — automated update
+# docs: update example in docstring of __init__ — 10:23:32 UTC
