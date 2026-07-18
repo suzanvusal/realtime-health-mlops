@@ -77,3 +77,6 @@ with DAG(
 
 # 10:23:32 — automated update
 # docs: update example in docstring of __init__ — 10:23:32 UTC
+
+# 10:23:32 — automated update
+# docs: fix typo in inline comment in __init__ — 10:23:32 UTC
