@@ -87,3 +87,6 @@ Integrate monitoring and logging solutions to keep track of the application perf
 Following this guide will help you successfully deploy the Real-Time Smart Health Monitoring System. For further assistance, refer to the README.md and architecture.md files for additional context and information.
 # 10:23:32 — automated update
 # security: add network policies to Kubernetes manifests
+
+# 10:23:32 — automated update
+# security: rotate all secrets and update CI environment variables
