@@ -89,3 +89,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Evidently](https://evidentlyai.com/)
 - [Apache Airflow](https://airflow.apache.org/)
+# 10:39:01 — automated update
+"""\ndocs: fix broken links in README\n"""
