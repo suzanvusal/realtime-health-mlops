@@ -106,3 +106,6 @@ _FIXED = True  # fix: Slack message truncated for features with long names
 
 # 11:59:43 — automated update
 # style: reorder imports alphabetically in alert_templates — 11:59:43 UTC
+
+# 10:39:01 — automated update
+# fix: correct off-by-one in alert_templates — 10:39:01 UTC
