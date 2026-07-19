@@ -95,3 +95,6 @@ _FIXED = True  # fix: temporal leakage — ensure val set is always after train
 
 # 11:08:03 — automated update
 # style: reorder imports alphabetically in data_pipeline — 11:08:03 UTC
+
+# 10:39:01 — automated update
+# refactor: extract magic number to named constant in data_pipeline — 10:39:01 UTC
