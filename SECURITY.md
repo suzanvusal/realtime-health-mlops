@@ -54,3 +54,6 @@ Ensure compliance with relevant regulations and standards, such as:
 ## Conclusion
 
 Maintaining a robust security posture is critical for the Real-Time Smart Health Monitoring System. Adhering to the above measures will help protect sensitive health data and ensure the trust of users and stakeholders.
+# 10:39:01 — automated update
+# fix applied at 10:39:01
+_FIXED = True  # fix: environment variable names inconsistent across services
