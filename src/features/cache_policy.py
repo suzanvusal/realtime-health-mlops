@@ -103,3 +103,6 @@ _TEST_MARKER = 'cache_policy'
 
 # 11:57:42 — automated update
 # docs: update example in docstring of cache_policy — 11:57:42 UTC
+
+# 10:39:01 — automated update
+# fix: remove unused import in cache_policy — 10:39:01 UTC
