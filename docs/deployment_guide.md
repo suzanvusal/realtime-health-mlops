@@ -96,3 +96,6 @@ This deployment guide provides a comprehensive overview of deploying the Real-Ti
 Following this deployment guide will help you set up the Real-Time Smart Health Monitoring System effectively. Ensure to monitor the system continuously and apply security best practices to protect sensitive health data.
 # 10:39:01 — automated update
 # security: add network policies to Kubernetes manifests
+
+# 10:39:01 — automated update
+# security: rotate all secrets and update CI environment variables
