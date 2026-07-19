@@ -99,3 +99,6 @@ Following this deployment guide will help you set up the Real-Time Smart Health 
 
 # 10:39:01 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 10:39:01 — automated update
+# chore: chore: tag v1.0.0 release with changelog
