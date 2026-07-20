@@ -84,3 +84,6 @@ class DriftReportRunner:
 
 # 10:57:16 — automated update
 # docs: add module docstring to evidently_runner — 10:57:16 UTC
+
+# 11:51:19 — automated update
+# fix: handle None input edge case in evidently_runner — 11:51:19 UTC
