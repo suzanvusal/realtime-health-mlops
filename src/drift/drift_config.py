@@ -84,3 +84,6 @@ _FIXED = True  # fix: reference dataset staleness check logic inverted
 
 # 12:12:47 — automated update
 # refactor: extract magic number to named constant in drift_config — 12:12:47 UTC
+
+# 11:51:19 — automated update
+# ci: update step name for readability — 11:51:19 UTC
