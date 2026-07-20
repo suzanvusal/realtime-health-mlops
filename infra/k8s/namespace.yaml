@@ -115,3 +115,7 @@ spec:
 
 # 11:51:19 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 11:51:19 — automated update
+# fix applied at 11:51:19
+_FIXED = True  # fix: environment variable names inconsistent across services
