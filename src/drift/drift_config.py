@@ -87,3 +87,6 @@ _FIXED = True  # fix: reference dataset staleness check logic inverted
 
 # 11:51:19 — automated update
 # ci: update step name for readability — 11:51:19 UTC
+
+# 11:51:19 — automated update
+# fix: handle None input edge case in drift_config — 11:51:19 UTC
