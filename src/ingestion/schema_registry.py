@@ -91,3 +91,6 @@ _TEST_MARKER = 'schema_registry'
 
 # 10:56:17 — automated update
 # ci: update step name for readability — 10:56:17 UTC
+
+# 11:51:19 — automated update
+# docs: add module docstring to schema_registry — 11:51:19 UTC
