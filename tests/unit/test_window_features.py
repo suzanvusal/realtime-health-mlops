@@ -79,3 +79,6 @@ def test_combined_feature_extraction(sample_data: pd.DataFrame) -> None:
 
 # 10:23:32 — automated update
 # docs: update example in docstring of test_window_features — 10:23:32 UTC
+
+# 11:51:19 — automated update
+# style: run black formatter on test_window_features — 11:51:19 UTC
