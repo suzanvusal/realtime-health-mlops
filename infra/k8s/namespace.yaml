@@ -12,8 +12,8 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  username: <base64-encoded-username>
-  password: <base64-encoded-password>
+  kafka-username: <base64-encoded-username>
+  kafka-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: Secret
@@ -22,19 +22,7 @@ metadata:
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  redis-password: <base64-encoded-redis-password>
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-config
-  namespace: smart-health-monitoring
-data:
-  KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
-  REDIS_HOST: "redis"
-  REDIS_PORT: "6379"
-  MLFLOW_TRACKING_URI: "http://mlflow:5000"
-  MODEL_URI: "models:/smart-health-monitoring/latest"
+  redis-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -42,26 +30,80 @@ metadata:
   name: monitoring-sa
   namespace: smart-health-monitoring
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: monitoring-role
+  name: app-config
   namespace: smart-health-monitoring
-rules:
-  - apiGroups: [""]
-    resources: ["pods", "pods/log"]
-    verbs: ["get", "watch", "list"]
+data:
+  KAFKA_BROKER: "kafka:9092"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  MLFLOW_TRACKING_URI: "http://mlflow:5000"
+  EVIDENTLY_URL: "http://evidently:8080"
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: monitoring-role-binding
+  name: smart-health-monitoring-deployment
   namespace: smart-health-monitoring
-subjects:
-  - kind: ServiceAccount
-    name: monitoring-sa
-    namespace: smart-health-monitoring
-roleRef:
-  kind: Role
-  name: monitoring-role
-  apiGroup: rbac.authorization.k8s.io
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: smart-health-monitoring
+  template:
+    metadata:
+      labels:
+        app: smart-health-monitoring
+    spec:
+      serviceAccountName: monitoring-sa
+      containers:
+      - name: monitoring-app
+        image: your-docker-repo/smart-health-monitoring:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: KAFKA_BROKER
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: KAFKA_BROKER
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: REDIS_HOST
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: REDIS_PORT
+        - name: MLFLOW_TRACKING_URI
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MLFLOW_TRACKING_URI
+        - name: EVIDENTLY_URL
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: EVIDENTLY_URL
+        envFrom:
+        - secretRef:
+            name: kafka-secret
+        - secretRef:
+            name: redis-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-health-monitoring-service
+  namespace: smart-health-monitoring
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: smart-health-monitoring
