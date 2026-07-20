@@ -112,3 +112,6 @@ spec:
 
 # 11:51:19 — automated update
 # security: rotate all secrets and update CI environment variables
+
+# 11:51:19 — automated update
+# chore: chore: tag v1.0.0 release with changelog
