@@ -95,3 +95,6 @@ _REFACTORED = True
 
 # 10:56:17 — automated update
 # docs: update example in docstring of dataset_assembler — 10:56:17 UTC
+
+# 11:51:19 — automated update
+# docs: fix typo in inline comment in dataset_assembler — 11:51:19 UTC
