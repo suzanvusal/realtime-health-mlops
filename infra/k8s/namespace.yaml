@@ -8,16 +8,6 @@ metadata:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: kafka-secret
-  namespace: smart-health-monitoring
-type: Opaque
-data:
-  kafka-username: <base64-encoded-username>
-  kafka-password: <base64-encoded-password>
----
-apiVersion: v1
-kind: Secret
-metadata:
   name: redis-secret
   namespace: smart-health-monitoring
 type: Opaque
@@ -25,10 +15,13 @@ data:
   redis-password: <base64-encoded-password>
 ---
 apiVersion: v1
-kind: ServiceAccount
+kind: Secret
 metadata:
-  name: monitoring-sa
+  name: kafka-secret
   namespace: smart-health-monitoring
+type: Opaque
+data:
+  kafka-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -37,85 +30,51 @@ metadata:
   namespace: smart-health-monitoring
 data:
   KAFKA_BROKER: "kafka:9092"
-  REDIS_HOST: "redis"
-  REDIS_PORT: "6379"
+  REDIS_HOST: "redis:6379"
   MLFLOW_TRACKING_URI: "http://mlflow:5000"
-  EVIDENTLY_URL: "http://evidently:8080"
+  MODEL_VERSION: "v1"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: smart-health-monitoring-deployment
+  name: smart-health-api
   namespace: smart-health-monitoring
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: smart-health-monitoring
+      app: smart-health-api
   template:
     metadata:
       labels:
-        app: smart-health-monitoring
+        app: smart-health-api
     spec:
-      serviceAccountName: monitoring-sa
       containers:
-      - name: monitoring-app
-        image: your-docker-repo/smart-health-monitoring:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: KAFKA_BROKER
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: KAFKA_BROKER
-        - name: REDIS_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: REDIS_HOST
-        - name: REDIS_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: REDIS_PORT
-        - name: MLFLOW_TRACKING_URI
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: MLFLOW_TRACKING_URI
-        - name: EVIDENTLY_URL
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: EVIDENTLY_URL
-        envFrom:
-        - secretRef:
-            name: kafka-secret
-        - secretRef:
-            name: redis-secret
+        - name: smart-health-api
+          image: your-docker-repo/smart-health-api:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secret
+                  key: redis-password
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kafka-secret
+                  key: kafka-password
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: smart-health-monitoring-service
+  name: smart-health-api
   namespace: smart-health-monitoring
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
-    app: smart-health-monitoring
-# 11:51:19 — automated update
-# security: add network policies to Kubernetes manifests
-
-# 11:51:19 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 11:51:19 — automated update
-# chore: chore: tag v1.0.0 release with changelog
-
-# 11:51:19 — automated update
-# fix applied at 11:51:19
-_FIXED = True  # fix: environment variable names inconsistent across services
+    app: smart-health-api
