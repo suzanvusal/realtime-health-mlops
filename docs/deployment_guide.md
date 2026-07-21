@@ -1,129 +1,138 @@
 # Deployment Guide for Real-Time Smart Health Monitoring System
 
 ## Introduction
-This document provides a comprehensive guide to deploying the Real-Time Smart Health Monitoring System. It covers the prerequisites, deployment steps, and post-deployment configurations necessary for a successful setup.
+This deployment guide outlines the steps required to deploy the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. 
 
 ## Prerequisites
-Before deploying the system, ensure you have the following:
-
-- Kubernetes cluster (minikube, GKE, EKS, etc.)
+- Kubernetes cluster
 - Docker installed
 - Helm installed
 - Access to a Kafka broker
 - Redis instance
-- MLflow server running
-- Airflow setup for orchestration
+- MLflow tracking server
 
 ## Deployment Steps
 
 ### Step 1: Clone the Repository
-Clone the repository containing the application code.
 ```bash
-git clone https://github.com/yourusername/smart-health-monitoring.git
+git clone https://github.com/your-repo/smart-health-monitoring.git
 cd smart-health-monitoring
 ```
 
 ### Step 2: Build Docker Images
-Build the Docker images for the FastAPI application and other services.
+Navigate to the `Dockerfile` directory and build the necessary images:
 ```bash
-docker build -t smart-health-api ./app
-docker build -t smart-health-worker ./worker
+docker build -t smart-health-monitoring-api ./api
+docker build -t smart-health-monitoring-worker ./worker
 ```
 
-### Step 3: Push Docker Images to Registry
-Push the built images to your Docker registry.
+### Step 3: Configure Kubernetes Namespace
+Create a namespace for the application:
+```yaml
+# infra/k8s/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: health-monitoring
+```
+Apply the namespace configuration:
 ```bash
-docker tag smart-health-api yourregistry/smart-health-api
-docker push yourregistry/smart-health-api
-
-docker tag smart-health-worker yourregistry/smart-health-worker
-docker push yourregistry/smart-health-worker
+kubectl apply -f infra/k8s/namespace.yaml
 ```
 
-### Step 4: Deploy Kafka
-Use Helm to deploy Kafka in your Kubernetes cluster.
+### Step 4: Deploy Kafka and Redis
+Use Helm to deploy Kafka and Redis:
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install kafka bitnami/kafka
+helm install kafka bitnami/kafka --namespace health-monitoring
+helm install redis bitnami/redis --namespace health-monitoring
 ```
 
-### Step 5: Deploy Redis
-Deploy Redis using Helm.
-```bash
-helm install redis bitnami/redis
-```
-
-### Step 6: Deploy the FastAPI Application
-Create a Kubernetes deployment and service for the FastAPI application.
+### Step 5: Deploy the FastAPI Application
+Create a deployment file for the FastAPI application:
 ```yaml
+# infra/k8s/fastapi-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: smart-health-api
+  name: fastapi
+  namespace: health-monitoring
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: smart-health-api
+      app: fastapi
   template:
     metadata:
       labels:
-        app: smart-health-api
+        app: fastapi
     spec:
       containers:
-      - name: smart-health-api
-        image: yourregistry/smart-health-api
+      - name: fastapi
+        image: smart-health-monitoring-api
         ports:
         - containerPort: 8000
----
+```
+Apply the deployment:
+```bash
+kubectl apply -f infra/k8s/fastapi-deployment.yaml
+```
+
+### Step 6: Deploy the Worker
+Create a deployment file for the worker:
+```yaml
+# infra/k8s/worker-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  namespace: health-monitoring
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - name: worker
+        image: smart-health-monitoring-worker
+```
+Apply the deployment:
+```bash
+kubectl apply -f infra/k8s/worker-deployment.yaml
+```
+
+### Step 7: Expose the FastAPI Service
+Create a service to expose the FastAPI application:
+```yaml
+# infra/k8s/fastapi-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: smart-health-api
+  name: fastapi
+  namespace: health-monitoring
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8000
   selector:
-    app: smart-health-api
+    app: fastapi
+```
+Apply the service configuration:
+```bash
+kubectl apply -f infra/k8s/fastapi-service.yaml
 ```
 
-### Step 7: Deploy the Worker
-Create a Kubernetes deployment for the worker service.
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: smart-health-worker
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: smart-health-worker
-  template:
-    metadata:
-      labels:
-        app: smart-health-worker
-    spec:
-      containers:
-      - name: smart-health-worker
-        image: yourregistry/smart-health-worker
+### Step 8: Monitor and Validate
+Use MLflow and Evidently for monitoring model performance and health metrics. Ensure that all services are running correctly:
+```bash
+kubectl get all -n health-monitoring
 ```
-
-### Step 8: Configure MLflow
-Deploy MLflow using a Kubernetes deployment or as a service in your cloud provider.
-
-### Step 9: Set Up Airflow
-Deploy Airflow to orchestrate your data pipelines. Ensure it is configured to trigger the necessary workflows.
-
-### Step 10: Post-Deployment Configuration
-- Ensure all services are running and accessible.
-- Set up monitoring and logging for the deployed services.
-- Configure security settings for Kafka, Redis, and other services.
 
 ## Conclusion
-Your Real-Time Smart Health Monitoring System should now be deployed and operational. Ensure to monitor the system and make adjustments as necessary. For further assistance, refer to the README and architecture documentation.
-# 11:51:19 — automated update
-# refactor: refactor: final code cleanup — remove all TODO comments
-_REFACTORED = True
+Following these steps will set up the Real-Time Smart Health Monitoring System in a Kubernetes environment. Make sure to monitor the logs and performance metrics for any issues.
