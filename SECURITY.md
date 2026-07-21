@@ -50,3 +50,5 @@ This document outlines the security measures and policies for the Real-Time Smar
 ## Conclusion
 
 The security of the Real-Time Smart Health Monitoring System is a top priority. By adhering to these security policies and best practices, we can protect sensitive health data and maintain the trust of our users.
+# 11:12:45 — automated update
+# security: add network policies to Kubernetes manifests
