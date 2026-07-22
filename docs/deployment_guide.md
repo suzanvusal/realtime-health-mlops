@@ -1,143 +1,114 @@
 # Deployment Guide for Real-Time Smart Health Monitoring System
 
 ## Introduction
-This deployment guide outlines the steps required to deploy the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. 
+
+This deployment guide provides detailed instructions on how to deploy the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. Follow these steps to ensure a successful deployment.
 
 ## Prerequisites
-- Kubernetes cluster
-- Docker installed
-- Helm installed
-- Access to a Kafka broker
-- Redis instance
-- MLflow tracking server
+
+Before deploying the system, ensure you have the following:
+
+- Docker and Docker Compose installed
+- Kubernetes cluster (e.g., GKE, EKS, AKS)
+- kubectl configured to interact with your cluster
+- Helm installed for managing Kubernetes applications
+
+## Architecture Overview
+
+The architecture of the Real-Time Smart Health Monitoring System consists of several components:
+
+1. **Kafka**: For real-time data streaming.
+2. **Faust**: For stream processing.
+3. **Redis**: For caching and fast data retrieval.
+4. **XGBoost & PyTorch**: For machine learning model training and inference.
+5. **MLflow**: For model tracking and management.
+6. **FastAPI**: For building the RESTful API.
+7. **Evidently**: For monitoring model performance.
+8. **Airflow**: For orchestrating workflows.
+
+Refer to `docs/architecture.md` for a detailed architecture diagram.
 
 ## Deployment Steps
 
 ### Step 1: Clone the Repository
+
 ```bash
-git clone https://github.com/your-repo/smart-health-monitoring.git
+git clone https://github.com/yourusername/smart-health-monitoring.git
 cd smart-health-monitoring
 ```
 
-### Step 2: Build Docker Images
-Navigate to the `Dockerfile` directory and build the necessary images:
+### Step 2: Set Up Environment Variables
+
+Create a `.env` file in the root directory and add the necessary environment variables:
+
 ```bash
-docker build -t smart-health-monitoring-api ./api
-docker build -t smart-health-monitoring-worker ./worker
+KAFKA_BROKER=your_kafka_broker
+REDIS_URL=redis://your_redis_url
+MLFLOW_TRACKING_URI=http://your_mlflow_tracking_uri
 ```
 
-### Step 3: Configure Kubernetes Namespace
-Create a namespace for the application:
-```yaml
-# infra/k8s/namespace.yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: health-monitoring
-```
-Apply the namespace configuration:
+### Step 3: Deploy Kafka
+
+Use Docker Compose to deploy Kafka locally for development:
+
 ```bash
-kubectl apply -f infra/k8s/namespace.yaml
+docker-compose up -d kafka zookeeper
 ```
 
-### Step 4: Deploy Kafka and Redis
-Use Helm to deploy Kafka and Redis:
+For production, use Helm to deploy Kafka on Kubernetes:
+
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install kafka bitnami/kafka --namespace health-monitoring
-helm install redis bitnami/redis --namespace health-monitoring
+helm install kafka bitnami/kafka
 ```
 
-### Step 5: Deploy the FastAPI Application
-Create a deployment file for the FastAPI application:
-```yaml
-# infra/k8s/fastapi-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: fastapi
-  namespace: health-monitoring
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: fastapi
-  template:
-    metadata:
-      labels:
-        app: fastapi
-    spec:
-      containers:
-      - name: fastapi
-        image: smart-health-monitoring-api
-        ports:
-        - containerPort: 8000
-```
-Apply the deployment:
+### Step 4: Deploy Redis
+
+For local development:
+
 ```bash
-kubectl apply -f infra/k8s/fastapi-deployment.yaml
+docker-compose up -d redis
 ```
 
-### Step 6: Deploy the Worker
-Create a deployment file for the worker:
-```yaml
-# infra/k8s/worker-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: worker
-  namespace: health-monitoring
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: worker
-  template:
-    metadata:
-      labels:
-        app: worker
-    spec:
-      containers:
-      - name: worker
-        image: smart-health-monitoring-worker
-```
-Apply the deployment:
+For production:
+
 ```bash
-kubectl apply -f infra/k8s/worker-deployment.yaml
+helm install redis bitnami/redis
 ```
 
-### Step 7: Expose the FastAPI Service
-Create a service to expose the FastAPI application:
-```yaml
-# infra/k8s/fastapi-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: fastapi
-  namespace: health-monitoring
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8000
-  selector:
-    app: fastapi
-```
-Apply the service configuration:
+### Step 5: Deploy FastAPI
+
+Build and deploy the FastAPI application:
+
 ```bash
-kubectl apply -f infra/k8s/fastapi-service.yaml
+cd fastapi_app
+docker build -t fastapi_app .
+kubectl apply -f k8s/deployment.yaml
 ```
 
-### Step 8: Monitor and Validate
-Use MLflow and Evidently for monitoring model performance and health metrics. Ensure that all services are running correctly:
+### Step 6: Deploy Airflow
+
+Deploy Airflow using Helm:
+
 ```bash
-kubectl get all -n health-monitoring
+helm repo add apache-airflow https://airflow.apache.org
+helm install airflow apache-airflow/airflow
 ```
+
+### Step 7: Monitor and Maintain
+
+Use Evidently to monitor model performance. Set up periodic checks and alerts to ensure system reliability.
+
+### Step 8: CI/CD Pipeline
+
+Ensure your CI/CD pipeline is configured to automate testing and deployment. Use GitHub Actions or Jenkins for continuous integration.
+
+## Security Hardening
+
+- Use Kubernetes secrets to manage sensitive information.
+- Implement network policies to restrict access between services.
+- Regularly update dependencies to patch vulnerabilities.
 
 ## Conclusion
-Following these steps will set up the Real-Time Smart Health Monitoring System in a Kubernetes environment. Make sure to monitor the logs and performance metrics for any issues.
-# 11:12:45 — automated update
-# security: add Dependabot config for automated dependency updates
 
-# 11:12:45 — automated update
-# ci: updated at 11:12:45
+Follow these steps to successfully deploy the Real-Time Smart Health Monitoring System. For any issues or questions, refer to the project documentation or reach out to the development team.
