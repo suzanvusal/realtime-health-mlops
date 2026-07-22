@@ -100,3 +100,6 @@ _FIXED = True  # fix: add reconnect logic for Redis connection drops
 
 # 11:05:16 — automated update
 # perf: add __slots__ to reduce memory in test_redis_client — 11:05:16 UTC
+
+# 11:13:37 — automated update
+# docs: update example in docstring of test_redis_client — 11:13:37 UTC
