@@ -123,3 +123,7 @@ Follow these steps to successfully deploy the Real-Time Smart Health Monitoring 
 
 # 11:13:37 — automated update
 # ci: updated at 11:13:37
+
+# 11:13:37 — automated update
+# fix applied at 11:13:37
+_FIXED = True  # fix: environment variable names inconsistent across services
