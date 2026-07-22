@@ -114,3 +114,6 @@ Ensure your CI/CD pipeline is configured to automate testing and deployment. Use
 Follow these steps to successfully deploy the Real-Time Smart Health Monitoring System. For any issues or questions, refer to the project documentation or reach out to the development team.
 # 11:13:37 — automated update
 # security: add network policies to Kubernetes manifests
+
+# 11:13:37 — automated update
+# security: add Dependabot config for automated dependency updates
