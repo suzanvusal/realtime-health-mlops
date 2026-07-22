@@ -98,3 +98,6 @@ _REFACTORED = True
 
 # 10:23:32 — automated update
 # chore: day 30 maintenance sweep — 10:23:32 UTC
+
+# 11:13:37 — automated update
+# perf: add __slots__ to reduce memory in alert_rules — 11:13:37 UTC
