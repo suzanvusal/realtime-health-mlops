@@ -75,3 +75,6 @@ _FIXED = True  # fix: AUROC monitor crashes when fewer than 50 predictions in
 
 # 11:12:45 — automated update
 # fix: remove unused import in test_prediction_drift — 11:12:45 UTC
+
+# 11:13:37 — automated update
+# ci: update step name for readability — 11:13:37 UTC
