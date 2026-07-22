@@ -8,82 +8,57 @@ metadata:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: redis-secret
-  namespace: smart-health-monitoring
-type: Opaque
-data:
-  redis-password: <base64-encoded-password>
----
-apiVersion: v1
-kind: Secret
-metadata:
   name: kafka-secret
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  kafka-password: <base64-encoded-password>
+  username: <base64-encoded-username>
+  password: <base64-encoded-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  redis-password: <base64-encoded-redis-password>
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-config
+  name: mlflow-config
   namespace: smart-health-monitoring
 data:
-  KAFKA_BROKER: "kafka:9092"
-  REDIS_HOST: "redis:6379"
   MLFLOW_TRACKING_URI: "http://mlflow:5000"
-  MODEL_VERSION: "v1"
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: smart-health-api
-  namespace: smart-health-monitoring
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: smart-health-api
-  template:
-    metadata:
-      labels:
-        app: smart-health-api
-    spec:
-      containers:
-        - name: smart-health-api
-          image: your-docker-repo/smart-health-api:latest
-          ports:
-            - containerPort: 80
-          env:
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: redis-secret
-                  key: redis-password
-            - name: KAFKA_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: kafka-secret
-                  key: kafka-password
+  MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
 ---
 apiVersion: v1
-kind: Service
+kind: ServiceAccount
 metadata:
-  name: smart-health-api
+  name: monitoring-sa
   namespace: smart-health-monitoring
-spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 80
-  selector:
-    app: smart-health-api
-# 11:12:45 — automated update
-# security: rotate all secrets and update CI environment variables
-
-# 11:12:45 — automated update
-# refactor: refactor: final code cleanup — remove all TODO comments
-_REFACTORED = True
-
-# 11:12:45 — automated update
-# chore: chore: archive unused notebooks to notebooks/archive/
+---
+apiVersion: v1
+kind: Role
+metadata:
+  name: monitoring-role
+  namespace: smart-health-monitoring
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: monitoring-role-binding
+  namespace: smart-health-monitoring
+subjects:
+  - kind: ServiceAccount
+    name: monitoring-sa
+    namespace: smart-health-monitoring
+roleRef:
+  kind: Role
+  name: monitoring-role
+  apiGroup: rbac.authorization.k8s.io
