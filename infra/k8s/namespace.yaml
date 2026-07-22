@@ -62,3 +62,5 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
+# 11:13:37 — automated update
+"""\ndocs: fix broken links in README\n"""
