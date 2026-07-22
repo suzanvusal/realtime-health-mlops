@@ -117,3 +117,6 @@ Follow these steps to successfully deploy the Real-Time Smart Health Monitoring 
 
 # 11:13:37 — automated update
 # security: add Dependabot config for automated dependency updates
+
+# 11:13:37 — automated update
+# chore: chore: tag v1.0.0 release with changelog
