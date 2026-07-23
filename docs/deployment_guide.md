@@ -1,129 +1,182 @@
 # Deployment Guide for Real-Time Smart Health Monitoring System
 
-## Introduction
+## Overview
 
-This deployment guide provides detailed instructions on how to deploy the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. Follow these steps to ensure a successful deployment.
+This document outlines the steps required to deploy the Real-Time Smart Health Monitoring System using Kafka, Faust, Redis, XGBoost, PyTorch, MLflow, FastAPI, Evidently, and Airflow. The deployment is designed to be scalable, secure, and maintainable.
 
 ## Prerequisites
 
 Before deploying the system, ensure you have the following:
 
-- Docker and Docker Compose installed
-- Kubernetes cluster (e.g., GKE, EKS, AKS)
-- kubectl configured to interact with your cluster
-- Helm installed for managing Kubernetes applications
-
-## Architecture Overview
-
-The architecture of the Real-Time Smart Health Monitoring System consists of several components:
-
-1. **Kafka**: For real-time data streaming.
-2. **Faust**: For stream processing.
-3. **Redis**: For caching and fast data retrieval.
-4. **XGBoost & PyTorch**: For machine learning model training and inference.
-5. **MLflow**: For model tracking and management.
-6. **FastAPI**: For building the RESTful API.
-7. **Evidently**: For monitoring model performance.
-8. **Airflow**: For orchestrating workflows.
-
-Refer to `docs/architecture.md` for a detailed architecture diagram.
+- Kubernetes cluster (minikube, GKE, EKS, etc.)
+- kubectl installed and configured
+- Helm installed
+- Docker installed
+- Python 3.8 or higher
+- Access to a Redis instance
+- Access to a Kafka broker
 
 ## Deployment Steps
 
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/smart-health-monitoring.git
+git clone https://github.com/your-org/smart-health-monitoring.git
 cd smart-health-monitoring
 ```
 
-### Step 2: Set Up Environment Variables
+### Step 2: Build Docker Images
 
-Create a `.env` file in the root directory and add the necessary environment variables:
-
-```bash
-KAFKA_BROKER=your_kafka_broker
-REDIS_URL=redis://your_redis_url
-MLFLOW_TRACKING_URI=http://your_mlflow_tracking_uri
-```
-
-### Step 3: Deploy Kafka
-
-Use Docker Compose to deploy Kafka locally for development:
+Navigate to the `Dockerfile` locations and build the images.
 
 ```bash
-docker-compose up -d kafka zookeeper
+# Build FastAPI service
+cd fastapi_service
+docker build -t fastapi_service:latest .
+
+# Build Kafka consumer using Faust
+cd ../faust_consumer
+docker build -t faust_consumer:latest .
+
+# Build Airflow
+cd ../airflow
+docker build -t airflow:latest .
 ```
 
-For production, use Helm to deploy Kafka on Kubernetes:
+### Step 3: Deploy Redis
+
+Use Helm to deploy Redis.
+
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install redis bitnami/redis
+```
+
+### Step 4: Deploy Kafka
+
+Use Helm to deploy Kafka.
 
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install kafka bitnami/kafka
 ```
 
-### Step 4: Deploy Redis
+### Step 5: Deploy FastAPI Service
 
-For local development:
+Create a Kubernetes deployment and service for the FastAPI application.
 
-```bash
-docker-compose up -d redis
+```yaml
+# infra/k8s/fastapi_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - name: fastapi
+        image: fastapi_service:latest
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    app: fastapi
 ```
 
-For production:
+Apply the deployment:
 
 ```bash
-helm install redis bitnami/redis
+kubectl apply -f infra/k8s/fastapi_deployment.yaml
 ```
 
-### Step 5: Deploy FastAPI
+### Step 6: Deploy Faust Consumer
 
-Build and deploy the FastAPI application:
+Create a Kubernetes deployment for the Faust consumer.
+
+```yaml
+# infra/k8s/faust_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: faust-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: faust
+  template:
+    metadata:
+      labels:
+        app: faust
+    spec:
+      containers:
+      - name: faust
+        image: faust_consumer:latest
+```
+
+Apply the deployment:
 
 ```bash
-cd fastapi_app
-docker build -t fastapi_app .
-kubectl apply -f k8s/deployment.yaml
+kubectl apply -f infra/k8s/faust_deployment.yaml
 ```
 
-### Step 6: Deploy Airflow
+### Step 7: Deploy Airflow
 
-Deploy Airflow using Helm:
+Create a Kubernetes deployment for Airflow.
+
+```yaml
+# infra/k8s/airflow_deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: airflow
+  template:
+    metadata:
+      labels:
+        app: airflow
+    spec:
+      containers:
+      - name: airflow
+        image: airflow:latest
+```
+
+Apply the deployment:
 
 ```bash
-helm repo add apache-airflow https://airflow.apache.org
-helm install airflow apache-airflow/airflow
+kubectl apply -f infra/k8s/airflow_deployment.yaml
 ```
 
-### Step 7: Monitor and Maintain
+### Step 8: Monitor and Validate
 
-Use Evidently to monitor model performance. Set up periodic checks and alerts to ensure system reliability.
+Use the following commands to check the status of your deployments:
 
-### Step 8: CI/CD Pipeline
+```bash
+kubectl get pods
+kubectl get services
+```
 
-Ensure your CI/CD pipeline is configured to automate testing and deployment. Use GitHub Actions or Jenkins for continuous integration.
+### Conclusion
 
-## Security Hardening
-
-- Use Kubernetes secrets to manage sensitive information.
-- Implement network policies to restrict access between services.
-- Regularly update dependencies to patch vulnerabilities.
-
-## Conclusion
-
-Follow these steps to successfully deploy the Real-Time Smart Health Monitoring System. For any issues or questions, refer to the project documentation or reach out to the development team.
-# 11:13:37 — automated update
-# security: add network policies to Kubernetes manifests
-
-# 11:13:37 — automated update
-# security: add Dependabot config for automated dependency updates
-
-# 11:13:37 — automated update
-# chore: chore: tag v1.0.0 release with changelog
-
-# 11:13:37 — automated update
-# ci: updated at 11:13:37
-
-# 11:13:37 — automated update
-# fix applied at 11:13:37
-_FIXED = True  # fix: environment variable names inconsistent across services
+You have successfully deployed the Real-Time Smart Health Monitoring System. Make sure to monitor the logs and performance of each component to ensure everything is functioning correctly. For further enhancements, consider implementing security best practices and scaling strategies.
