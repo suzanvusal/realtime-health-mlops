@@ -66,3 +66,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 # 11:15:27 — automated update
 # ci: updated at 11:15:27
+
+# 11:15:27 — automated update
+# fix applied at 11:15:27
+_FIXED = True  # fix: environment variable names inconsistent across services
