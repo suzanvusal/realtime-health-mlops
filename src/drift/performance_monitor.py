@@ -84,3 +84,6 @@ _FIXED = True  # fix: PSI formula using natural log instead of log base 10
 
 # 10:38:39 — automated update
 # refactor: extract magic number to named constant in performance_monitor — 10:38:39 UTC
+
+# 11:15:27 — automated update
+# ci: update step name for readability — 11:15:27 UTC
