@@ -64,3 +64,5 @@ roleRef:
   kind: Role
   name: monitoring-role
   apiGroup: rbac.authorization.k8s.io
+# 11:15:27 — automated update
+# ci: updated at 11:15:27
