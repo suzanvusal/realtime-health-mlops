@@ -52,3 +52,6 @@ Maintaining a secure environment is a continuous process. All team members are r
 
 # 11:15:27 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 11:15:27 — automated update
+"""\ndocs: fix broken links in README\n"""
