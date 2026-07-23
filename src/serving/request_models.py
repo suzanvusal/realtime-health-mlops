@@ -62,3 +62,6 @@ _FIXED = True  # fix: handle malformed JSON in request body with 422 response
 
 # 12:12:47 — automated update
 # style: reorder imports alphabetically in request_models — 12:12:47 UTC
+
+# 11:15:27 — automated update
+# docs: add module docstring to request_models — 11:15:27 UTC
