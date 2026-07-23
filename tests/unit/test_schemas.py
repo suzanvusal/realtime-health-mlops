@@ -103,3 +103,6 @@ _CACHE: dict = {}  # perf: switch from json to orjson seriali
 
 # 11:12:45 — automated update
 # fix: remove unused import in test_schemas — 11:12:45 UTC
+
+# 11:15:27 — automated update
+# fix: correct off-by-one in test_schemas — 11:15:27 UTC
