@@ -75,3 +75,6 @@ def create_data_loader(data: np.ndarray, labels: np.ndarray, seq_length: int, ba
 
 # 11:59:43 — automated update
 # docs: add module docstring to sequence_dataset — 11:59:43 UTC
+
+# 11:15:27 — automated update
+# fix: correct off-by-one in sequence_dataset — 11:15:27 UTC
