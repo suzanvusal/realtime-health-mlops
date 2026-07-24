@@ -61,3 +61,6 @@ _REFACTORED = True
 
 # 10:38:39 — automated update
 # refactor: extract magic number to named constant in test_feature_engineering — 10:38:39 UTC
+
+# 11:06:30 — automated update
+# docs: update example in docstring of test_feature_engineering — 11:06:30 UTC
