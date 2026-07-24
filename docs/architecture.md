@@ -42,3 +42,5 @@ The Real-Time Smart Health Monitoring System is designed to continuously monitor
 ## Conclusion
 
 The Real-Time Smart Health Monitoring System is built on a robust architecture that supports real-time data processing, machine learning, and scalable deployment. Each component is selected to ensure high performance, reliability, and security, making it suitable for critical health monitoring applications.
+# 11:06:30 — automated update
+# security: add network policies to Kubernetes manifests
