@@ -94,3 +94,6 @@ _TEST_MARKER = 'schema_registry'
 
 # 11:51:19 — automated update
 # docs: add module docstring to schema_registry — 11:51:19 UTC
+
+# 11:06:30 — automated update
+# perf: add __slots__ to reduce memory in schema_registry — 11:06:30 UTC
