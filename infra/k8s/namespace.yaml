@@ -8,65 +8,77 @@ metadata:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: redis-secret
-  namespace: smart-health-monitoring
-type: Opaque
-data:
-  redis-password: cGFzc3dvcmQ=  # base64 encoded password
----
-apiVersion: v1
-kind: Secret
-metadata:
   name: kafka-secret
   namespace: smart-health-monitoring
 type: Opaque
 data:
-  kafka-password: cGFzc3dvcmQ=  # base64 encoded password
+  kafka-username: <base64-encoded-username>
+  kafka-password: <base64-encoded-password>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: smart-health-monitoring
+type: Opaque
+data:
+  redis-password: <base64-encoded-password>
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-config
+  name: mlflow-config
   namespace: smart-health-monitoring
 data:
-  KAFKA_BROKER: "kafka:9092"
-  REDIS_HOST: "redis"
-  REDIS_PORT: "6379"
   MLFLOW_TRACKING_URI: "http://mlflow:5000"
-  EVIDENTLY_URL: "http://evidently:8080"
+  MLFLOW_EXPERIMENT_NAME: "smart_health_experiment"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+  namespace: smart-health-monitoring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - name: fastapi
+        image: your-docker-repo/smart-health-api:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: KAFKA_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: kafka-secret
+              key: kafka-username
+        - name: KAFKA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kafka-secret
+              key: kafka-password
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-secret
+              key: redis-password
 ---
 apiVersion: v1
-kind: ServiceAccount
+kind: Service
 metadata:
-  name: monitoring-sa
+  name: fastapi-service
   namespace: smart-health-monitoring
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: monitoring-role
-  namespace: smart-health-monitoring
-rules:
-  - apiGroups: [""]
-    resources: ["pods", "pods/log"]
-    verbs: ["get", "watch", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: monitoring-role-binding
-  namespace: smart-health-monitoring
-subjects:
-  - kind: ServiceAccount
-    name: monitoring-sa
-    namespace: smart-health-monitoring
-roleRef:
-  kind: Role
-  name: monitoring-role
-  apiGroup: rbac.authorization.k8s.io
-# 11:15:27 — automated update
-# ci: updated at 11:15:27
-
-# 11:15:27 — automated update
-# fix applied at 11:15:27
-_FIXED = True  # fix: environment variable names inconsistent across services
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: fastapi
