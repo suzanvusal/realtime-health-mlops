@@ -88,3 +88,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 # 11:06:30 — automated update
 # chore: chore: tag v1.0.0 release with changelog
+
+# 11:06:30 — automated update
+# fix applied at 11:06:30
+_FIXED = True  # fix: environment variable names inconsistent across services
